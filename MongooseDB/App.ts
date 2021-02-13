@@ -7,8 +7,8 @@ import * as bodyParser from 'body-parser';
 //var MongoClient = require('mongodb').MongoClient;
 //var Q = require('q');
 
-import {ListModel} from './model/ListModel';
-import {TaskModel} from './model/TaskModel';
+import {EventModel} from './model/EventModel';
+import {UserModel} from './model/UserModel';
 //import {DataAccess} from './DataAccess';
 
 // Creates and configures an ExpressJS web server.
@@ -16,8 +16,8 @@ class App {
 
   // ref to Express instance
   public expressApp: express.Application;
-  public Lists:ListModel;
-  public Tasks:TaskModel;
+  public Lists:EventModel;
+  public Tasks:UserModel;
   public idGenerator:number;
 
   //Run configuration methods on the Express instance.
@@ -26,8 +26,8 @@ class App {
     this.middleware();
     this.routes();
     this.idGenerator = 102;
-    this.Lists = new ListModel();
-    this.Tasks = new TaskModel();
+    this.Lists = new EventModel();
+    this.Tasks = new UserModel();
   }
 
   // Configure Express middleware.

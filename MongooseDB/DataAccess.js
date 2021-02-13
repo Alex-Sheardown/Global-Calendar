@@ -1,5 +1,6 @@
 "use strict";
 exports.__esModule = true;
+exports.DataAccess = void 0;
 var Mongoose = require("mongoose");
 var DataAccess = /** @class */ (function () {
     function DataAccess() {
