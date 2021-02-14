@@ -11,6 +11,7 @@ var bodyParser = require("body-parser");
 //var Q = require('q');
 var EventModel_1 = require("./model/EventModel");
 var UserModel_1 = require("./model/UserModel");
+var CalendarModel_1 = require("./model/CalendarModel");
 //import {DataAccess} from './DataAccess';
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
@@ -22,6 +23,7 @@ var App = /** @class */ (function () {
         this.idGenerator = 102;
         this.Events = new EventModel_1.EventModel();
         this.Users = new UserModel_1.UserModel();
+        this.Calendars = new CalendarModel_1.CalendarModel();
     }
     // Configure Express middleware.
     App.prototype.middleware = function () {
@@ -33,6 +35,7 @@ var App = /** @class */ (function () {
     App.prototype.routes = function () {
         var _this = this;
         var router = express.Router();
+        // User APIs
         router.get('/app/user/', function (req, res) {
             console.log('Query all users');
             _this.Users.retrieveAllUsers(res);
@@ -42,6 +45,27 @@ var App = /** @class */ (function () {
             console.log('Query user collection for the following id: ' + userId);
             _this.Users.retrieveUserById(res, { $and: [{ userId: { $eq: userId } }, { isActive: true }] });
         });
+        // Event APIs
+        router.get('/app/event/', function (req, res) {
+            console.log('Query all events');
+            _this.Events.retrieveAllEvents(res);
+        });
+        router.get('/app/event/:eventId', function (req, res) {
+            var eventId = req.params.eventId;
+            console.log('Query user collection for the following id: ' + eventId);
+            _this.Events.retrieveEventById(res, { eventId: eventId });
+        });
+        // Calendar APIs
+        router.get('/app/calendar/', function (req, res) {
+            console.log('Query all calendars');
+            _this.Calendars.retrieveAllCalendars(res);
+        });
+        router.get('/app/calendar/:calendarId', function (req, res) {
+            var calendarId = req.params.calendarId;
+            console.log('Query user collection for the following id: ' + calendarId);
+            _this.Calendars.retrieveCalendarById(res, { calendarId: calendarId });
+        });
+        // Static Routes
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
         this.expressApp.use('/', express.static(__dirname + '/pages'));

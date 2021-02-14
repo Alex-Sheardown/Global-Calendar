@@ -2,7 +2,7 @@ import Mongoose = require("mongoose");
 
 interface IEventModel extends Mongoose.Document
 {
-    eventID: number;
+    eventId: number;
     // title: string;
     // category: string;
     // startDate: string; // ex: 01/12/21
