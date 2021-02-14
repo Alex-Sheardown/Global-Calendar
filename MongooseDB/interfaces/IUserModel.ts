@@ -3,7 +3,7 @@ import Mongoose = require("mongoose");
 interface IUserModel extends Mongoose.Document
 {
     name: string,
-    userID: number,
+    userId: number,
     timeZone: string,
     startDate: any,
     endDate: any,

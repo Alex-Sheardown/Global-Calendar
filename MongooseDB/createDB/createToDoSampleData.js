@@ -5,7 +5,7 @@ usersCollection.remove({})
 usersCollection.insert(
     {
         name: "Nick",
-        userID: 1,
+        userId: 1,
         timeZone: "USA/Los_Angeles",
         startDate: "2020-01-01",
         endDate: "2021-01-31",
@@ -15,7 +15,7 @@ usersCollection.insert(
 usersCollection.insert(
     {
         name: "Nick",
-        userID: 1,
+        userId: 1,
         timeZone: "USA/Chicago",
         startDate: "2021-02-01",
         endDate: null,
@@ -26,7 +26,7 @@ usersCollection.insert(
 usersCollection.insert(
     {
         name: "Emma",
-        userID: 2,
+        userId: 2,
         timeZone: "Asia/Tokyo",
         startDate: "2020-01-01",
         endDate: null,
@@ -36,7 +36,7 @@ usersCollection.insert(
 usersCollection.insert(
     {
         name: "Alex",
-        userID: 3,
+        userId: 3,
         timeZone: "USA/New_York",
         startDate: "2020-01-04",
         endDate: null,
@@ -55,10 +55,10 @@ calendarsCollection.insert(
         description: "For Seattle University Winter 2021 Quarter",
         events: [
             {
-                eventID: 1
+                eventId: 1
             },
             {
-                eventID: 3
+                eventId: 3
             }
         ]
     }
@@ -71,7 +71,7 @@ calendarsCollection.insert(
         description: "For Seattle University Winter 2021 Quarter",
         events: [
             {
-                eventID: 2
+                eventId: 2
             }
         ]
     }
@@ -84,7 +84,7 @@ calendarsCollection.insert(
         description: "For Seattle University Winter 2021 Quarter",
         events: [
             {
-                eventID: 4
+                eventId: 4
             }
         ]
     }
@@ -95,22 +95,22 @@ calendarsCollection = db.getCollection("events")
 calendarsCollection.remove({})
 calendarsCollection.insert(
     {
-        eventID: 1
+        eventId: 1
     }
 )
 calendarsCollection.insert(
     {
-        eventID: 2
+        eventId: 2
     }
 )
 calendarsCollection.insert(
     {
-        eventID: 3
+        eventId: 3
     }
 )
 calendarsCollection.insert(
     {
-        eventID: 4
+        eventId: 4
     }
 )
 

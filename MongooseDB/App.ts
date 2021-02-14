@@ -40,31 +40,6 @@ class App {
   // Configure API endpoints.
   private routes(): void {
     let router = express.Router();
-    router.get('/app/list/:listId/count', (req, res) => {
-        let id = req.params.listId;
-        console.log('Query single list with id: ' + id);
-        //this.user.retrieveTasksCount(res, {listId: id});
-    });
-
-    router.post('/app/list/', (req, res) => {
-        console.log(req.body);
-        let jsonObj = req.body;
-        //jsonObj.listId = this.idGenerator;
-        this.Events.model.create([jsonObj], (err) => {
-            if (err) {
-                console.log('object creation failed');
-            }
-        });
-        res.send(this.idGenerator.toString());
-        this.idGenerator++;
-    });
-
-    router.get('/app/list/:listId', (req, res) => {
-        let id = req.params.listId;
-        console.log('Query single list with id: ' + id);
-        //this.user.retrieveTasksDetails(res, {listId: id});
-    });
-
     router.get('/app/user/', (req, res) => {
         console.log('Query all users');
         this.Users.retrieveAllUsers(res);
@@ -73,12 +48,11 @@ class App {
     router.get('/app/user/:userId', (req, res) => {
       let userId = req.params.userId;
       console.log('Query user collection for the following id: ' + userId);
-      this.Users.retrieveUserById(res, {$and: [{userID: {$eq: userId}}, {isActive: true}]})
+      this.Users.retrieveUserById(res, {$and: [{userId: {$eq: userId}}, {isActive: true}]})
     });
 
     this.expressApp.use('/', router);
     this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));
-    this.expressApp.use('/images', express.static(__dirname+'/img'));
     this.expressApp.use('/', express.static(__dirname+'/pages'));
     
   }
