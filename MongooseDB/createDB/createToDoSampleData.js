@@ -38,7 +38,7 @@ usersCollection.insert(
         name: "Alex",
         userID: 3,
         timeZone: "USA/New_York",
-        startDate: "2020-01-03",
+        startDate: "2020-01-04",
         endDate: null,
         isActive: true
     }
