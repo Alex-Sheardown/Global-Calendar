@@ -19,7 +19,7 @@ To execute the server db and then the node server with the following commands:
 
 //populate the DB server with sample data
 2. startdbClient.toDoSample.cmd
->load ('createDB/createToDoSampleData.js');
+>load ('createDB/createGlobalCalSampleData.js');
 >load ('createDB/createAdminUser.js');
 >exit
 
