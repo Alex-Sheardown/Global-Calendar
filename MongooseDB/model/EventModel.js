@@ -12,16 +12,25 @@ var EventModel = /** @class */ (function () {
     }
     EventModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
-            eventID: Number,
-            title: String,
-            category: String,
-            startTime: String,
-            endTime: String,
-            description: String
+            eventId: Number
         }, { collection: 'events' });
     };
     EventModel.prototype.createModel = function () {
         this.model = mongooseConnection.model("Events", this.schema);
+    };
+    EventModel.prototype.retrieveAllEvents = function (response) {
+        var query = this.model.find({});
+        query.exec(function (err, eventArray) {
+            response.json(eventArray);
+        });
+    };
+    EventModel.prototype.retrieveEventById = function (response, filter) {
+        console.log('Filter passed through is:');
+        console.log(filter);
+        var query = this.model.findOne(filter);
+        query.exec(function (err, eventResult) {
+            response.json(eventResult);
+        });
     };
     return EventModel;
 }());

@@ -1,12 +1,12 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from '../DataAccess';
-import {IUserModel} from '../interfaces/IUserModel';
+import {ICalendarModel} from '../interfaces/ICalendarModel';
 import {STATUS_CODES} from "http";
 
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
 
-class UserModel {
+class CalendarModel {
     public schema: any;
     public model: any;
 
@@ -18,29 +18,32 @@ class UserModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
+                calendarId: Number,
+                events: [
+                    {
+                        eventId: Number
+                    }
+                ],
                 name: String,
                 userId: Number,
-                timeZone: String,
-                startDate: Date,
-                endDate: Date,
-                isActive: Boolean
-            }, {collection: 'users'}
+                description: String
+            }, {collection: 'calendars'}
         );
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<IUserModel>("User", this.schema);
+        this.model = mongooseConnection.model<ICalendarModel>("Calendar", this.schema);
     }
 
 
-    public retrieveAllUsers(response: any): any {
-        let query = this.model.find({isActive: true});
+    public retrieveAllCalendars(response: any): any {
+        let query = this.model.find({});
         query.exec((err, itemArray) => {
             response.json(itemArray);
         });
     }
 
-    public retrieveUserById(response: any, filter: Object) {
+    public retrieveCalendarById(response: any, filter: Object) {
         console.log('Filter passed through is:')
         console.log(filter)
         let query = this.model.findOne(filter);
@@ -50,4 +53,4 @@ class UserModel {
     }
 }
 
-export {UserModel};
+export {CalendarModel};

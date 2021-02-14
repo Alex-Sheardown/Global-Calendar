@@ -9,8 +9,9 @@ var logger = require("morgan");
 var bodyParser = require("body-parser");
 //var MongoClient = require('mongodb').MongoClient;
 //var Q = require('q');
-var ListModel_1 = require("./model/ListModel");
-var TaskModel_1 = require("./model/TaskModel");
+var EventModel_1 = require("./model/EventModel");
+var UserModel_1 = require("./model/UserModel");
+var CalendarModel_1 = require("./model/CalendarModel");
 //import {DataAccess} from './DataAccess';
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
@@ -20,8 +21,9 @@ var App = /** @class */ (function () {
         this.middleware();
         this.routes();
         this.idGenerator = 102;
-        this.Lists = new ListModel_1.ListModel();
-        this.Tasks = new TaskModel_1.TaskModel();
+        this.Events = new EventModel_1.EventModel();
+        this.Users = new UserModel_1.UserModel();
+        this.Calendars = new CalendarModel_1.CalendarModel();
     }
     // Configure Express middleware.
     App.prototype.middleware = function () {
@@ -33,39 +35,39 @@ var App = /** @class */ (function () {
     App.prototype.routes = function () {
         var _this = this;
         var router = express.Router();
-        router.get('/app/list/:listId/count', function (req, res) {
-            var id = req.params.listId;
-            console.log('Query single list with id: ' + id);
-            _this.Tasks.retrieveTasksCount(res, { listId: id });
+        // User APIs
+        router.get('/app/user/', function (req, res) {
+            console.log('Query all users');
+            _this.Users.retrieveAllUsers(res);
         });
-        router.post('/app/list/', function (req, res) {
-            console.log(req.body);
-            var jsonObj = req.body;
-            //jsonObj.listId = this.idGenerator;
-            _this.Lists.model.create([jsonObj], function (err) {
-                if (err) {
-                    console.log('object creation failed');
-                }
-            });
-            res.send(_this.idGenerator.toString());
-            _this.idGenerator++;
+        router.get('/app/user/:userId', function (req, res) {
+            var userId = req.params.userId;
+            console.log('Query user collection for the following id: ' + userId);
+            _this.Users.retrieveUserById(res, { $and: [{ userId: { $eq: userId } }, { isActive: true }] });
         });
-        router.get('/app/list/:listId', function (req, res) {
-            var id = req.params.listId;
-            console.log('Query single list with id: ' + id);
-            _this.Tasks.retrieveTasksDetails(res, { listId: id });
+        // Event APIs
+        router.get('/app/event/', function (req, res) {
+            console.log('Query all events');
+            _this.Events.retrieveAllEvents(res);
         });
-        router.get('/app/list/', function (req, res) {
-            console.log('Query All list');
-            _this.Lists.retrieveAllLists(res);
+        router.get('/app/event/:eventId', function (req, res) {
+            var eventId = req.params.eventId;
+            console.log('Query user collection for the following id: ' + eventId);
+            _this.Events.retrieveEventById(res, { eventId: eventId });
         });
-        router.get('/app/listcount', function (req, res) {
-            console.log('Query the number of list elements in db');
-            _this.Lists.retrieveListCount(res);
+        // Calendar APIs
+        router.get('/app/calendar/', function (req, res) {
+            console.log('Query all calendars');
+            _this.Calendars.retrieveAllCalendars(res);
         });
+        router.get('/app/calendar/:calendarId', function (req, res) {
+            var calendarId = req.params.calendarId;
+            console.log('Query user collection for the following id: ' + calendarId);
+            _this.Calendars.retrieveCalendarById(res, { calendarId: calendarId });
+        });
+        // Static Routes
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
-        this.expressApp.use('/images', express.static(__dirname + '/img'));
         this.expressApp.use('/', express.static(__dirname + '/pages'));
     };
     return App;

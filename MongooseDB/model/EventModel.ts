@@ -17,12 +17,7 @@ class EventModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                eventID: Number,
-                title: String,
-                category: String,
-                startTime: String,
-                endTime: String,
-                description: String
+                eventId: Number,
             }, {collection: 'events'}
         );
     }
@@ -31,22 +26,21 @@ class EventModel {
         this.model = mongooseConnection.model<IEventModel>("Events", this.schema);
     }
 
-    /*
     public retrieveAllEvents(response:any): any {
-        var query = this.model.find({});
+        let query = this.model.find({});
         query.exec( (err, eventArray) => {
             response.json(eventArray) ;
         });
     }
 
-    public retrieveEventCount(response:any): any {
-        console.log("retrieve Event Count ...");
-        var query = this.model.estimatedDocumentCount();
-        query.exec( (err, numberOfEvents) => {
-            console.log("numberOfEvents: " + numberOfEvents);
-            response.json(numberOfEvents) ;
+    public retrieveEventById(response: any, filter: Object) {
+        console.log('Filter passed through is:')
+        console.log(filter)
+        let query = this.model.findOne(filter);
+        query.exec((err, eventResult) => {
+            response.json(eventResult);
         });
     }
-    */
+
 }
 export {EventModel};
