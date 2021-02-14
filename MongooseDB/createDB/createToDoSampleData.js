@@ -69,7 +69,7 @@ calendarsCollection.insert(
         userId: 2,
         name: "Emma's Seattle U Classes",
         description: "For Seattle University Winter 2021 Quarter",
-        tasks: [
+        events: [
             {
                 eventID: 2
             }
@@ -82,16 +82,36 @@ calendarsCollection.insert(
         userId: 3,
         name: "Alex's Seattle U Classes",
         description: "For Seattle University Winter 2021 Quarter",
-        tasks: [
+        events: [
             {
                 eventID: 4
             }
         ]
     }
 )
-db.createCollection('calendars')
-calendarsCollection = db.getCollection("calendars")
+
+db.createCollection('events')
+calendarsCollection = db.getCollection("events")
 calendarsCollection.remove({})
 calendarsCollection.insert(
-    {}
+    {
+        eventID: 1
+    }
 )
+calendarsCollection.insert(
+    {
+        eventID: 2
+    }
+)
+calendarsCollection.insert(
+    {
+        eventID: 3
+    }
+)
+calendarsCollection.insert(
+    {
+        eventID: 4
+    }
+)
+
+

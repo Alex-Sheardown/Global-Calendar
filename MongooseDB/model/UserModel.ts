@@ -8,7 +8,6 @@ let mongooseObj = DataAccess.mongooseInstance;
 
 class UserModel {
     public schema:any;
-    public innerSchema:any;
     public model:any;
 
     public constructor() {
@@ -19,11 +18,12 @@ class UserModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                userID: Number,
-                username: String,
-                email: String,
-                // encrypted password
-                events:[]
+                name: String,
+                userId: Number,
+                timeZone: String,
+                startDate: Date,
+                endDate: Date,
+                isActive: Boolean
             }, {collection: 'users'}
         );
     }
@@ -32,33 +32,34 @@ class UserModel {
         this.model = mongooseConnection.model<IUserModel>("User", this.schema);
     }
 
-    /*
-    public retrieveTasksDetails(response:any, filter:Object) {
-        var query = this.model.findOne(filter);
+
+    public retrieveAllUsers(response:any): any {
+        let query = this.model.find({isActive: true});
         query.exec( (err, itemArray) => {
-            response.json(itemArray);
+            response.json(itemArray) ;
         });
     }
 
-
-    public retrieveTasksCount(response:any, filter:Object) {
-        var query = this.model.findOne(filter);
-        query.exec( (err, innerTaskList) => {
+    public retrieveUserById(response:any, filter:Object) {
+        console.log('Filter passed through is:')
+        console.log(filter)
+        let query = this.model.findOne(filter);
+        query.exec( (err, userResult) => {
+            console.log(userResult)
             if (err) {
-                console.log('error retrieving count');
+                console.log('error retrieving user');
             }
             else {
-                if (innerTaskList == null) {
+                if (userResult == null) {
                     response.status(404);
                     response.json('{count: -1}');
                 }
                 else {
-                    console.log('number of tasks: ' + innerTaskList.tasks.length);
-                    response.json('{count:' + innerTaskList.tasks.length + '}');
+                    console.log('Successfully retrieved ' + userResult.name);
+                    response.json(userResult);
                 }
             }
         });
     }
-    */
 }
 export {UserModel};

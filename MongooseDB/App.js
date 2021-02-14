@@ -9,8 +9,8 @@ var logger = require("morgan");
 var bodyParser = require("body-parser");
 //var MongoClient = require('mongodb').MongoClient;
 //var Q = require('q');
-var ListModel_1 = require("./model/ListModel");
-var TaskModel_1 = require("./model/TaskModel");
+var EventModel_1 = require("./model/EventModel");
+var UserModel_1 = require("./model/UserModel");
 //import {DataAccess} from './DataAccess';
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
@@ -20,8 +20,8 @@ var App = /** @class */ (function () {
         this.middleware();
         this.routes();
         this.idGenerator = 102;
-        this.Lists = new ListModel_1.ListModel();
-        this.Tasks = new TaskModel_1.TaskModel();
+        this.Events = new EventModel_1.EventModel();
+        this.Users = new UserModel_1.UserModel();
     }
     // Configure Express middleware.
     App.prototype.middleware = function () {
@@ -36,13 +36,13 @@ var App = /** @class */ (function () {
         router.get('/app/list/:listId/count', function (req, res) {
             var id = req.params.listId;
             console.log('Query single list with id: ' + id);
-            _this.Tasks.retrieveTasksCount(res, { listId: id });
+            //this.user.retrieveTasksCount(res, {listId: id});
         });
         router.post('/app/list/', function (req, res) {
             console.log(req.body);
             var jsonObj = req.body;
             //jsonObj.listId = this.idGenerator;
-            _this.Lists.model.create([jsonObj], function (err) {
+            _this.Events.model.create([jsonObj], function (err) {
                 if (err) {
                     console.log('object creation failed');
                 }
@@ -53,15 +53,16 @@ var App = /** @class */ (function () {
         router.get('/app/list/:listId', function (req, res) {
             var id = req.params.listId;
             console.log('Query single list with id: ' + id);
-            _this.Tasks.retrieveTasksDetails(res, { listId: id });
+            //this.user.retrieveTasksDetails(res, {listId: id});
         });
-        router.get('/app/list/', function (req, res) {
-            console.log('Query All list');
-            _this.Lists.retrieveAllLists(res);
+        router.get('/app/user/', function (req, res) {
+            console.log('Query all users');
+            _this.Users.retrieveAllUsers(res);
         });
-        router.get('/app/listcount', function (req, res) {
-            console.log('Query the number of list elements in db');
-            _this.Lists.retrieveListCount(res);
+        router.get('/app/user/:userId', function (req, res) {
+            var userId = req.params.userId;
+            console.log('Query user collection for the following id: ' + userId);
+            _this.Users.retrieveUserById(res, { $and: [{ userID: { $eq: userId } }, { isActive: true }] });
         });
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));

@@ -12,12 +12,7 @@ var EventModel = /** @class */ (function () {
     }
     EventModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
-            eventID: Number,
-            title: String,
-            category: String,
-            startTime: String,
-            endTime: String,
-            description: String
+            eventID: Number
         }, { collection: 'events' });
     };
     EventModel.prototype.createModel = function () {

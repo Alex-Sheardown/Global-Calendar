@@ -16,8 +16,8 @@ class App {
 
   // ref to Express instance
   public expressApp: express.Application;
-  public Lists:EventModel;
-  public Tasks:UserModel;
+  public Events:EventModel;
+  public Users:UserModel;
   public idGenerator:number;
 
   //Run configuration methods on the Express instance.
@@ -26,8 +26,8 @@ class App {
     this.middleware();
     this.routes();
     this.idGenerator = 102;
-    this.Lists = new EventModel();
-    this.Tasks = new UserModel();
+    this.Events = new EventModel();
+    this.Users = new UserModel();
   }
 
   // Configure Express middleware.
@@ -41,16 +41,16 @@ class App {
   private routes(): void {
     let router = express.Router();
     router.get('/app/list/:listId/count', (req, res) => {
-        var id = req.params.listId;
+        let id = req.params.listId;
         console.log('Query single list with id: ' + id);
-        this.Tasks.retrieveTasksCount(res, {listId: id});
+        //this.user.retrieveTasksCount(res, {listId: id});
     });
 
     router.post('/app/list/', (req, res) => {
         console.log(req.body);
-        var jsonObj = req.body;
+        let jsonObj = req.body;
         //jsonObj.listId = this.idGenerator;
-        this.Lists.model.create([jsonObj], (err) => {
+        this.Events.model.create([jsonObj], (err) => {
             if (err) {
                 console.log('object creation failed');
             }
@@ -60,23 +60,23 @@ class App {
     });
 
     router.get('/app/list/:listId', (req, res) => {
-        var id = req.params.listId;
+        let id = req.params.listId;
         console.log('Query single list with id: ' + id);
-        this.Tasks.retrieveTasksDetails(res, {listId: id});
+        //this.user.retrieveTasksDetails(res, {listId: id});
     });
 
-    router.get('/app/list/', (req, res) => {
-        console.log('Query All list');
-        this.Lists.retrieveAllLists(res);
+    router.get('/app/user/', (req, res) => {
+        console.log('Query all users');
+        this.Users.retrieveAllUsers(res);
     });
 
-    router.get('/app/listcount', (req, res) => {
-      console.log('Query the number of list elements in db');
-      this.Lists.retrieveListCount(res);
+    router.get('/app/user/:userId', (req, res) => {
+      let userId = req.params.userId;
+      console.log('Query user collection for the following id: ' + userId);
+      this.Users.retrieveUserById(res, {$and: [{userID: {$eq: userId}}, {isActive: true}]})
     });
 
     this.expressApp.use('/', router);
-
     this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));
     this.expressApp.use('/images', express.static(__dirname+'/img'));
     this.expressApp.use('/', express.static(__dirname+'/pages'));
