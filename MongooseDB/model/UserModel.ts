@@ -32,7 +32,6 @@ class UserModel {
         this.model = mongooseConnection.model<IUserModel>("User", this.schema);
     }
 
-
     public retrieveAllUsers(response: any): any {
         let query = this.model.find({isActive: true});
         query.exec((err, itemArray) => {

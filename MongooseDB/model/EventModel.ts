@@ -18,6 +18,13 @@ class EventModel {
         this.schema = new Mongoose.Schema(
             {
                 eventId: Number,
+                title: String,
+                category: String,
+                description: String,
+                startDate: String,
+                endDate: String,
+                startTime: String,
+                endTime: String,
             }, {collection: 'events'}
         );
     }
