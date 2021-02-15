@@ -35,6 +35,12 @@ class CalendarModel {
         this.model = mongooseConnection.model<ICalendarModel>("Calendar", this.schema);
     }
 
+    public deleteCalendar(response: any, filter: Object): any {
+        let query = this.model.deleteOne(filter)
+        query.exec((err, calendarResult) => {
+            response.json(calendarResult)
+        });
+    }
 
     public retrieveAllCalendars(response: any): any {
         let query = this.model.find({});

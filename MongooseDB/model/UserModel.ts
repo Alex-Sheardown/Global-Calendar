@@ -32,6 +32,19 @@ class UserModel {
         this.model = mongooseConnection.model<IUserModel>("User", this.schema);
     }
 
+    public deleteUser(response: any, filter: Object): any {
+        let query = this.model.deleteOne(filter)
+        query.exec((err, userResult) => {
+            response.json(userResult)
+        });
+    }
+
+    public updateUser(response: any, filter: Object, document: Object): any {
+        let query = this.model.updateOne(filter, document)
+        query.exec((err, userResult) => {
+            response.json(userResult)
+        })
+    }
 
     public retrieveAllUsers(response: any): any {
         let query = this.model.find({isActive: true});

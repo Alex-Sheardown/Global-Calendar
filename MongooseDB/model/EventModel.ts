@@ -33,6 +33,13 @@ class EventModel {
         this.model = mongooseConnection.model<IEventModel>("Events", this.schema);
     }
 
+    public deleteEvent(response: any, filter: Object): any {
+        let query = this.model.deleteOne(filter)
+        query.exec((err, eventResult) => {
+            response.json(eventResult)
+        });
+    }
+
     public retrieveAllEvents(response:any): any {
         let query = this.model.find({});
         query.exec( (err, eventArray) => {

@@ -36,6 +36,26 @@ var App = /** @class */ (function () {
         var _this = this;
         var router = express.Router();
         // User APIs
+        router.post('/app/user/', function (req, res) {
+            console.log(req.body);
+            var jsonObj = req.body;
+            _this.Users.model.create([jsonObj], function (err) {
+                if (err) {
+                    console.log('User object creation failed');
+                }
+            });
+            res.send(_this.idGenerator.toString());
+            _this.idGenerator++;
+        });
+        router["delete"]('/app/user', function (req, res) {
+            console.log(req.body);
+            var userId = req.body.userId;
+            _this.Users.deleteUser(res, { userId: { $eq: userId } });
+        });
+        router.put('/app/user', function (req, res) {
+            console.log('Updating user according to following request: ' + req.body);
+            _this.Users.updateUser(res, req.body.userId, req.body.document);
+        });
         router.get('/app/user/', function (req, res) {
             console.log('Query all users');
             _this.Users.retrieveAllUsers(res);
@@ -46,6 +66,17 @@ var App = /** @class */ (function () {
             _this.Users.retrieveUserById(res, { $and: [{ userId: { $eq: userId } }, { isActive: true }] });
         });
         // Event APIs
+        router.post('/app/event/', function (req, res) {
+            console.log(req.body);
+            var jsonObj = req.body;
+            _this.Users.model.create([jsonObj], function (err) {
+                if (err) {
+                    console.log('Event object creation failed');
+                }
+            });
+            res.send(_this.idGenerator.toString());
+            _this.idGenerator++;
+        });
         router.get('/app/event/', function (req, res) {
             console.log('Query all events');
             _this.Events.retrieveAllEvents(res);
@@ -56,6 +87,17 @@ var App = /** @class */ (function () {
             _this.Events.retrieveEventById(res, { eventId: eventId });
         });
         // Calendar APIs
+        router.post('/app/calendar/', function (req, res) {
+            console.log(req.body);
+            var jsonObj = req.body;
+            _this.Users.model.create([jsonObj], function (err) {
+                if (err) {
+                    console.log('Calendar object creation failed');
+                }
+            });
+            res.send(_this.idGenerator.toString());
+            _this.idGenerator++;
+        });
         router.get('/app/calendar/', function (req, res) {
             console.log('Query all calendars');
             _this.Calendars.retrieveAllCalendars(res);

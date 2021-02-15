@@ -26,5 +26,12 @@ class LoginModel {
     public createModel(): void {
         this.model = mongooseConnection.model<ILoginModel>("Logins", this.schema);
     }
+
+    public deleteLogin(response: any, filter: Object): any {
+        let query = this.model.deleteOne(filter)
+        query.exec((err, loginResult) => {
+            response.json(loginResult)
+        });
+    }
 }
 export {LoginModel};

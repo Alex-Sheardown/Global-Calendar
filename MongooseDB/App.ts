@@ -45,6 +45,29 @@ class App {
     let router = express.Router();
 
     // User APIs
+    router.post('/app/user/', (req, res) => {
+      console.log(req.body);
+      let jsonObj = req.body;
+      this.Users.model.create([jsonObj], (err) => {
+        if (err) {
+          console.log('User object creation failed');
+        }
+      });
+      res.send(this.idGenerator.toString());
+      this.idGenerator++;
+    });
+
+    router.delete('/app/user', (req, res) => {
+      console.log(req.body)
+      let userId = req.body.userId;
+      this.Users.deleteUser(res,{userId: {$eq: userId}})
+    });
+
+    router.put('/app/user', (req, res) => {
+      console.log('Updating user according to following request: ' + req.body)
+      this.Users.updateUser(res, req.body.userId, req.body.document)
+    });
+
     router.get('/app/user/', (req, res) => {
         console.log('Query all users');
         this.Users.retrieveAllUsers(res);
@@ -57,6 +80,18 @@ class App {
     });
 
     // Event APIs
+    router.post('/app/event/', (req, res) => {
+      console.log(req.body);
+      let jsonObj = req.body;
+      this.Users.model.create([jsonObj], (err) => {
+        if (err) {
+          console.log('Event object creation failed');
+        }
+      });
+      res.send(this.idGenerator.toString());
+      this.idGenerator++;
+    });
+
     router.get('/app/event/', (req, res) => {
       console.log('Query all events');
       this.Events.retrieveAllEvents(res);
@@ -69,6 +104,18 @@ class App {
     });
 
     // Calendar APIs
+    router.post('/app/calendar/', (req, res) => {
+      console.log(req.body);
+      let jsonObj = req.body;
+      this.Users.model.create([jsonObj], (err) => {
+        if (err) {
+          console.log('Calendar object creation failed');
+        }
+      });
+      res.send(this.idGenerator.toString());
+      this.idGenerator++;
+    });
+
     router.get('/app/calendar/', (req, res) => {
       console.log('Query all calendars');
       this.Calendars.retrieveAllCalendars(res);

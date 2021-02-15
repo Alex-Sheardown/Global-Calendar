@@ -23,6 +23,18 @@ var UserModel = /** @class */ (function () {
     UserModel.prototype.createModel = function () {
         this.model = mongooseConnection.model("User", this.schema);
     };
+    UserModel.prototype.deleteUser = function (response, filter) {
+        var query = this.model.deleteOne(filter);
+        query.exec(function (err, userResult) {
+            response.json(userResult);
+        });
+    };
+    UserModel.prototype.updateUser = function (response, filter, document) {
+        var query = this.model.updateOne(filter, document);
+        query.exec(function (err, userResult) {
+            response.json(userResult);
+        });
+    };
     UserModel.prototype.retrieveAllUsers = function (response) {
         var query = this.model.find({ isActive: true });
         query.exec(function (err, itemArray) {

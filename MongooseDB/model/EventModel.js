@@ -25,6 +25,12 @@ var EventModel = /** @class */ (function () {
     EventModel.prototype.createModel = function () {
         this.model = mongooseConnection.model("Events", this.schema);
     };
+    EventModel.prototype.deleteEvent = function (response, filter) {
+        var query = this.model.deleteOne(filter);
+        query.exec(function (err, eventResult) {
+            response.json(eventResult);
+        });
+    };
     EventModel.prototype.retrieveAllEvents = function (response) {
         var query = this.model.find({});
         query.exec(function (err, eventArray) {
