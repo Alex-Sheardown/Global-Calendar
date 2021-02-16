@@ -26,6 +26,12 @@ var CalendarModel = /** @class */ (function () {
     CalendarModel.prototype.createModel = function () {
         this.model = mongooseConnection.model("Calendar", this.schema);
     };
+    CalendarModel.prototype.updateCalendar = function (response, filter, document) {
+        var query = this.model.updateOne(filter, document);
+        query.exec(function (err, calendarResult) {
+            response.json(calendarResult);
+        });
+    };
     CalendarModel.prototype.deleteCalendar = function (response, filter) {
         var query = this.model.deleteOne(filter);
         query.exec(function (err, calendarResult) {

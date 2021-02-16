@@ -40,6 +40,13 @@ class EventModel {
         });
     }
 
+    public updateEvent(response: any, filter: Object, document: Object): any {
+        let query = this.model.updateOne(filter, document)
+        query.exec((err, eventResult) => {
+            response.json(eventResult)
+        })
+    }
+
     public retrieveAllEvents(response:any): any {
         let query = this.model.find({});
         query.exec( (err, eventArray) => {

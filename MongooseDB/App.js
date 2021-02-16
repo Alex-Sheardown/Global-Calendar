@@ -1,18 +1,12 @@
 "use strict";
 exports.__esModule = true;
 exports.App = void 0;
-//import * as path from 'path';
 var express = require("express");
 var logger = require("morgan");
-//import * as mongodb from 'mongodb';
-//import * as url from 'url';
 var bodyParser = require("body-parser");
-//var MongoClient = require('mongodb').MongoClient;
-//var Q = require('q');
 var EventModel_1 = require("./model/EventModel");
 var UserModel_1 = require("./model/UserModel");
 var CalendarModel_1 = require("./model/CalendarModel");
-//import {DataAccess} from './DataAccess';
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -77,6 +71,15 @@ var App = /** @class */ (function () {
             res.send(_this.idGenerator.toString());
             _this.idGenerator++;
         });
+        router["delete"]('/app/event', function (req, res) {
+            console.log(req.body);
+            var eventId = req.body.eventId;
+            _this.Events.deleteEvent(res, { eventId: { $eq: eventId } });
+        });
+        router.put('/app/event', function (req, res) {
+            console.log('Updating event according to following request: ' + req.body);
+            _this.Events.updateEvent(res, req.body.eventId, req.body.document);
+        });
         router.get('/app/event/', function (req, res) {
             console.log('Query all events');
             _this.Events.retrieveAllEvents(res);
@@ -97,6 +100,15 @@ var App = /** @class */ (function () {
             });
             res.send(_this.idGenerator.toString());
             _this.idGenerator++;
+        });
+        router["delete"]('/app/calendar', function (req, res) {
+            console.log(req.body);
+            var calendarId = req.body.calendarId;
+            _this.Calendars.deleteCalendar(res, { calendarId: { $eq: calendarId } });
+        });
+        router.put('/app/calendar', function (req, res) {
+            console.log('Updating calendar according to following request: ' + req.body);
+            _this.Calendars.updateCalendar(res, req.body.calendarId, req.body.document);
         });
         router.get('/app/calendar/', function (req, res) {
             console.log('Query all calendars');

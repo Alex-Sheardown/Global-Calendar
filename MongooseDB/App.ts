@@ -1,16 +1,10 @@
-//import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
-//import * as mongodb from 'mongodb';
-//import * as url from 'url';
 import * as bodyParser from 'body-parser';
-//var MongoClient = require('mongodb').MongoClient;
-//var Q = require('q');
 
 import {EventModel} from './model/EventModel';
 import {UserModel} from './model/UserModel';
 import {CalendarModel} from "./model/CalendarModel";
-//import {DataAccess} from './DataAccess';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -92,6 +86,17 @@ class App {
       this.idGenerator++;
     });
 
+    router.delete('/app/event', (req, res) => {
+      console.log(req.body)
+      let eventId = req.body.eventId;
+      this.Events.deleteEvent(res,{eventId: {$eq: eventId}})
+    });
+
+    router.put('/app/event', (req, res) => {
+      console.log('Updating event according to following request: ' + req.body)
+      this.Events.updateEvent(res, req.body.eventId, req.body.document)
+    });
+
     router.get('/app/event/', (req, res) => {
       console.log('Query all events');
       this.Events.retrieveAllEvents(res);
@@ -114,6 +119,17 @@ class App {
       });
       res.send(this.idGenerator.toString());
       this.idGenerator++;
+    });
+
+    router.delete('/app/calendar', (req, res) => {
+      console.log(req.body)
+      let calendarId = req.body.calendarId;
+      this.Calendars.deleteCalendar(res,{calendarId: {$eq: calendarId}})
+    });
+
+    router.put('/app/calendar', (req, res) => {
+      console.log('Updating calendar according to following request: ' + req.body)
+      this.Calendars.updateCalendar(res, req.body.calendarId, req.body.document)
     });
 
     router.get('/app/calendar/', (req, res) => {

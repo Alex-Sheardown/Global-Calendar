@@ -31,6 +31,12 @@ var EventModel = /** @class */ (function () {
             response.json(eventResult);
         });
     };
+    EventModel.prototype.updateEvent = function (response, filter, document) {
+        var query = this.model.updateOne(filter, document);
+        query.exec(function (err, eventResult) {
+            response.json(eventResult);
+        });
+    };
     EventModel.prototype.retrieveAllEvents = function (response) {
         var query = this.model.find({});
         query.exec(function (err, eventArray) {
