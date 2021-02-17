@@ -59,6 +59,7 @@ class App {
 
     router.put('/app/user', (req, res) => {
       console.log('Updating user according to following request: ' + req.body)
+      console.log(req.body)
       this.Users.updateUser(res, req.body.userId, req.body.document)
     });
 
@@ -77,7 +78,7 @@ class App {
     router.post('/app/event/', (req, res) => {
       console.log(req.body);
       let jsonObj = req.body;
-      this.Users.model.create([jsonObj], (err) => {
+      this.Events.model.create([jsonObj], (err) => {
         if (err) {
           console.log('Event object creation failed');
         }
@@ -112,7 +113,7 @@ class App {
     router.post('/app/calendar/', (req, res) => {
       console.log(req.body);
       let jsonObj = req.body;
-      this.Users.model.create([jsonObj], (err) => {
+      this.Calendars.model.create([jsonObj], (err) => {
         if (err) {
           console.log('Calendar object creation failed');
         }

@@ -48,6 +48,7 @@ var App = /** @class */ (function () {
         });
         router.put('/app/user', function (req, res) {
             console.log('Updating user according to following request: ' + req.body);
+            console.log(req.body);
             _this.Users.updateUser(res, req.body.userId, req.body.document);
         });
         router.get('/app/user/', function (req, res) {
@@ -63,7 +64,7 @@ var App = /** @class */ (function () {
         router.post('/app/event/', function (req, res) {
             console.log(req.body);
             var jsonObj = req.body;
-            _this.Users.model.create([jsonObj], function (err) {
+            _this.Events.model.create([jsonObj], function (err) {
                 if (err) {
                     console.log('Event object creation failed');
                 }
@@ -93,7 +94,7 @@ var App = /** @class */ (function () {
         router.post('/app/calendar/', function (req, res) {
             console.log(req.body);
             var jsonObj = req.body;
-            _this.Users.model.create([jsonObj], function (err) {
+            _this.Calendars.model.create([jsonObj], function (err) {
                 if (err) {
                     console.log('Calendar object creation failed');
                 }

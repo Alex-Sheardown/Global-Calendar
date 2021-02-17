@@ -23,7 +23,7 @@ class UserModel {
                 timeZone: String,
                 startDate: Date,
                 endDate: Date,
-                isActive: Boolean
+                isActive: Boolean,
             }, {collection: 'users'}
         );
     }
