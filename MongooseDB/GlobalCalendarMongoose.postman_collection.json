@@ -1,0 +1,416 @@
+{
+	"info": {
+		"_postman_id": "bb30de54-aff5-42ee-9f66-d351b55ceb7b",
+		"name": "GlobalCalendarMongoose",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/app/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One User By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/app/user/:userId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"user",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post A New User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"_id\": \"602b673a5422b46cc08b5bb2\",\r\n        \"name\": \"Professor H\",\r\n        \"userId\": 1,\r\n        \"timeZone\": \"USA/Los_Angeles\",\r\n        \"startDate\": \"2021-02-01T00:00:00.000Z\",\r\n        \"endDate\": null,\r\n        \"isActive\": true\r\n    }\r\n    ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/app/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"user"
+					]
+				},
+				"description": "Create a new user with a post request"
+			},
+			"response": []
+		},
+		{
+			"name": "Put/Patch A User",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": {\r\n        \"userId\": 1\r\n    },\r\n    \"document\": {\r\n        \"name\": \"Nicholas Benyo\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/app/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete A User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\": 1}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/app/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Calendars",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/app/calendar/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"calendar",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One Calendar By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/app/calendar/:calendarId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"calendar",
+						":calendarId"
+					],
+					"variable": [
+						{
+							"key": "calendarId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post A new Calendar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"events\": [\r\n        {\r\n            \"eventId\": 1\r\n        },\r\n        {\r\n            \"eventId\": 3\r\n        }\r\n    ],\r\n    \"calendarId\": 9,\r\n    \"userId\": 1,\r\n    \"name\": \"Professor H's Seattle U Classes\",\r\n    \"description\": \"For Seattle University Winter 2021 Quarter\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/app/calendar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"calendar"
+					]
+				},
+				"description": "Create a new user with a post request"
+			},
+			"response": []
+		},
+		{
+			"name": "Put/Patch A Calendar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"calendarId\": {\r\n        \"calendarId\": 1\r\n    },\r\n    \"document\": {\r\n        \"name\": \"Nicholas Benyo's Cal\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/app/calendar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"calendar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete A Calendar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"calendarId\": 9}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/app/calendar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"calendar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Events",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/app/event/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"event",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One Event By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/app/event/:eventId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"event",
+						":eventId"
+					],
+					"variable": [
+						{
+							"key": "eventId",
+							"value": "9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post A New Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eventId\": 9,\r\n    \"title\": \"Professor H GME Investment Zoom Meeting\",\r\n    \"category\": \"Classes\",\r\n    \"description\": \"To the moon!\",\r\n    \"startDate\": \"2021-02-13T00:00:00.000Z\",\r\n    \"endDate\": \"2021-02-13T00:00:00.000Z\",\r\n    \"startTime\": \"13:00\",\r\n    \"endTime\": \"14:30\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/app/event",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"event"
+					]
+				},
+				"description": "Create a new user with a post request"
+			},
+			"response": []
+		},
+		{
+			"name": "Put/Patch An Event",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eventId\": {\r\n        \"eventId\": 1\r\n    },\r\n    \"document\": {\r\n        \"title\": \"Nicholas Benyo's Calendar\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/app/event",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete A Calendar Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"eventId\": 9}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/app/event",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"event"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
