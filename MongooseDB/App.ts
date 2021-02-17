@@ -150,7 +150,9 @@ class App {
     this.expressApp.use('/', express.static(__dirname+'/pages'));
     this.expressApp.use('/Week', express.static(__dirname+'/pages/Calendar/Week.html'));
     this.expressApp.use('/Month', express.static(__dirname+'/pages/Calendar/Month.html'));
-    this.expressApp.use('/Year', express.static(__dirname+'/pages/Calendar/Year.html'));
+    this.expressApp.use('/login', express.static(__dirname+'/pages/login_sign_in-settings/login.html'));
+    this.expressApp.use('/signup', express.static(__dirname+'/pages/login_sign_in-settings/signup.html'));
+    this.expressApp.use('/settings', express.static(__dirname+'/pages/login_sign_in-settings/settings.html'));
     
   }
 
