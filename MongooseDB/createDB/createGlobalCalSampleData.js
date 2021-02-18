@@ -124,9 +124,9 @@ calendarsCollection.insert(
 )
 
 db.createCollection('events')
-calendarsCollection = db.getCollection("events")
-calendarsCollection.remove({})
-calendarsCollection.insert(
+eventsCollection = db.getCollection("events")
+eventsCollection.remove({})
+eventsCollection.insert(
     {
         eventId: 1,
         title: "Rocket Science Zoom Meeting",
@@ -138,7 +138,7 @@ calendarsCollection.insert(
         endTime: "14:30"
     }
 )
-calendarsCollection.insert(
+eventsCollection.insert(
     {
         eventId: 2,
         title: "Capstone Zoom Meeting",
@@ -150,7 +150,7 @@ calendarsCollection.insert(
         endTime: "13:00"
     }
 )
-calendarsCollection.insert(
+eventsCollection.insert(
     {
         eventId: 3,
         title: "SaaS Zoom Meeting",
@@ -162,7 +162,7 @@ calendarsCollection.insert(
         endTime: "20:00"
     }
 )
-calendarsCollection.insert(
+eventsCollection.insert(
     {
         eventId: 4,
         title: "Group Project Meeting",
