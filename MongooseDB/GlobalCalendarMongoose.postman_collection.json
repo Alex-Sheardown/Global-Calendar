@@ -26,40 +26,13 @@
 			"response": []
 		},
 		{
-			"name": "Get One User By Id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/app/user/:userId",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"app",
-						"user",
-						":userId"
-					],
-					"variable": [
-						{
-							"key": "userId",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Post A New User",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\r\n        \"_id\": \"602b673a5422b46cc08b5bb2\",\r\n        \"name\": \"Professor H\",\r\n        \"userId\": 1,\r\n        \"timeZone\": \"USA/Los_Angeles\",\r\n        \"startDate\": \"2021-02-01T00:00:00.000Z\",\r\n        \"endDate\": null,\r\n        \"isActive\": true\r\n    }\r\n    ",
+					"raw": "    {\r\n        \"_id\": \"602b673a5422b46cc08b5bb2\",\r\n        \"name\": \"Professor H\",\r\n        \"userId\": 9,\r\n        \"timeZone\": \"USA/Los_Angeles\",\r\n        \"startDate\": \"2021-02-01T00:00:00.000Z\",\r\n        \"endDate\": null,\r\n        \"isActive\": true\r\n    }\r\n    ",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -79,6 +52,33 @@
 					]
 				},
 				"description": "Create a new user with a post request"
+			},
+			"response": []
+		},
+		{
+			"name": "Get One User By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/app/user/:userId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"user",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "9"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -118,7 +118,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"userId\": 1}",
+					"raw": "{\"userId\": 9}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -162,33 +162,6 @@
 			"response": []
 		},
 		{
-			"name": "Get One Calendar By Id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/app/calendar/:calendarId",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"app",
-						"calendar",
-						":calendarId"
-					],
-					"variable": [
-						{
-							"key": "calendarId",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Post A new Calendar",
 			"request": {
 				"method": "POST",
@@ -215,6 +188,33 @@
 					]
 				},
 				"description": "Create a new user with a post request"
+			},
+			"response": []
+		},
+		{
+			"name": "Get One Calendar By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/app/calendar/:calendarId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"calendar",
+						":calendarId"
+					],
+					"variable": [
+						{
+							"key": "calendarId",
+							"value": "9"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -298,33 +298,6 @@
 			"response": []
 		},
 		{
-			"name": "Get One Event By Id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/app/event/:eventId",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"app",
-						"event",
-						":eventId"
-					],
-					"variable": [
-						{
-							"key": "eventId",
-							"value": "9"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Post A New Event",
 			"request": {
 				"method": "POST",
@@ -351,6 +324,33 @@
 					]
 				},
 				"description": "Create a new user with a post request"
+			},
+			"response": []
+		},
+		{
+			"name": "Get One Event By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/app/event/:eventId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"event",
+						":eventId"
+					],
+					"variable": [
+						{
+							"key": "eventId",
+							"value": "9"
+						}
+					]
+				}
 			},
 			"response": []
 		},
