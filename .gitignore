@@ -1,3 +1,4 @@
 /package-lock.json
 /MongooseDB/db/
 /MongooseDB/node_modules/
+.DS_Store
