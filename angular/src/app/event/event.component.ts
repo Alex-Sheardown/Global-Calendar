@@ -29,6 +29,9 @@ export class EventComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // createEvent(){};
+  // deleteEvent(){};
+
   getEventsByStartDate(date: string) {
     console.log(date);
     this.eventListByDate = [];
@@ -41,6 +44,8 @@ export class EventComponent implements OnInit {
           if (j == this.inputDate.length - 1) isEqual = true;
         }
         if (isEqual) this.eventListByDate.push(this.eventList[i]);
+
+        // For comparing entire string input, not character by character
         /*if (this.eventList[i].startDate == this.inputDate) {
           this.eventListByDate.push(this.eventList[i]);
         }*/

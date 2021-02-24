@@ -1,3 +1,4 @@
+<!-- Global Calendar Toolbar -->
 <mat-toolbar color="primary">
   <div class="btn-group title-center">
     <button mat-button (click)="clickGetCalendars()" color="secondary">View Calendars</button>
@@ -11,9 +12,12 @@
   </div>
 </mat-toolbar>
 
+<!-- Time Display -->
 <div class="mat-card">
-  <h2 align="left"> {{homeTimezone}} : {{homeDateAndTime}} </h2>
-  <h2 align="right"> {{desiredTimezone}} : {{convertedDateAndTime}} </h2>
+  <h2 class="split-para">
+    {{homeTimezone}} : {{homeDateAndTime}}
+    <span align="right"> {{desiredTimezone}} : {{convertedDateAndTime}} </span>
+  </h2>
 </div>
 
 <router-outlet></router-outlet>
