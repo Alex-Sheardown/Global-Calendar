@@ -50,7 +50,7 @@ class EventModel {
     public retrieveAllEvents(response:any): any {
         let query = this.model.find({});
         query.exec( (err, eventArray) => {
-            response.json(eventArray) ;
+            response.json(eventArray);
         });
     }
 

@@ -1,6 +1,16 @@
+<!-- Show all events -->
+<!--<h3>Events</h3>
 <li *ngFor="let event of eventList">
-  {{event.title}}
-</li>
+  {{event.eventId}} : {{event.title}}
+</li>-->
 
-<!--<button type="button" class="btn btn-success"
-  (click)="postEvent()">Event Post</button>-->
+<body class="body-center">
+  <h1>Provide start date:</h1>
+  <input type="text" placeholder="ex: 2021-01-01" #box>
+  <button mat-button (click)="getEventsByStartDate(box.value)">Get Events</button>
+
+  <h3>{{inputDate}}</h3>
+  <li *ngFor="let event of eventListByDate">
+    {{event.eventId}} : {{event.title}} : {{event.startDate}}
+  </li>
+</body>
