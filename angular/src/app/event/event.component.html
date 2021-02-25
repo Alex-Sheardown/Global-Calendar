@@ -4,13 +4,40 @@
   {{event.eventId}} : {{event.title}}
 </li>-->
 
+<!-- Get events by start date -->
 <body class="body-center">
   <h1>Provide start date:</h1>
-  <input type="text" placeholder="ex: 2021-01-01" #box>
+  <label><input type="text" placeholder="ex: 2021-01-01" #box></label>
   <button mat-button (click)="getEventsByStartDate(box.value)">Get Events</button>
 
   <h3>{{inputDate}}</h3>
-  <li *ngFor="let event of eventListByDate">
+
+  <!-- With ngFor -->
+  <!--<li *ngFor="let event of eventListByDate">
     {{event.eventId}} : {{event.title}} : {{event.startDate}}
-  </li>
+  </li>-->
+
+  <!-- With Mat Table -->
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Event ID Column -->
+    <ng-container matColumnDef="eventId">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element"> {{element.eventId}} </td>
+    </ng-container>
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <!-- Start Date Column -->
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef>Start Date</th>
+      <td mat-cell *matCellDef="let element"> {{element.startDate}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </body>

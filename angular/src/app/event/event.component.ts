@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EventService} from '../service/event.service'
 import {LogService} from "../log.service";
 import {Event} from "../interface/event";
 import {Observable} from "rxjs";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-event',
@@ -16,13 +17,12 @@ export class EventComponent implements OnInit {
   public eventListByDate: Event[] | undefined;
   public inputDate: string = '';
 
+  displayedColumns: string[] = ['eventId', 'title', 'startDate'];
+  dataSource = new MatTableDataSource<Event>();
 
-  constructor(
-    private eventService: EventService,
-    private logger: LogService
-  ) {
+  constructor(private eventService: EventService, private logger: LogService) {
     this.events$ = this.eventService.getEvents();
-    this.events$.subscribe(result => {
+    this.events$.subscribe((result: Event[]) => {
       this.eventList = result
     })
   };
@@ -49,6 +49,8 @@ export class EventComponent implements OnInit {
         /*if (this.eventList[i].startDate == this.inputDate) {
           this.eventListByDate.push(this.eventList[i]);
         }*/
+
+        this.dataSource = new MatTableDataSource<Event>(this.eventListByDate);
       }
     }
   }
