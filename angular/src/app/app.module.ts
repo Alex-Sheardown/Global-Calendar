@@ -7,19 +7,21 @@ import { AppComponent } from './app.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarService } from "./service/calendar.service";
 import { LogService } from "./log.service";
-
+import { UserComponent } from './user/user.component';
+import { UserService } from "./service/user.service";
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalendarComponent
+    CalendarComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [CalendarService, LogService],
+  providers: [CalendarService, LogService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
