@@ -17,6 +17,7 @@ export class EventComponent implements OnInit {
   public eventListByDate: Event[] | undefined;
   public inputDate: string = '';
 
+  // For MatTable
   displayedColumns: string[] = ['eventId', 'title', 'startDate'];
   dataSource = new MatTableDataSource<Event>();
 

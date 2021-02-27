@@ -12,13 +12,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from "@angular/material/button";
 import { MatTableModule} from "@angular/material/table";
+import { MonthViewComponent } from './month-view/month-view.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+]);
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
-    EventComponent
+    EventComponent,
+    MonthViewComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +35,7 @@ import { MatTableModule} from "@angular/material/table";
     MatToolbarModule,
     MatButtonModule,
     MatTableModule,
+    FullCalendarModule
   ],
   providers: [CalendarService, LogService, EventService],
   bootstrap: [AppComponent]
