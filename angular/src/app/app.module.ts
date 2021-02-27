@@ -9,6 +9,7 @@ import { CalendarService } from "./service/calendar.service";
 import { LogService } from "./log.service";
 import { UserComponent } from './user/user.component';
 import { UserService } from "./service/user.service";
+//import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { UserService } from "./service/user.service";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    //NoopAnimationsModule
   ],
   providers: [CalendarService, LogService, UserService],
   bootstrap: [AppComponent]
