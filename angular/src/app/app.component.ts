@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   //keep it simple
-  title = 'Emma';
+  title = 'Global Calendar';
 }

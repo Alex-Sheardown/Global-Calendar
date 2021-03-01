@@ -29,7 +29,8 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private logger: LogService
-  ) { }
+  ) {}
+
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>('http://localhost:8080/app/user/');
