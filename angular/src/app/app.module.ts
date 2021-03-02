@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarService } from "./service/calendar.service";
 import { LogService } from "./log.service";
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { LogService } from "./log.service";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatSortModule,
+    BrowserAnimationsModule
   ],
   providers: [CalendarService, LogService],
   bootstrap: [AppComponent]

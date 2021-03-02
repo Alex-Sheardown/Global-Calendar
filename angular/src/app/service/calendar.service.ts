@@ -17,7 +17,7 @@ export class CalendarService {
     private logger: LogService
   ) { }
 
-  getCalendars(): Observable<Calendar[]> {
+  getCalendars(): Observable<Calendar[]>{
     return this.http.get<Calendar[]>('http://localhost:8080/app/calendar/');
   }
 
