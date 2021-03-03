@@ -14,5 +14,6 @@ export class MonthViewComponent implements OnInit {
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
+    droppable: true,
   }
 }

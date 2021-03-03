@@ -12,17 +12,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from "@angular/material/button";
 import { MatTableModule} from "@angular/material/table";
+import { DayViewComponent } from './day-view/day-view.component';
+import { WeekViewComponent } from './week-view/week-view.component';
 import { MonthViewComponent } from './month-view/month-view.component';
+import { YearViewComponent } from './year-view/year-view.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timeGrid';
-import { WeekViewComponent } from './week-view/week-view.component';
-import { YearViewComponent } from './year-view/year-view.component';
-import { DayViewComponent } from './day-view/day-view.component';
+import interactionPlugin from '@fullcalendar/interaction';
+
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
-  timeGridPlugin
+  timeGridPlugin,
+  interactionPlugin
 ]);
 
 @NgModule({
@@ -30,10 +33,10 @@ FullCalendarModule.registerPlugins([
     AppComponent,
     CalendarComponent,
     EventComponent,
-    MonthViewComponent,
-    WeekViewComponent,
-    YearViewComponent,
     DayViewComponent,
+    WeekViewComponent,
+    MonthViewComponent,
+    YearViewComponent,
   ],
   imports: [
     BrowserModule,

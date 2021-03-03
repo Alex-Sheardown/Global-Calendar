@@ -8,7 +8,7 @@ import {Observable, of} from "rxjs";
 @Injectable()
 export class EventService {
 
-  url:string = 'http://localhost:8080/app/event/'
+  url:string = 'http://localhost:8080/app/event'
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,19 +16,19 @@ export class EventService {
 
   constructor(private http: HttpClient, private logger: LogService) { }
 
-  /*postEvent() {
+  postEvent() {
     return this.http.post(this.url, this.httpOptions);
   }
 
   deleteEvent(eventId: number) {
-    return this.http.delete(this.url + eventId).pipe(map((response: any) => response.json()));
-  }*/
+    return this.http.request('DELETE', this.url, {body: {"eventId": eventId}}).subscribe();
+  }
 
   getEvents(): Observable<Event[]> {
     return this.http.get<Event[]>(this.url);
   }
 
   getEventById(index: string) {
-    return this.http.get(this.url + index + '').pipe(map((response: any) => response.json()));
+    return this.http.get(this.url + '/' + index + '').pipe(map((response: any) => response.json()));
   }
 }

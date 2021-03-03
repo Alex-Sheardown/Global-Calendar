@@ -79,6 +79,7 @@ var App = /** @class */ (function () {
         });
         router["delete"]('/app/event', function (req, res) {
             console.log(req.body);
+            console.log('Deleting Event');
             var eventId = req.body.eventId;
             _this.Events.deleteEvent(res, { eventId: { $eq: eventId } });
         });

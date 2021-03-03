@@ -31,13 +31,14 @@ export class EventComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  /*createEvent(): void {
+  createEvent(): void {
     this.eventService.postEvent();
   }
 
   deleteEvent(eventId: number) {
-    this.eventService.deleteEvent(eventId);
-  }*/
+    console.log(eventId);
+    this.eventService.deleteEvent(eventId)
+  }
 
   getEventsByStartDate(date: string): void {
     console.log(date);

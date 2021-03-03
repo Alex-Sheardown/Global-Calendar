@@ -1,18 +1,16 @@
+<!DOCTYPE html>
+
 <!-- Show all events -->
 <!--<h3>Events</h3>
 <li *ngFor="let event of eventList">
   {{event.eventId}} : {{event.title}}
 </li>-->
 
-<!-- Get events by start date -->
 <body class="body-center">
+  <!-- Get events by start date -->
   <h1>Provide start date:</h1>
-  <label><input type="text" placeholder="ex: 2021-01-01" #box></label>
-  <button mat-button (click)="getEventsByStartDate(box.value)">Get Events</button>
-
-  <!--<button (click)="createEvent()">Create</button>-->
-  <!--<label><input type="number" #box></label>
-  <button mat-button (click)="deleteEvent(box.valueAsNumber)">Delete</button>-->
+  <label><input type="text" placeholder="ex: 2021-01-01" #date></label>
+  <button mat-button (click)="getEventsByStartDate(date.value)">Get Events</button>
 
   <h3>{{inputDate}}</h3>
 
@@ -39,4 +37,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <!-- Delete event by ID -->
+  <h1>Provide event id:</h1>
+  <label><input type="number" min="1" #eventId></label>
+  <button mat-button (click)="deleteEvent(eventId.valueAsNumber)">Delete Event</button>
+
 </body>

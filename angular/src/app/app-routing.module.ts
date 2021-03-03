@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { EventComponent} from "./event/event.component";
 import { CalendarComponent } from "./calendar/calendar.component";
 import { DayViewComponent } from "./day-view/day-view.component";
-import { MonthViewComponent } from "./month-view/month-view.component";
 import { WeekViewComponent } from "./week-view/week-view.component";
+import { MonthViewComponent } from "./month-view/month-view.component";
 import { YearViewComponent} from "./year-view/year-view.component";
 
 const routes: Routes = [

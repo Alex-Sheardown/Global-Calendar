@@ -26,6 +26,8 @@ var EventModel = /** @class */ (function () {
         this.model = mongooseConnection.model("Events", this.schema);
     };
     EventModel.prototype.deleteEvent = function (response, filter) {
+        console.log('Filter passed through is:');
+        console.log(filter);
         var query = this.model.deleteOne(filter);
         query.exec(function (err, eventResult) {
             response.json(eventResult);

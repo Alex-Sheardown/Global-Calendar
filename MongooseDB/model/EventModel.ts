@@ -34,6 +34,8 @@ class EventModel {
     }
 
     public deleteEvent(response: any, filter: Object): any {
+        console.log('Filter passed through is:');
+        console.log(filter);
         let query = this.model.deleteOne(filter)
         query.exec((err, eventResult) => {
             response.json(eventResult)
