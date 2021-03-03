@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {EventService} from '../service/event.service'
 import {LogService} from "../log.service";
 import {Event} from "../interface/event";
@@ -12,10 +12,11 @@ import {MatTableDataSource} from "@angular/material/table";
 })
 export class EventComponent implements OnInit {
 
-  public events$: Observable<Event[]>;
+  public events$: Observable<Event[]> | undefined;
   public eventList: Event[] | undefined;
   public eventListByDate: Event[] | undefined;
   public inputDate: string = '';
+  @Input ('eventId') eventId: any;
 
   // For MatTable
   displayedColumns: string[] = ['eventId', 'title', 'startDate'];
@@ -24,16 +25,21 @@ export class EventComponent implements OnInit {
   constructor(private eventService: EventService, private logger: LogService) {
     this.events$ = this.eventService.getEvents();
     this.events$.subscribe((result: Event[]) => {
-      this.eventList = result
+      this.eventList = result;
     })
-  };
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  // createEvent(){};
-  // deleteEvent(){};
+  /*createEvent(): void {
+    this.eventService.postEvent();
+  }
 
-  getEventsByStartDate(date: string) {
+  deleteEvent(eventId: number) {
+    this.eventService.deleteEvent(eventId);
+  }*/
+
+  getEventsByStartDate(date: string): void {
     console.log(date);
     this.eventListByDate = [];
     this.inputDate = date;
@@ -45,12 +51,6 @@ export class EventComponent implements OnInit {
           if (j == this.inputDate.length - 1) isEqual = true;
         }
         if (isEqual) this.eventListByDate.push(this.eventList[i]);
-
-        // For comparing entire string input, not character by character
-        /*if (this.eventList[i].startDate == this.inputDate) {
-          this.eventListByDate.push(this.eventList[i]);
-        }*/
-
         this.dataSource = new MatTableDataSource<Event>(this.eventListByDate);
       }
     }

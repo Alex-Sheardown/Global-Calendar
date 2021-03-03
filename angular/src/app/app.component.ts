@@ -17,9 +17,11 @@ export class AppComponent {
 
   constructor(private router: Router,) { }
 
-  goToMonthView() {
-    this.router.navigate(['month']);
-  }
+  // Views
+  goToDayView() {this.router.navigate(['day']);}
+  goToWeekView() {this.router.navigate(['week']);}
+  goToMonthView() {this.router.navigate(['month'])}
+  goToYearView() {this.router.navigate(['year']);}
 
   // Temporary routes
   clickGetCalendars() {

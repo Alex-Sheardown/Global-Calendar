@@ -8,12 +8,11 @@ import { CalendarOptions } from '@fullcalendar/angular';
 })
 export class MonthViewComponent implements OnInit {
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
-  };
+  }
 }

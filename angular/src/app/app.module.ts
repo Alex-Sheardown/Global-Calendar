@@ -15,9 +15,14 @@ import { MatTableModule} from "@angular/material/table";
 import { MonthViewComponent } from './month-view/month-view.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timeGrid';
+import { WeekViewComponent } from './week-view/week-view.component';
+import { YearViewComponent } from './year-view/year-view.component';
+import { DayViewComponent } from './day-view/day-view.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
+  timeGridPlugin
 ]);
 
 @NgModule({
@@ -25,7 +30,10 @@ FullCalendarModule.registerPlugins([
     AppComponent,
     CalendarComponent,
     EventComponent,
-    MonthViewComponent
+    MonthViewComponent,
+    WeekViewComponent,
+    YearViewComponent,
+    DayViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +43,7 @@ FullCalendarModule.registerPlugins([
     MatToolbarModule,
     MatButtonModule,
     MatTableModule,
-    FullCalendarModule
+    FullCalendarModule,
   ],
   providers: [CalendarService, LogService, EventService],
   bootstrap: [AppComponent]

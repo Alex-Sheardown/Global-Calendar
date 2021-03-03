@@ -14,11 +14,15 @@ export class EventService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(
-    private http: HttpClient,
-    private logger: LogService
-  ) { }
+  constructor(private http: HttpClient, private logger: LogService) { }
 
+  /*postEvent() {
+    return this.http.post(this.url, this.httpOptions);
+  }
+
+  deleteEvent(eventId: number) {
+    return this.http.delete(this.url + eventId).pipe(map((response: any) => response.json()));
+  }*/
 
   getEvents(): Observable<Event[]> {
     return this.http.get<Event[]>(this.url);

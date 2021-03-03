@@ -10,14 +10,13 @@
   <label><input type="text" placeholder="ex: 2021-01-01" #box></label>
   <button mat-button (click)="getEventsByStartDate(box.value)">Get Events</button>
 
+  <!--<button (click)="createEvent()">Create</button>-->
+  <!--<label><input type="number" #box></label>
+  <button mat-button (click)="deleteEvent(box.valueAsNumber)">Delete</button>-->
+
   <h3>{{inputDate}}</h3>
 
-  <!-- With ngFor -->
-  <!--<li *ngFor="let event of eventListByDate">
-    {{event.eventId}} : {{event.title}} : {{event.startDate}}
-  </li>-->
-
-  <!-- With Mat Table -->
+  <!-- Mat Table -->
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Event ID Column -->
     <ng-container matColumnDef="eventId">
