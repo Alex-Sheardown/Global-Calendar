@@ -20,16 +20,11 @@ export class AppComponent {
   // Views
   goToDayView() {this.router.navigate(['day']);}
   goToWeekView() {this.router.navigate(['week']);}
-  goToMonthView() {this.router.navigate(['month'])}
+  goToMonthView() {this.router.navigate(['month']);}
   goToYearView() {this.router.navigate(['year']);}
 
-  // Temporary routes
-  clickGetCalendars() {
-    this.router.navigate(['calendar']);
-  }
-
-  clickGetEvents() {
-    this.router.navigate(['event']);
-  }
+  // Temporary routes for testing
+  clickGetCalendars() {this.router.navigate(['calendar']);}
+  clickGetEvents() {this.router.navigate(['event']);}
 
 }

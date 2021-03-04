@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EventService} from '../service/event.service'
 import {LogService} from "../log.service";
 import {Event} from "../interface/event";
@@ -16,7 +16,6 @@ export class EventComponent implements OnInit {
   public eventList: Event[] | undefined;
   public eventListByDate: Event[] | undefined;
   public inputDate: string = '';
-  @Input ('eventId') eventId: any;
 
   // For MatTable
   displayedColumns: string[] = ['eventId', 'title', 'startDate'];

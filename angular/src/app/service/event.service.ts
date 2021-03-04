@@ -17,7 +17,18 @@ export class EventService {
   constructor(private http: HttpClient, private logger: LogService) { }
 
   postEvent() {
-    return this.http.post(this.url, this.httpOptions);
+    return this.http.request('POST', this.url, {
+      body: {
+        "eventId": 9,
+        "title": "Professor H GME Investment Zoom Meeting",
+        "category": "Classes",
+        "description": "To the moon!",
+        "startDate": "2021-02-13T00:00:00.000Z",
+        "endDate": "2021-02-13T00:00:00.000Z",
+        "startTime": "13:00",
+        "endTime": "14:30"
+      }
+    }).subscribe();
   }
 
   deleteEvent(eventId: number) {

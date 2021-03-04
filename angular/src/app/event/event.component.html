@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <!-- Show all events -->
 <!--<h3>Events</h3>
 <li *ngFor="let event of eventList">
@@ -37,6 +35,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <!-- Post event test -->
+  <h1>Click to post event 9:</h1>
+  <button mat-button (click)="createEvent()">Post Event</button>
 
   <!-- Delete event by ID -->
   <h1>Provide event id:</h1>
