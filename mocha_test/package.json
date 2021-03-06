@@ -1,0 +1,27 @@
+{
+  "name": "mocha_test",
+  "version": "1.0.0",
+  "description": "Mocha test for Global Calendar",
+  "main": "./server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "azure",
+    "boilerplate",
+    "express"
+  ],
+  "author": "Nick Benyo, Alex Sheardown, Emma Tamura, Justin Thoreson",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.3",
+    "mocha": "^8.3.1"
+  },
+  "dependencies": {
+    "async": "^3.2.0",
+    "chai-http": "^4.3.0",
+    "express": "^4.17.1",
+    "q": "^1.5.1",
+    "request": "^2.88.2"
+  }
+}
