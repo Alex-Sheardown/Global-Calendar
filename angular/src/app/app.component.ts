@@ -17,11 +17,17 @@ export class AppComponent {
 
   constructor(private router: Router,) { }
 
+  changeDesiredTimezone(timezone: string) {
+    this.desiredTimezone = timezone;
+    this.convertedDateAndTime = moment.tz(this.desiredTimezone).format('MMMM Do YYYY, h:mm:ss a');
+  }
+
   // Views
   goToDayView() {this.router.navigate(['day']);}
   goToWeekView() {this.router.navigate(['week']);}
   goToMonthView() {this.router.navigate(['month']);}
   goToYearView() {this.router.navigate(['year']);}
+  goToSettings() {this.router.navigate(['settings']);}
 
   // Temporary routes for testing
   clickGetCalendars() {this.router.navigate(['calendar']);}

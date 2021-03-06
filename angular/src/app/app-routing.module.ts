@@ -6,6 +6,7 @@ import { DayViewComponent } from "./day-view/day-view.component";
 import { WeekViewComponent } from "./week-view/week-view.component";
 import { MonthViewComponent } from "./month-view/month-view.component";
 import { YearViewComponent} from "./year-view/year-view.component";
+import {SettingsComponent} from "./settings/settings.component";
 
 const routes: Routes = [
   //{ path: '', component: WelcomeComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'day', component: DayViewComponent },
   { path: 'week', component: WeekViewComponent },
   { path: 'month', component: MonthViewComponent },
-  { path: 'year', component: YearViewComponent }
+  { path: 'year', component: YearViewComponent },
+  { path: 'settings', component: SettingsComponent}
 ];
 
 @NgModule({

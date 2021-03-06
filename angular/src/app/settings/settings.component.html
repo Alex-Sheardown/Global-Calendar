@@ -1,0 +1,14 @@
+<body>
+  <form class="form-center" xmlns="http://www.w3.org/1999/html">
+    <h1>Select desired timezone</h1>
+    <mat-form-field>
+      <mat-select placeholder="ex: Australia/Sydney" [(ngModel)]="selectedTimezone" name="tz">
+        <mat-option *ngFor="let timezone of validMomentTimezones" [value]="timezone">
+          {{timezone}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-button (click)="changeDesiredTimezone()">Change desired timezone to {{selectedTimezone}}</button>
+  </form>
+</body>
