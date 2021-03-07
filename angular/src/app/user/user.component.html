@@ -1,0 +1,54 @@
+<!--Show All Users-->
+<body class="body-center">
+  <h1>Users</h1>
+
+  <!-- With ngFor -->
+  <!--<li *ngFor="let user of userList">
+    {{user.name}} : {{user.timeZone}} : {{user.userId}} : {{user.startDate}} : {{user.endDate}} : {{user.isActive}}
+  </li>-->
+
+  <!-- Mat Table -->
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- User ID Column -->
+    <ng-container matColumnDef="userId">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Time Zone Column -->
+    <ng-container matColumnDef="timeZone">
+      <th mat-header-cell *matHeaderCellDef>Time Zone</th>
+      <td mat-cell *matCellDef="let element"> {{element.timeZone}} </td>
+    </ng-container>
+
+    <!-- Active Column -->
+    <ng-container matColumnDef="isActive">
+      <th mat-header-cell *matHeaderCellDef>Active</th>
+      <td mat-cell *matCellDef="let element"> {{element.isActive}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- Post User Test -->
+  <h1>Post user 6:</h1>
+  <button mat-button (click)="createUser()">Post User</button>
+
+  <!-- Delete User by ID -->
+  <h1>Delete user 6:</h1>
+  <label><input type="number" min="1" #userId></label>
+  <button mat-button (click)="deleteUser(userId.valueAsNumber)">Delete User</button>
+</body>
+
+
+
+
+
+

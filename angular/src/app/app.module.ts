@@ -21,9 +21,11 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timeGrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { SettingsComponent } from './settings/settings.component';
-import {MatOptionModule} from "@angular/material/core";
-import {FormsModule} from "@angular/forms";
-import {MatSelectModule} from "@angular/material/select";
+import { MatOptionModule} from "@angular/material/core";
+import { FormsModule} from "@angular/forms";
+import { MatSelectModule} from "@angular/material/select";
+import { UserComponent } from './user/user.component';
+import { UserService } from "./service/user.service";
 
 
 FullCalendarModule.registerPlugins([
@@ -42,6 +44,7 @@ FullCalendarModule.registerPlugins([
     MonthViewComponent,
     YearViewComponent,
     SettingsComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,7 @@ FullCalendarModule.registerPlugins([
     FormsModule,
     MatSelectModule,
   ],
-  providers: [CalendarService, LogService, EventService],
+  providers: [CalendarService, LogService, EventService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

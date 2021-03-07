@@ -5,13 +5,15 @@ import { CalendarComponent } from "./calendar/calendar.component";
 import { DayViewComponent } from "./day-view/day-view.component";
 import { WeekViewComponent } from "./week-view/week-view.component";
 import { MonthViewComponent } from "./month-view/month-view.component";
-import { YearViewComponent} from "./year-view/year-view.component";
-import {SettingsComponent} from "./settings/settings.component";
+import { YearViewComponent } from "./year-view/year-view.component";
+import { SettingsComponent } from "./settings/settings.component";
+import { UserComponent } from "./user/user.component";
 
 const routes: Routes = [
   //{ path: '', component: WelcomeComponent },
   { path: 'calendar', component: CalendarComponent},// temp
   { path: 'event', component: EventComponent }, // temp
+  { path: 'user', component: UserComponent }, // temp
   { path: 'day', component: DayViewComponent },
   { path: 'week', component: WeekViewComponent },
   { path: 'month', component: MonthViewComponent },
