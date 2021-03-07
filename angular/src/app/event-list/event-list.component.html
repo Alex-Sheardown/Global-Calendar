@@ -1,27 +1,38 @@
-<p>event-list works!</p>
-<li *ngFor="let event of eventList">
-  {{event.title}}, {{event.description}}
-</li>
+<p>Appointments</p>
 <!-- Mat Table -->
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <!-- Event ID Column -->
-  <ng-container matColumnDef="eventId">
-    <th mat-header-cell *matHeaderCellDef>ID</th>
-    <td mat-cell *matCellDef="let element"> {{element.eventId}} </td>
+
+  <!-- Category Column -->
+  <ng-container matColumnDef="category">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let element"> {{element.category}} </mat-cell>
   </ng-container>
 
   <!-- Title Column -->
   <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef>Title</th>
-    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    <mat-header-cell mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
   </ng-container>
 
-  <!-- Start Date Column -->
-  <ng-container matColumnDef="startDate">
-    <th mat-header-cell *matHeaderCellDef>Start Date</th>
-    <td mat-cell *matCellDef="let element"> {{element.startDate}} </td>
+  <!-- Description Column -->
+  <ng-container matColumnDef="description">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <!-- StartTime Column -->
+  <ng-container matColumnDef="startTime">
+    <mat-header-cell mat-header-cell *matHeaderCellDef>Start</mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let element"> {{element.startTime}} </mat-cell>
+  </ng-container>
+
+  <!-- EndTime Column -->
+  <ng-container matColumnDef="endTime">
+    <mat-header-cell *matHeaderCellDef>End</mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let element"> {{element.endTime}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </table>
+<p>{{datePicker}}</p>

@@ -69,6 +69,5 @@ export class EventComponent implements OnInit {
         this.dataSource = new MatTableDataSource<Event>(this.eventListByDate);
       }
     }
-  }
+  }*/
 }
-

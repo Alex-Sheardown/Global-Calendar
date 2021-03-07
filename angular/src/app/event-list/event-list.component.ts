@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {Observable} from "rxjs";
+import {Component, Input, OnInit} from '@angular/core';
 import {EventService} from "../service/event.service";
 import {LogService} from "../log.service";
 import {Event} from "../interface/event";
@@ -11,26 +10,23 @@ import {MatTableDataSource} from "@angular/material/table";
   styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit {
-
-  public events$: Observable<Event[]>;
+  @Input() datePicker: any;
   public eventList: Event[] | undefined;
 
   // For MatTable
-  displayedColumns: string[] = ['eventId', 'title', 'startDate'];
-  dataSource = new MatTableDataSource<Event>();
+  displayedColumns: string[] = ['category', 'title', 'description', 'startTime', 'endTime'];
+  dataSource: any;
 
   constructor(
     private eventService: EventService,
     private logger: LogService
   ) {
-    this.events$ = this.eventService.getEvents()
+    eventService.getEvents().subscribe((response: Event[])=> {
+      this.dataSource = new MatTableDataSource<Event>(response);
+    })
   }
 
   ngOnInit(): void {
-    this.events$.subscribe(x=>{
-      this.eventList = x;
-    })
-    this.dataSource = new MatTableDataSource<Event>(this.eventList);
   }
 
 }

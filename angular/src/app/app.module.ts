@@ -60,6 +60,12 @@ FullCalendarModule.registerPlugins([
     MatOptionModule,
     FormsModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatGridListModule,
+    MatDividerModule,
+    MatListModule
   ],
   providers: [CalendarService, LogService, EventService, UserService],
   bootstrap: [AppComponent]
