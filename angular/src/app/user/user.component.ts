@@ -31,6 +31,11 @@ export class UserComponent implements OnInit {
     })
   }
 
+  deleteUser(userId: number){
+    console.log(userId)
+    this.userService.deleteUser(userId)
+  }
+
   // POST REQUEST ATTEMPT
   // addUser(name: string ): void {
   //   this.editUser = undefined;
