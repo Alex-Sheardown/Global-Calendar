@@ -25,16 +25,23 @@ export class UserComponent implements OnInit {
     this.users$ = this.userService.getUsers()
   };
 
-  ngOnInit(): void {
-    this.users$.subscribe(x => {
-      this.userList = x
-    })
+  // ngOnInit(): void {
+  //   this.users$.subscribe(x => {
+  //     this.userList = x
+  //   })
+  // }
+  ngOnInit(): void { }
+
+  createUser(): void {
+    this.userService.postUser();
   }
 
   deleteUser(userId: number){
     console.log(userId)
     this.userService.deleteUser(userId)
   }
+
+
 
   // POST REQUEST ATTEMPT
   // addUser(name: string ): void {

@@ -49,7 +49,20 @@ export class UserService {
     return this.http.request('DELETE', this.url, {body: {"userId": userId}}).subscribe();
   }
 
-
+  /**POST: Post a user **/
+  postUser(){
+    return this.http.request('POST', this.url, {
+      //placeholder
+      body:{
+        "name": "Mr.Bob",
+        "userId": 6,
+        "timeZone":"USA/Los_Angeles" ,
+        "startDate": "2020-01-01",
+        "endDate": "2021-12-31",
+        "isActive": "true"
+      }
+    }).subscribe();
+  }
   // /**POST: Add a new user*/
   // addUser(user: User){
   //   return this.http.post(this.url, user, this.httpOptions);
