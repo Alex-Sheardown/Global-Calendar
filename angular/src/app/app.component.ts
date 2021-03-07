@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Router} from "@angular/router";
-import * as moment from 'moment-timezone'; // for timezone component
-//import * as moment from 'moment';        // moment without timezone
+import { Router } from "@angular/router";
+import * as moment from 'moment-timezone';
 
 @Component({
   selector: 'app-root',
@@ -11,15 +10,15 @@ import * as moment from 'moment-timezone'; // for timezone component
 export class AppComponent {
   title = 'Global Calendar';
   homeTimezone = moment.tz.guess()
-  homeDateAndTime = moment().format('MMMM Do YYYY, h:mm:ss a');
+  homeDateAndTime = moment().format('LLL Z');
   desiredTimezone = 'Asia/Tokyo'; //placeholder
-  convertedDateAndTime = moment.tz(this.desiredTimezone).format('MMMM Do YYYY, h:mm:ss a');
+  convertedDateAndTime = moment.tz(this.desiredTimezone).format('LLL Z');
 
   constructor(private router: Router,) { }
 
   changeDesiredTimezone(timezone: string) {
     this.desiredTimezone = timezone;
-    this.convertedDateAndTime = moment.tz(this.desiredTimezone).format('MMMM Do YYYY, h:mm:ss a');
+    this.convertedDateAndTime = moment.tz(this.desiredTimezone).format('LLL Z');
   }
 
   // Views
