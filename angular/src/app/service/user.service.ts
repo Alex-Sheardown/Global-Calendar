@@ -1,23 +1,9 @@
-// import { Injectable } from '@angular/core';
-// import {HttpHeaders} from "@angular/common/http";
-//
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class UserService {
-//
-//   httpOptions = {
-//     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-//   };
-//   constructor() { }
-// }
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from "../interface/user";
 import {map} from "rxjs/operators";
 import {LogService} from "../log.service";
 import {Observable, of} from "rxjs";
-import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class UserService {
@@ -33,6 +19,25 @@ export class UserService {
     private logger: LogService
   ) {}
 
+  /**POST: Post a user **/
+  postUser(){
+    return this.http.request('POST', this.url, {
+      //placeholder
+      body: {
+        "name": "Mr.Bob",
+        "userId": 6,
+        "timeZone":"USA/Los_Angeles" ,
+        "startDate": "2020-01-01",
+        "endDate": "2021-12-31",
+        "isActive": "true"
+      }
+    }).subscribe();
+  }
+
+  /**DELETE: Delete user by ID**/
+  deleteUser(userId: number){
+    return this.http.request('DELETE', this.url, {body: {"userId": userId}}).subscribe();
+  }
 
   /**GET: get all users**/
   getUsers(): Observable<User[]> {
@@ -43,34 +48,4 @@ export class UserService {
   getUserById(index: string) {
     return this.http.get(this.url + index + '').pipe(map((response: any) => response.json()));
   }
-
-  /**DELETE: Delete user by ID**/
-  deleteUser(userId: number){
-    return this.http.request('DELETE', this.url, {body: {"userId": userId}}).subscribe();
-  }
-
-  /**POST: Post a user **/
-  postUser(){
-    return this.http.request('POST', this.url, {
-      //placeholder
-      body:{
-        "name": "Mr.Bob",
-        "userId": 6,
-        "timeZone":"USA/Los_Angeles" ,
-        "startDate": "2020-01-01",
-        "endDate": "2021-12-31",
-        "isActive": "true"
-      }
-    }).subscribe();
-  }
-  // /**POST: Add a new user*/
-  // addUser(user: User){
-  //   return this.http.post(this.url, user, this.httpOptions);
-  // }
-  // addUser(user : User){
-  //   return this.http.post(this._baseUrl + '/API/identity/user',user,{ headers: headers}).map((response: Response) =>{
-  //     console.log (response.json());
-  //   })
-  // }
-
 }

@@ -1,14 +1,11 @@
 <!--Show All Users-->
-<!-- Show all events -->
 <h3>All Users</h3>
 <li *ngFor="let user of userList">
   {{user.name}} : {{user.timeZone}} : {{user.userId}} : {{user.startDate}} : {{user.endDate}} : {{user.isActive}}
 </li>
 
-<body class="body-center">
-
-
-</body>
+<button (click)="createUser()">Post User</button>
+<button (click)="deleteUser(6)">Delete User</button>
 
 
 
