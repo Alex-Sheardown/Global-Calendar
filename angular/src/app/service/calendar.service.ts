@@ -21,7 +21,7 @@ export class CalendarService {
     return this.http.get<Calendar[]>('http://localhost:8080/app/calendar/');
   }
 
-  getCalendarById(index: string) {
-    return this.http.get('http://localhost:8080/app/calendar/' + index + '').pipe(map((response: any) => response.json()));
+  getCalendarById(index: number): Observable<Calendar> {
+    return this.http.get<Calendar>('http://localhost:8080/app/calendar/' + index + '');
   }
 }

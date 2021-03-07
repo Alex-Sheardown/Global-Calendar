@@ -3,8 +3,8 @@ export interface Event {
   title: string,
   category: string,
   description: string,
-  startDate: Date,
-  endDate: Date,
+  startDate: string,
+  endDate: string,
   startTime: string,
   endTime: string
 }

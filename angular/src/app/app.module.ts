@@ -22,11 +22,13 @@ import timeGridPlugin from '@fullcalendar/timeGrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { EventListComponent } from './event-list/event-list.component';
 import { SettingsComponent } from './settings/settings.component';
-import { MatOptionModule} from "@angular/material/core";
+import {MatNativeDateModule, MatOptionModule} from "@angular/material/core";
 import { FormsModule} from "@angular/forms";
 import { MatSelectModule} from "@angular/material/select";
 import { UserComponent } from './user/user.component';
 import { UserService } from "./service/user.service";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatInputModule } from "@angular/material/input";
 
 
 FullCalendarModule.registerPlugins([
@@ -62,12 +64,10 @@ FullCalendarModule.registerPlugins([
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatInputModule,
-    MatGridListModule,
-    MatDividerModule,
-    MatListModule
+    MatInputModule
   ],
   providers: [CalendarService, LogService, EventService, UserService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

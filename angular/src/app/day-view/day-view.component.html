@@ -5,5 +5,5 @@
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
-<p>Selected date: {{selectedDate}}</p>
+<p>Selected date: {{selectedDate.getFullYear()}}-{{('0' + (selectedDate.getMonth() + 1)).slice(-2)}}-{{('0' + selectedDate.getDay()).slice(-2)}}</p>
 <app-event-list [datePicker]="selectedDate"></app-event-list>

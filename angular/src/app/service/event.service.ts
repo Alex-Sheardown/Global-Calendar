@@ -43,4 +43,16 @@ export class EventService {
   getEventById(eventId: number): Observable<Event> {
     return this.http.get<Event>(this.url + '/' + eventId + '');
   }
+
+  getEventByIdObs(index: number): Observable<Event> {
+    return this.http.get<Event>(this.url + '/' + index);
+  }
+
+  public static dateObjToString(date: Date): string {
+    return date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDay()).slice(-2)
+  }
+
+  convertDateObjToString(theDate: Date): string {
+    return EventService.dateObjToString(theDate);
+  }
 }

@@ -8,7 +8,7 @@ import {FormControl} from '@angular/forms';
 })
 export class DayViewComponent implements OnInit {
 
-  public selectedDate = new Date();
+  public selectedDate = new Date('2021-02-13');
 
   constructor() { }
 
