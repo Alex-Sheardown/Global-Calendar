@@ -40,7 +40,7 @@ describe('Test Event table Properties:', function () {
 	    expect(requestResult[0]).to.have.property('eventId');
 		expect(response.body).to.not.be.a.string;
 	});
-	it('The elements in the array have the expecte properties', function(){
+	it('The elements in the array have the expected properties', function(){
 		expect(response.body).to.satisfy(
 			function (body) {
 				for (var i = 0; i < body.length; i++) {
