@@ -32,6 +32,13 @@ import { WeekViewComponent } from './week-view/week-view.component';
 import { MonthViewComponent } from './month-view/month-view.component';
 import { YearViewComponent } from './year-view/year-view.component';
 import { SettingsComponent } from './settings/settings.component';
+import { MatNativeDateModule, MatOptionModule } from "@angular/material/core";
+import { FormsModule} from "@angular/forms";
+import { MatSelectModule} from "@angular/material/select";
+import { UserComponent } from './user/user.component';
+import { UserService } from "./service/user.service";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatInputModule } from "@angular/material/input";
 import { RecurringListComponent } from './recurring-list/recurring-list.component';
 import { AnalogClockComponent } from './analog-clock/analog-clock.component';
 import { LoginService } from './service/login.service'
