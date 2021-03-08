@@ -49,6 +49,7 @@ describe('Test Event table Properties:', function () {
                     expect(body[i]).to.have.property('title').that.is.a('string');
 					expect(body[i]).to.have.property('category').that.is.a('string');
                     expect(body[i]).to.have.property('description').that.is.a('string');
+                    expect(body[i]).to.have.property('startDate');
                     expect(body[i]).to.have.property('endDate');
 					expect(body[i]).to.have.property('startTime').that.is.a('string');
 					expect(body[i]).to.have.property('endTime').that.is.a('string');
