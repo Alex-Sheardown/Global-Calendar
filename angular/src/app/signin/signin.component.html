@@ -1,0 +1,16 @@
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>UserName</mat-label>
+      <input matInput type = "number" min = "1" placeholder="UserName" #Id >
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      
+      <input  matInput type = "password" placeholder="Password" >
+    </mat-form-field>
+  </form>
+  
+
+  <button mat-button (click) = "getUser(Id.valueAsNumber)" >Submit</button> 
+  <h1>{{userName}}</h1>

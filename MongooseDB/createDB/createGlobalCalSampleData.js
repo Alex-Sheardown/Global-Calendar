@@ -4,8 +4,10 @@ usersCollection = db.getCollection("users")
 usersCollection.remove({})
 usersCollection.insert(
     {
-        name: "Nick",
         userId: 1,
+        name: "Nick",
+        email: "Nick@gmail.com",
+        password: "Nick!",
         timeZone: "USA/Chicago",
         startDate: "2021-02-01",
         endDate: null,
@@ -15,8 +17,10 @@ usersCollection.insert(
 
 usersCollection.insert(
     {
-        name: "Emma",
         userId: 2,
+        name: "Emma",
+        email: "Emma@gmail.com",
+        password: "Emma!",
         timeZone: "Asia/Tokyo",
         startDate: "2020-01-01",
         endDate: null,
@@ -25,8 +29,10 @@ usersCollection.insert(
 )
 usersCollection.insert(
     {
-        name: "Alex",
         userId: 3,
+        name: "Alex",
+        email: "Alex@gmail.com",
+        password: "Alex!",
         timeZone: "USA/New_York",
         startDate: "2020-01-04",
         endDate: null,
@@ -36,8 +42,10 @@ usersCollection.insert(
 
 usersCollection.insert(
     {
-        name: "Justin",
         userId: 4,
+        name: "Justin",
+        email: "Justin@gmail.com",
+        password: "Justin!",
         timeZone: "USA/Los_Angeles",
         startDate: "2021-02-11",
         endDate: null,
@@ -46,8 +54,10 @@ usersCollection.insert(
 )
 usersCollection.insert(
     {
-        name: "Dr. H",
         userId: 5,
+        name: "Dr. H",
+        email: "Dr. H@gmail.com",
+        password: "Dr. H!",
         timeZone: "USA/Los_Angeles",
         startDate: "2020-01-01",
         endDate: "2021-01-31",

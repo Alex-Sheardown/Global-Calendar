@@ -4,9 +4,13 @@ exports.App = void 0;
 var express = require("express");
 var logger = require("morgan");
 var bodyParser = require("body-parser");
+var cors = require("cors");
 var EventModel_1 = require("./model/EventModel");
 var UserModel_1 = require("./model/UserModel");
 var CalendarModel_1 = require("./model/CalendarModel");
+var options = {
+    origin: '*'
+};
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -29,6 +33,7 @@ var App = /** @class */ (function () {
     App.prototype.routes = function () {
         var _this = this;
         var router = express.Router();
+        router.use(cors(options));
         // User APIs
         router.post('/app/user/', function (req, res) {
             console.log(req.body);
@@ -56,9 +61,75 @@ var App = /** @class */ (function () {
             _this.Users.retrieveAllUsers(res);
         });
         router.get('/app/user/:userId', function (req, res) {
-            var userId = req.params.userId;
-            console.log('Query user collection for the following id: ' + userId);
-            _this.Users.retrieveUserById(res, { $and: [{ userId: { $eq: userId } }, { isActive: true }] });
+            try {
+                var userId = req.params.userId;
+                console.log('Query user collection for the following id: ' + userId);
+                _this.Users.retrieveUserById(res, { $and: [{ userId: { $eq: userId } }, { isActive: true }] });
+            }
+            catch (_a) {
+                res.status(404);
+                res.send({ error: "This id doesn't exist!" });
+            }
+        });
+        //For all the User related suff
+        //Find user
+        router.get('/app/user/name/:name', function (req, res) {
+            try {
+                var name_1 = req.params.name;
+                console.log('Query user collection for the following name: ' + name_1);
+                _this.Users.retrieveUserByName(res, { $and: [{ name: { $eq: name_1 } }, { isActive: true }] });
+            }
+            catch (_a) {
+                res.status(404);
+                res.send({ error: "This Name doesn't exist!" });
+            }
+        });
+        router.get('/app/user/email/:email', function (req, res) {
+            try {
+                var email = req.params.email;
+                console.log('Query user collection for the following email: ' + email);
+                _this.Users.retrieveUserByEmail(res, { $and: [{ email: { $eq: email } }, { isActive: true }] });
+            }
+            catch (_a) {
+                res.status(404);
+                res.send({ error: "This Name doesn't exist!" });
+            }
+        });
+        //Post secure user
+        //broken
+        /*
+        router.post('/app/user/secure/signup', async (req, res) => {
+          try {
+            let email = req.params.email;
+            console.log('Query user collection for the following email: ' + email);
+            let hold = this.Users.retrieveUserByEmail2(res, {$and: [{email: {$eq: email}}, {isActive: true}]})
+            console.log("What is being compared: " + hold)
+            if(await hold < 1){
+              console.log('This User does not exist')
+    
+            } else{
+              
+              console.log('We found This User')
+            }
+          }catch {
+            res.status(404)
+            res.send({ error: "This Email doesn't exist!" })
+          }
+        });
+        */
+        //Post user
+        router.post('/app/user/signup', function (req, res) {
+            //need to run check for name, email, and passsword 
+            var name = req.params.name;
+            console.log(req.body);
+            var jsonObj = req.body;
+            _this.Users.model.create([jsonObj], function (err) {
+                if (err) {
+                    console.log('User object creation failed');
+                }
+            });
+            res.send(_this.idGenerator.toString());
+            _this.idGenerator++;
         });
         // Event APIs
         router.post('/app/event/', function (req, res) {
@@ -72,6 +143,7 @@ var App = /** @class */ (function () {
             res.send(_this.idGenerator.toString());
             _this.idGenerator++;
         });
+        //Delete
         router["delete"]('/app/event', function (req, res) {
             console.log(req.body);
             var eventId = req.body.eventId;
@@ -81,10 +153,12 @@ var App = /** @class */ (function () {
             console.log('Updating event according to following request: ' + req.body);
             _this.Events.updateEvent(res, req.body.eventId, req.body.document);
         });
+        //Get All Events
         router.get('/app/event/', function (req, res) {
             console.log('Query all events');
             _this.Events.retrieveAllEvents(res);
         });
+        //Get Event By ID
         router.get('/app/event/:eventId', function (req, res) {
             var eventId = req.params.eventId;
             console.log('Query user collection for the following id: ' + eventId);
