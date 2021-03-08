@@ -67,6 +67,14 @@ var UserModel = /** @class */ (function () {
             response.json(userResult);
         });
     };
+    UserModel.prototype.retrieveUserByNameandPassword = function (response, filter) {
+        console.log('Filter passed through is:');
+        console.log(filter);
+        var query = this.model.findOne(filter);
+        query.exec(function (err, userResult) {
+            response.json(userResult);
+        });
+    };
     /*
     public async retrieveUserByEmail2(response: any, filter: Object):Promise<number> {
         console.log('Filter passed through is:')

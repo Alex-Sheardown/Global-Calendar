@@ -114,6 +114,18 @@ class App {
       }
     });
 
+    router.get('/app/user/secure/', (req, res) => {
+      try {
+        let name = req.params.name;
+        let password = req.params.password;
+        console.log('Query user collection for the following username an password: ' + name + " " + password);
+        this.Users.retrieveUserByNameandPassword(res, {name: name , password: password})
+      }catch {
+        res.status(404)
+        res.send({ error: "This Name doesn't exist!" })
+      }
+    });
+
     //Post secure user
     //broken
     /*
