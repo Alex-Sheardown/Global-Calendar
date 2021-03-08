@@ -3,6 +3,9 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+
 import {EventModel} from './model/EventModel';
 import {UserModel} from './model/UserModel';
 import {CalendarModel} from "./model/CalendarModel";
