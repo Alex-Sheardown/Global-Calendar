@@ -1,4 +1,25 @@
-<div class="container  mat-app-background">
-  <h1>{{title}}</h1>
-<app-calendar></app-calendar>
-</div>
+<!-- Global Calendar Toolbar -->
+<header>
+  <mat-toolbar color="primary">
+    <div class="btn-group title-center">
+      <button mat-button (click)="clickGetCalendars()" color="secondary">View Calendars</button>
+      <button mat-button (click)="clickGetEvents()" color="secondary">Event Component Testing</button>
+      <button mat-button (click)="clickGetUsers()" color="secondary">User Component Testing</button>
+      <button mat-button (click)="goToDayView()" color="secondary">Day</button>
+      <button mat-button (click)="goToWeekView()" color="secondary">Week</button>
+      <button mat-button (click)="goToMonthView()" color="secondary">Month</button>
+      <button mat-button (click)="goToYearView()" color="secondary">Year</button>
+      <button mat-button (click)="goToSettings()" color="secondary">Settings</button>
+    </div>
+  </mat-toolbar>
+
+  <!-- Time Display -->
+  <div class="mat-card">
+    <h2 class="split-para">
+      {{homeTimezone}} : {{homeDateAndTime}}
+      <span align="right"> {{desiredTimezone}} : {{convertedDateAndTime}}</span>
+    </h2>
+  </div>
+</header>
+
+<router-outlet></router-outlet>

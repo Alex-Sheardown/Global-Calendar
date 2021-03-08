@@ -1,1 +1,19 @@
+<<<<<<< HEAD
 @import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+=======
+.title-center {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.split-para {
+  display:block;
+}
+
+.split-para span {
+  display:block;
+  float:right;
+  width:50%;
+  margin-left:10px;
+}
+>>>>>>> thoreson

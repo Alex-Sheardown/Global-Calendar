@@ -1,0 +1,13 @@
+/*@import '@angular/material/prebuilt-themes/deeppurple-amber.css';*/
+.body-center {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+table {
+  width: 50%;
+}
+
+th.mat-header-cell, td.mat-cell {
+  text-align: left !important;
+}
