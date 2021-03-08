@@ -37,13 +37,13 @@
 
     <!-- Get event by ID -->
     <h1>Provide event id:</h1>
-    <label><input type="number" min="1" #eventId></label>
-    <button mat-button (click)="getOneEvent(eventId.valueAsNumber)">Get event</button>
+    <label><input type="number" min="1" #eventIdGet></label>
+    <button mat-button (click)="getOneEvent(eventIdGet.valueAsNumber)">Get event</button>
     <p>Retrieved {{eventTitle}}</p>
 
     <!-- Delete event by ID -->
     <h1>Provide event id:</h1>
-    <label><input type="number" min="1" #eventId></label>
-    <button mat-button (click)="deleteEvent(eventId.valueAsNumber)">Delete Event</button>
+    <label><input type="number" min="1" #eventIdDelete></label>
+    <button mat-button (click)="deleteEvent(eventIdDelete.valueAsNumber)">Delete Event</button>
   </div>
 </body>
