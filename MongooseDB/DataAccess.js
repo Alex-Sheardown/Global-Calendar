@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 exports.DataAccess = void 0;
+// comment
 var Mongoose = require("mongoose");
 var DataAccess = /** @class */ (function () {
-    // static DB_CONNECTION_STRING:string = 'mongodb://dbAdmin:test@localhost:3000/globalCalendar?authSource=admin';
     function DataAccess() {
         DataAccess.connect();
     }

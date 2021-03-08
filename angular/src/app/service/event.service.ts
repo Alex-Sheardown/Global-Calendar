@@ -20,7 +20,7 @@ export class EventService {
     return this.http.request('POST', this.url, {
       // placeholder
       body: {
-        "eventId": 9,
+        "eventId": 20,
         "title": "Professor H GME Investment Zoom Meeting",
         "category": "Classes",
         "description": "To the moon!",
