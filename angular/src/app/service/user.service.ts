@@ -45,7 +45,8 @@ export class UserService {
   }
 
   /**GET: get a user by ID**/
-  getUserById(index: string) {
-    return this.http.get(this.url + index + '').pipe(map((response: any) => response.json()));
+  getUserById(userId: number) : Observable<User> {
+    return this.http.get<User>(this.url + userId + ''); //user observable. passing the observable.
   }
+
 }
