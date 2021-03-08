@@ -10,49 +10,7 @@
 <button (click)="getUserById(UserID.valueAsNumber)"> getUserById</button>
 
 <!--Version 1 Good Shows All User-->
-<div class="page-content page-container" id="page-content" *ngFor = "let x of userList">
-  <div class="padding">
-    <div class="row container d-flex justify-content-center">
-      <div class="col-xl-6 col-md-12">
-        <div class="card user-card-full">
-          <div class="row m-l-0 m-r-0">
-            <div class="col-sm-4 bg-c-lite-green user-profile">
-              <div class="card-block text-center text-white">
-                <h6 class="f-w-601" >{{x.name}}</h6>
-
-              </div>
-            </div>
-            <div class="col-sm-8">
-              <div class="card-block">
-                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">TimeZone</p>
-                    <h6 class="text-muted f-w-400">{{x.timeZone}}</h6>
-                  </div>
-                </div>
-                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Account</h6>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">User ID</p>
-                    <h6 class="text-muted f-w-400">{{x.userId}} : {{x.name}}</h6>
-                  </div>
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">Start Date & EndDate</p>
-                    <h6 class="text-muted f-w-400">{{x.startDate}} : {{x.endDate}}</h6>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Version 2 Individual -->
-<!--<div class="page-content page-container" id="page-content">-->
+<!--<div class="page-content page-container" id="page-content" *ngFor = "let x of userList">-->
 <!--  <div class="padding">-->
 <!--    <div class="row container d-flex justify-content-center">-->
 <!--      <div class="col-xl-6 col-md-12">-->
@@ -60,7 +18,7 @@
 <!--          <div class="row m-l-0 m-r-0">-->
 <!--            <div class="col-sm-4 bg-c-lite-green user-profile">-->
 <!--              <div class="card-block text-center text-white">-->
-<!--                <h6 class="f-w-601" >{{v_name}}</h6>-->
+<!--                <h6 class="f-w-601" >{{x.name}}</h6>-->
 
 <!--              </div>-->
 <!--            </div>-->
@@ -70,18 +28,18 @@
 <!--                <div class="row">-->
 <!--                  <div class="col-sm-6">-->
 <!--                    <p class="m-b-10 f-w-600">TimeZone</p>-->
-<!--                    <h6 class="text-muted f-w-400">{{v_timeZone}}</h6>-->
+<!--                    <h6 class="text-muted f-w-400">{{x.timeZone}}</h6>-->
 <!--                  </div>-->
 <!--                </div>-->
 <!--                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Account</h6>-->
 <!--                <div class="row">-->
 <!--                  <div class="col-sm-6">-->
 <!--                    <p class="m-b-10 f-w-600">User ID</p>-->
-<!--                    <h6 class="text-muted f-w-400">{{v_userId}} : {{v_name}}</h6>-->
+<!--                    <h6 class="text-muted f-w-400">{{x.userId}} : {{x.name}}</h6>-->
 <!--                  </div>-->
 <!--                  <div class="col-sm-6">-->
 <!--                    <p class="m-b-10 f-w-600">Start Date & EndDate</p>-->
-<!--                    <h6 class="text-muted f-w-400">{{v_startDate}} : {{v_endDate}}</h6>-->
+<!--                    <h6 class="text-muted f-w-400">{{x.startDate}} : {{x.endDate}}</h6>-->
 
 <!--                  </div>-->
 <!--                </div>-->
@@ -93,3 +51,45 @@
 <!--    </div>-->
 <!--  </div>-->
 <!--</div>-->
+<!-- Version 2 Individual -->
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+      <div class="col-xl-6 col-md-12">
+        <div class="card user-card-full">
+          <div class="row m-l-0 m-r-0">
+            <div class="col-sm-4 bg-c-lite-green user-profile">
+              <div class="card-block text-center text-white">
+                <h6 class="f-w-601" >{{v_name}}</h6>
+
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="card-block">
+                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <p class="m-b-10 f-w-600">TimeZone</p>
+                    <h6 class="text-muted f-w-400">{{v_timeZone}}</h6>
+                  </div>
+                </div>
+                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Account</h6>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <p class="m-b-10 f-w-600">User ID</p>
+                    <h6 class="text-muted f-w-400">{{v_userId}} : {{v_name}}</h6>
+                  </div>
+                  <div class="col-sm-6">
+                    <p class="m-b-10 f-w-600">Start Date & EndDate</p>
+                    <h6 class="text-muted f-w-400">{{v_startDate}} : {{v_endDate}}</h6>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
