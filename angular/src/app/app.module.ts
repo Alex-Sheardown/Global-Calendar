@@ -29,6 +29,8 @@ import { UserComponent } from './user/user.component';
 import { UserService } from "./service/user.service";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatInputModule } from "@angular/material/input";
+import { RecurringListComponent } from './recurring-list/recurring-list.component';
+import { AnalogClockComponent } from './analog-clock/analog-clock.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -49,6 +51,8 @@ FullCalendarModule.registerPlugins([
     SettingsComponent,
     EventListComponent,
     UserComponent,
+    RecurringListComponent,
+    AnalogClockComponent,
   ],
   imports: [
     BrowserModule,

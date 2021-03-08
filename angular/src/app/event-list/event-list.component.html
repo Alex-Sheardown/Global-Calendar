@@ -1,4 +1,5 @@
-<p>Appointments</p>
+<div align="center">
+<h2> Appointments for {{this.datePicker.toISOString().slice(0,10)}}</h2>
 <!-- Mat Table -->
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -35,4 +36,4 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </table>
-<p>{{datePicker}}</p>
+</div>

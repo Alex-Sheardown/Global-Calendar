@@ -1,9 +1,35 @@
-<p>My Date Picker</p>
-<mat-form-field hintLabel="Select a date" appearance="standard">
-  <mat-label>Choose a date</mat-label>
-  <input matInput [matDatepicker]="picker"  [(ngModel)]="selectedDate" required>
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
-<p>Selected date: {{selectedDate.getFullYear()}}-{{('0' + (selectedDate.getMonth() + 1)).slice(-2)}}-{{('0' + selectedDate.getDay()).slice(-2)}}</p>
-<app-event-list [datePicker]="selectedDate"></app-event-list>
+<h1 align="center"> {{this.calendarName}} </h1>
+<div class="row">
+  <div class="column" align="center">
+  <app-recurring-list></app-recurring-list>
+  </div>
+  <div class="column">
+    <app-event-list [datePicker]="selectedDate" [calendarPicker]="calendarNumber"></app-event-list>
+  </div>
+  <div class="column">
+    <div align="center">
+      <h2>Date Selector</h2>
+      <mat-form-field hintLabel="Select a date" appearance="standard">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div align="center">
+      <h2>Calendar Selector</h2>
+      <mat-form-field appearance="standard">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(value)]="calendarNumber">
+          <mat-option>None</mat-option>
+          <mat-option value="1">Nick's Seattle U Classes</mat-option>
+          <mat-option value="2">2</mat-option>
+          <mat-option value="3">3</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div align="center">
+      <app-analog-clock></app-analog-clock>
+    </div>
+  </div>
+</div>

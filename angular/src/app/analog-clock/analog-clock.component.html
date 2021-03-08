@@ -1,0 +1,9 @@
+<button (click)="toggle()">toggle</button>
+<div class="clock">
+  <div class="analog-clock">
+    <div class="hour hand" [ngStyle]="hourHandStyle"></div>
+    <div class="minute hand" [ngStyle]="minuteHandStyle"></div>
+    <div class="second hand" [ngStyle]="secondHandStyle"></div>
+    <div class="center-circle"></div>
+  </div>
+</div>
