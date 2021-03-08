@@ -1,0 +1,15 @@
+table{
+  width: 100%;
+}
+
+.mat-header-cell{
+  padding: 0px 0px 0px 20px;
+}
+
+.mat-row {
+  height: auto;
+}
+
+.mat-cell {
+  padding: 20px 20px 20px 20px;
+}

@@ -1,0 +1,49 @@
+<body class="body-center">
+  <!-- Get events by start date -->
+  <h1>Provide start date:</h1>
+  <label><input type="text" placeholder="ex: 2021-01-01" #date></label>
+  <!--button mat-button (click)="getEventsByStartDate(date.value)">Get Events</button-->
+
+  <h3>{{inputDate}}</h3>
+
+  <div align="center">
+    <!-- Mat Table -->
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Event ID Column -->
+      <ng-container matColumnDef="eventId">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element"> {{element.eventId}} </td>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Title</th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+      </ng-container>
+
+      <!-- Start Date Column -->
+      <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef>Start Date</th>
+        <td mat-cell *matCellDef="let element"> {{element.startDate}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- Post event test -->
+    <h1>Click to post event 9:</h1>
+    <button mat-button (click)="createEvent()">Post Event</button>
+
+    <!-- Get event by ID -->
+    <h1>Provide event id:</h1>
+    <label><input type="number" min="1" #eventId></label>
+    <button mat-button (click)="getOneEvent(eventId.valueAsNumber)">Get event</button>
+    <p>Retrieved {{eventTitle}}</p>
+
+    <!-- Delete event by ID -->
+    <h1>Provide event id:</h1>
+    <label><input type="number" min="1" #eventId></label>
+    <button mat-button (click)="deleteEvent(eventId.valueAsNumber)">Delete Event</button>
+  </div>
+</body>

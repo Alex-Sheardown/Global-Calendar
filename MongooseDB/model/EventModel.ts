@@ -34,6 +34,8 @@ class EventModel {
     }
 
     public deleteEvent(response: any, filter: Object): any {
+        console.log('Filter passed through is:');
+        console.log(filter);
         let query = this.model.deleteOne(filter)
         query.exec((err, eventResult) => {
             response.json(eventResult)
@@ -50,7 +52,7 @@ class EventModel {
     public retrieveAllEvents(response:any): any {
         let query = this.model.find({});
         query.exec( (err, eventArray) => {
-            response.json(eventArray) ;
+            response.json(eventArray);
         });
     }
 

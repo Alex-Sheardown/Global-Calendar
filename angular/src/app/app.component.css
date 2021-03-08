@@ -1,0 +1,16 @@
+@import '@angular/material/prebuilt-themes/purple-green.css';
+.title-center {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.split-para {
+  display:block;
+}
+
+.split-para span {
+  display:block;
+  float:right;
+  width:50%;
+  margin-left:10px;
+}

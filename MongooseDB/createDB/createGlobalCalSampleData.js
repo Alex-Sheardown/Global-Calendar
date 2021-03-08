@@ -70,6 +70,45 @@ calendarsCollection.insert(
             },
             {
                 eventId: 3
+            },
+            {
+                eventId: 4
+            },
+            {
+                eventId: 5
+            },
+            {
+                eventId: 6
+            },
+            {
+                eventId: 7
+            },
+            {
+                eventId: 8
+            },
+            {
+                eventId: 9
+            },
+            {
+                eventId: 10
+            },
+            {
+                eventId: 11
+            },
+            {
+                eventId: 12
+            },
+            {
+                eventId: 13
+            },
+            {
+                eventId: 14
+            },
+            {
+                eventId: 15
+            },
+            {
+                eventId: 16
             }
         ]
     }
@@ -175,4 +214,151 @@ eventsCollection.insert(
     }
 )
 
+eventsCollection.insert(
+    {
+        eventId: 5,
+        title: "Hank's Vet Appointment",
+        category: "Personal Appointments",
+        description: "Taking Hank to dermatologist",
+        startDate: "2021-03-08",
+        endDate: "2021-03-08",
+        startTime: "12:00",
+        endTime: "13:00"
+    }
+)
+eventsCollection.insert(
+    {
+        eventId: 6,
+        title: "Presentation Preparation",
+        category: "Classes",
+        description: "Meet to prepare for SaaS presentation",
+        startDate: "2021-03-08",
+        endDate: "2021-03-08",
+        startTime: "16:00",
+        endTime: "18:00"
+    }
+)
+eventsCollection.insert(
+    {
+        eventId: 7,
+        title: "Packers Game",
+        category: "Personal",
+        description: "Watch the Packers lose again",
+        startDate: "2021-03-07",
+        endDate: "2021-03-07",
+        startTime: "14:00",
+        endTime: "17:00"
+    }
+)
+
+eventsCollection.insert(
+    {
+        eventId: 8,
+        title: "Capstone Zoom Meeting",
+        category: "Classes",
+        description: "",
+        startDate: "2021-03-07",
+        endDate: "2021-03-07",
+        startTime: "11:00",
+        endTime: "13:00"
+    }
+)
+eventsCollection.insert(
+    {
+        eventId: 9,
+        title: "SaaS Zoom Meeting",
+        category: "Classes",
+        description: "Backend presentations",
+        startDate: "2021-03-07",
+        endDate: "2021-03-07",
+        startTime: "18:00",
+        endTime: "20:00"
+    }
+)
+eventsCollection.insert(
+    {
+        eventId: 10,
+        title: "Group Project Meeting",
+        category: "Classes",
+        description: "Discuss backend via Discord",
+        startDate: "2021-03-07",
+        endDate: "2021-03-07",
+        startTime: "14:00",
+        endTime: "17:00"
+    }
+)
+
+eventsCollection.insert(
+    {
+        eventId: 11,
+        title: "Capstone Zoom Meeting",
+        category: "Classes",
+        description: "",
+        startDate: "2021-03-08",
+        endDate: "2021-03-08",
+        startTime: "11:00",
+        endTime: "13:00"
+    }
+)
+eventsCollection.insert(
+    {
+        eventId: 12,
+        title: "SaaS Zoom Meeting",
+        category: "Classes",
+        description: "Backend presentations",
+        startDate: "2021-03-08",
+        endDate: "2021-03-08",
+        startTime: "18:00",
+        endTime: "20:00"
+    }
+)
+eventsCollection.insert(
+    {
+        eventId: 13,
+        title: "Group Project Meeting",
+        category: "Classes",
+        description: "Discuss backend via Discord",
+        startDate: "2021-03-08",
+        endDate: "2021-03-08",
+        startTime: "14:00",
+        endTime: "17:00"
+    }
+)
+
+eventsCollection.insert(
+    {
+        eventId: 14,
+        title: "Capstone Zoom Meeting",
+        category: "Classes",
+        description: "",
+        startDate: "2021-03-09",
+        endDate: "2021-03-09",
+        startTime: "11:00",
+        endTime: "13:00"
+    }
+)
+eventsCollection.insert(
+    {
+        eventId: 15,
+        title: "SaaS Zoom Meeting",
+        category: "Classes",
+        description: "Backend presentations",
+        startDate: "2021-03-09",
+        endDate: "2021-03-09",
+        startTime: "18:00",
+        endTime: "20:00"
+    }
+)
+eventsCollection.insert(
+    {
+        eventId: 16,
+        title: "Group Project Meeting",
+        category: "Classes",
+        description: "Discuss backend via Discord",
+        startDate: "2021-03-09",
+        endDate: "2021-03-09",
+        startTime: "14:00",
+        endTime: "17:00"
+    }
+)
 

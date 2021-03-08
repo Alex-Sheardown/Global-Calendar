@@ -3,6 +3,7 @@ exports.__esModule = true;
 exports.DataAccess = void 0;
 var Mongoose = require("mongoose");
 var DataAccess = /** @class */ (function () {
+    // static DB_CONNECTION_STRING:string = 'mongodb://dbAdmin:test@localhost:3000/globalCalendar?authSource=admin';
     function DataAccess() {
         DataAccess.connect();
     }
@@ -16,7 +17,7 @@ var DataAccess = /** @class */ (function () {
         this.mongooseInstance = Mongoose.connect(this.DB_CONNECTION_STRING);
         return this.mongooseInstance;
     };
-    DataAccess.DB_CONNECTION_STRING = 'mongodb://dbAdmin:test@localhost:3000/globalCalendar?authSource=admin';
+    DataAccess.DB_CONNECTION_STRING = 'mongodb+srv://benyon:Seahawkssuck2021@calendardb.uhgwf.mongodb.net/globalCalendar?retryWrites=true&w=majority';
     return DataAccess;
 }());
 exports.DataAccess = DataAccess;
