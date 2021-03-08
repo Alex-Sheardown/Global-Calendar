@@ -8,6 +8,7 @@ import { MonthViewComponent } from "./month-view/month-view.component";
 import { YearViewComponent } from "./year-view/year-view.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { UserComponent } from "./user/user.component";
+import {SigninComponent} from "./signin/signin.component";
 
 const routes: Routes = [
   //{ path: '', component: WelcomeComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'week', component: WeekViewComponent },
   { path: 'month', component: MonthViewComponent },
   { path: 'year', component: YearViewComponent },
-  { path: 'settings', component: SettingsComponent}
+  { path: 'settings', component: SettingsComponent },
+  { path: 'signin', component: SigninComponent } // temp
 ];
 
 @NgModule({

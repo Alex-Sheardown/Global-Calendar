@@ -32,5 +32,6 @@ export class AppComponent {
   clickGetCalendars() {this.router.navigate(['calendar']);}
   clickGetEvents() {this.router.navigate(['event']);}
   clickGetUsers() {this.router.navigate(['user']);}
+  clickGoToSignIn() {this.router.navigate(['signin']);}
 
 }
