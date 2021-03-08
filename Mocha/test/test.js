@@ -1,19 +1,19 @@
-var chai = require('chai');
-var chaiHttp = require('chai-http');
-var async = require('async');
+let chai = require('chai');
+let chaiHttp = require('chai-http');
+let async = require('async');
 
-var assert = chai.assert;
-var expect = chai.expect;
-var should = chai.should();
+let assert = chai.assert;
+let expect = chai.expect;
+let should = chai.should();
 
-var http = require('http');
+let http = require('http');
 chai.use(chaiHttp);
 
 describe('Test Event table Properties:', function () {
 //	this.timeout(15000);
 
-	var requestResult;
-	var response;
+	let requestResult;
+	let response;
 		 
     before(function (done) {
         chai.request("http://localhost:8080")
@@ -40,10 +40,11 @@ describe('Test Event table Properties:', function () {
 	    expect(requestResult[0]).to.have.property('eventId');
 		expect(response.body).to.not.be.a.string;
 	});
+
 	it('The elements in the array have the expected properties', function(){
 		expect(response.body).to.satisfy(
 			function (body) {
-				for (var i = 0; i < body.length; i++) {
+				for (let i = 0; i < body.length; i++) {
 					expect(body[i]).to.have.property('eventId');
                     expect(body[i]).to.have.property('title').that.is.a('string');
 					expect(body[i]).to.have.property('category').that.is.a('string');
@@ -62,8 +63,8 @@ describe('Test Event table Properties:', function () {
 describe('table contents:', function () {
     //	this.timeout(15000);
     
-        var requestResult;
-        var response;
+        let requestResult;
+        let response;
              
         before(function (done) {
             chai.request("http://localhost:8080")
