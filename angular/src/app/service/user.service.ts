@@ -25,7 +25,7 @@ export class UserService {
         "timeZone":"USA/Los_Angeles" ,
         "startDate": "2020-01-01",
         "endDate": "2021-12-31",
-        "isActive": true
+        "isActive": "true"
       }
     }).subscribe();
   }
@@ -38,7 +38,9 @@ export class UserService {
     return this.http.get<User[]>(this.url);
   }
 
-  getUserById(userId: number): Observable<User> {
-    return this.http.get(this.url + userId + '').pipe(map((response: any) => response.json()));
+  /**GET: get a user by ID**/
+  getUserById(userId: number) : Observable<User> {
+    return this.http.get<User>(this.url + userId + ''); //user observable. passing the observable.
   }
+
 }

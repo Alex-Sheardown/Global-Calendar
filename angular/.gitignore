@@ -44,3 +44,12 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#Emma Edited
+styles.css
+package-lock.json
+package.json
+index.html
+app.module.ts
+angular.json
+Project_Default.xml

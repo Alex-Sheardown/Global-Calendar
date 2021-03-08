@@ -3,3 +3,5 @@
 /MongooseDB/node_modules/
 /angular/node_modules
 .DS_Store
+/angular/node_modules/
+/mocha_test/node_modules/

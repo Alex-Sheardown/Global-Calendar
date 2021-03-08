@@ -1,54 +1,95 @@
 <!--Show All Users-->
-<body class="body-center" xmlns="">
-  <h1>Users</h1>
+<!--<h3>All Users</h3>-->
 
-  <!-- Mat Table -->
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <!-- User ID Column -->
-    <ng-container matColumnDef="userId">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
-      <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
-    </ng-container>
+<!--<li *ngFor="let user of userList">-->
+<!--  {{user.name}} : {{user.timeZone}} : {{user.userId}} : {{user.startDate}} : {{user.endDate}} : {{user.isActive}}-->
+<!--</li>-->
+<button (click)="createUser()">Post User</button>
+<button (click)="deleteUser(6)">Delete User</button>
+<label> <input type = "number" min = "1" #UserID> </label> <!-- #UserID <- variable to get input-->
+<button (click)="getUserById(UserID.valueAsNumber)"> getUserById</button>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
+<!--Version 1 Good Shows All User-->
+<div class="page-content page-container" id="page-content" *ngFor = "let x of userList">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+      <div class="col-xl-6 col-md-12">
+        <div class="card user-card-full">
+          <div class="row m-l-0 m-r-0">
+            <div class="col-sm-4 bg-c-lite-green user-profile">
+              <div class="card-block text-center text-white">
+                <h6 class="f-w-601" >{{x.name}}</h6>
 
-    <!-- Time Zone Column -->
-    <ng-container matColumnDef="timeZone">
-      <th mat-header-cell *matHeaderCellDef>Time Zone</th>
-      <td mat-cell *matCellDef="let element"> {{element.timeZone}} </td>
-    </ng-container>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="card-block">
+                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <p class="m-b-10 f-w-600">TimeZone</p>
+                    <h6 class="text-muted f-w-400">{{x.timeZone}}</h6>
+                  </div>
+                </div>
+                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Account</h6>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <p class="m-b-10 f-w-600">User ID</p>
+                    <h6 class="text-muted f-w-400">{{x.userId}} : {{x.name}}</h6>
+                  </div>
+                  <div class="col-sm-6">
+                    <p class="m-b-10 f-w-600">Start Date & EndDate</p>
+                    <h6 class="text-muted f-w-400">{{x.startDate}} : {{x.endDate}}</h6>
 
-    <!-- Active Column -->
-    <ng-container matColumnDef="isActive">
-      <th mat-header-cell *matHeaderCellDef>Active</th>
-      <td mat-cell *matCellDef="let element"> {{element.isActive}} </td>
-    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Version 2 Individual -->
+<!--<div class="page-content page-container" id="page-content">-->
+<!--  <div class="padding">-->
+<!--    <div class="row container d-flex justify-content-center">-->
+<!--      <div class="col-xl-6 col-md-12">-->
+<!--        <div class="card user-card-full">-->
+<!--          <div class="row m-l-0 m-r-0">-->
+<!--            <div class="col-sm-4 bg-c-lite-green user-profile">-->
+<!--              <div class="card-block text-center text-white">-->
+<!--                <h6 class="f-w-601" >{{v_name}}</h6>-->
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="col-sm-8">-->
+<!--              <div class="card-block">-->
+<!--                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>-->
+<!--                <div class="row">-->
+<!--                  <div class="col-sm-6">-->
+<!--                    <p class="m-b-10 f-w-600">TimeZone</p>-->
+<!--                    <h6 class="text-muted f-w-400">{{v_timeZone}}</h6>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Account</h6>-->
+<!--                <div class="row">-->
+<!--                  <div class="col-sm-6">-->
+<!--                    <p class="m-b-10 f-w-600">User ID</p>-->
+<!--                    <h6 class="text-muted f-w-400">{{v_userId}} : {{v_name}}</h6>-->
+<!--                  </div>-->
+<!--                  <div class="col-sm-6">-->
+<!--                    <p class="m-b-10 f-w-600">Start Date & EndDate</p>-->
+<!--                    <h6 class="text-muted f-w-400">{{v_startDate}} : {{v_endDate}}</h6>-->
 
-  <!-- Post User Test -->
-  <h1>Post user 6:</h1>
-  <button mat-button (click)="createUser()">Post User</button>
-
-  <!--<h1>Get user by ID:</h1>
-  <label><input type="number" min="1" #userId></label>
-  <button mat-button (click)="getUserById(userId.valueAsNumber)">Get User</button>
-  <p>Retrieved {{userById.name}}</p>-->
-
-  <!-- Delete User by ID -->
-  <h1>Delete user 6:</h1>
-  <label><input type="number" min="1" #userId></label>
-  <button mat-button (click)="deleteUser(userId.valueAsNumber)">Delete User</button>
-</body>
-
-
-
-
-
-
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
