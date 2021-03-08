@@ -1,11 +1,6 @@
 <!--Show All Users-->
-<body class="body-center">
+<body class="body-center" xmlns="">
   <h1>Users</h1>
-
-  <!-- With ngFor -->
-  <!--<li *ngFor="let user of userList">
-    {{user.name}} : {{user.timeZone}} : {{user.userId}} : {{user.startDate}} : {{user.endDate}} : {{user.isActive}}
-  </li>-->
 
   <!-- Mat Table -->
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -40,6 +35,11 @@
   <!-- Post User Test -->
   <h1>Post user 6:</h1>
   <button mat-button (click)="createUser()">Post User</button>
+
+  <!--<h1>Get user by ID:</h1>
+  <label><input type="number" min="1" #userId></label>
+  <button mat-button (click)="getUserById(userId.valueAsNumber)">Get User</button>
+  <p>Retrieved {{userById.name}}</p>-->
 
   <!-- Delete User by ID -->
   <h1>Delete user 6:</h1>

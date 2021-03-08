@@ -12,7 +12,13 @@ import {MatTableDataSource} from "@angular/material/table";
 })
 export class EventComponent implements OnInit {
 
-  public events$: Observable<Event[]> | undefined;
+  // Single event
+  public event$: Observable<Event> = new Observable<Event>();
+  public event: Event | undefined;
+  public eventTitle: string = '';
+
+  // Multiple events
+  public events$: Observable<Event[]> = new Observable<Event[]>();
   public eventList: Event[] | undefined;
   public eventListByDate: Event[] | undefined;
   public inputDate: string = '';
@@ -21,14 +27,14 @@ export class EventComponent implements OnInit {
   displayedColumns: string[] = ['eventId', 'title', 'startDate'];
   dataSource = new MatTableDataSource<Event>();
 
-  constructor(private eventService: EventService, private logger: LogService) {
+  constructor(private eventService: EventService, private logger: LogService) { }
+
+  ngOnInit(): void {
     this.events$ = this.eventService.getEvents();
     this.events$.subscribe((result: Event[]) => {
       this.eventList = result;
     })
   }
-
-  ngOnInit(): void { }
 
   createEvent(): void {
     this.eventService.postEvent();
@@ -37,6 +43,15 @@ export class EventComponent implements OnInit {
   deleteEvent(eventId: number) {
     console.log(eventId);
     this.eventService.deleteEvent(eventId)
+  }
+
+  getOneEvent(eventId: number) {
+    console.log(eventId);
+    this.event$ = this.eventService.getEventById(eventId);
+    this.event$.subscribe((result: Event) => {
+      this.event = result;
+      this.eventTitle = result.title;
+    })
   }
 
   getEventsByStartDate(date: string): void {

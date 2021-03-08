@@ -4,7 +4,6 @@ import {LogService} from "../log.service";
 import {User} from "../interface/user";
 import {Observable} from "rxjs";
 import {MatTableDataSource} from "@angular/material/table";
-import {Event} from "../interface/event";
 
 @Component({
   selector: 'app-user',
@@ -36,9 +35,16 @@ export class UserComponent implements OnInit {
     this.userService.postUser();
   }
 
-  deleteUser(userId: number){
+  deleteUser(userId: number) {
     console.log(userId)
     this.userService.deleteUser(userId)
   }
+
+  /*getUserById(userId: number) {
+    this.user$ = this.userService.getUserById(userId);
+    this.user$.subscribe(result => {
+      this.userById = result;
+    });
+  }*/
 }
 
