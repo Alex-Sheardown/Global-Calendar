@@ -65,6 +65,19 @@ var App = /** @class */ (function () {
             console.log('Query user collection for the following id: ' + userId);
             _this.Users.retrieveUserById(res, { $and: [{ userId: { $eq: userId } }, { isActive: true }] });
         });
+        //Secure Login
+        router.get('/app/user/secure/login', function (req, res) {
+            try {
+                var id = req.body.userId;
+                var name_1 = req.body.name;
+                console.log('Query user collection for the following username an password: ' + id + " " + name_1);
+                _this.Users.retrieveUserByNameandPassword(res, { userId: id, name: name_1 });
+            }
+            catch (_a) {
+                res.status(404);
+                res.send({ error: "This Name doesn't exist!" });
+            }
+        });
         // Event APIs
         router.post('/app/event/', function (req, res) {
             console.log(req.body);

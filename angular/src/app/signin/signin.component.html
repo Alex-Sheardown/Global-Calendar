@@ -9,11 +9,13 @@
   <mat-form-field class="example-full-width">
     <mat-label>Password</mat-label>
 
-    <input  matInput type = "password" min = "1" placeholder="Password" #Password>
+    <input  matInput type = "text" placeholder="Password" #Pass>
   </mat-form-field>
 </form>
+<button mat-button (click) = 'getUser1(Id.valueAsNumber)' >test</button>
 
-
-  <button mat-button (click) = "getUser(Id.valueAsNumber)" >Submit</button>
+<button mat-button (click) = 'getUser2(Id.valueAsNumber, Pass.value)' >Submit</button>
   <h1>{{userName}}</h1>
+  
+  
 </div>

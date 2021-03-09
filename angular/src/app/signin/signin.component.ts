@@ -29,14 +29,29 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  
-  getUser(userId: number) {
+  getUser1(userId: number) {
     console.log(userId);
-    this.user$ = this.loginService.getUser(userId);
+    //console.log("The signin ts is being called");
+    this.user$ = this.loginService.getUser1(userId);
     this.user$.subscribe((result: User) => {
       this.user = result;
       this.userName = result.name;
     })
+  }
+  
+  getUser2(userId: number, name: String) {
+    console.log(userId);
+    console.log(name);
+    console.log("The signin ts is being called");
+    this.user$ = this.loginService.getUser2(userId , name);
+    this.user$.subscribe((result: User) => {
+      this.user = result;
+      this.userName = result.name;
+    })
+  }
+
+  test(){
+    console.log("The signin ts is being called with test Button");
   }
   
 }

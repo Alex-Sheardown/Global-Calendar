@@ -83,6 +83,19 @@ class App {
             this.Users.retrieveUserById(res, {$and: [{userId: {$eq: userId}}, {isActive: true}]})
         });
 
+        //Secure Login
+        router.get('/app/user/secure/login', (req, res) => {
+            try {
+                let id = req.body.userId;
+                let name = req.body.name;
+                console.log('Query user collection for the following username an password: ' + id + " " + name);
+                this.Users.retrieveUserByNameandPassword(res, {userId: id , name: name})
+            }catch {
+              res.status(404)
+              res.send({ error: "This Name doesn't exist!" })
+            }
+          });
+
         // Event APIs
         router.post('/app/event/', (req, res) => {
             console.log(req.body);

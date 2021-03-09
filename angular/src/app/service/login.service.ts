@@ -9,8 +9,8 @@ import{User} from '../interface/user'
 })
 
 export class LoginService {
-
   url: string = "http://localhost:8080/app/user"
+  url1: string = "http://localhost:8080/app/user/secure/login"
   
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,10 +18,19 @@ export class LoginService {
   
   constructor(private http: HttpClient) { }
 
-  
-  getUser(userId:number) : Observable<User> {
+  getUser1(userId:number) : Observable<User> {
     return this.http.get<User>(this.url + "/" + userId + "");
   }
   
-  
+  getUser2(userId:number, name: String) : Observable<User> {
+    console.log("getUser in loginService")
+    return this.http.request<User>('get', this.url1 , {
+      body:{
+        'userId' : userId,
+        'name' : name
+      }
+    });
+  }
 }
+
+
