@@ -1,11 +1,14 @@
 <h1 align="center"> {{this.calendarName}} </h1>
 <div class="row">
+  <!-- Recurring event table -->
   <div class="column" align="center">
-  <app-recurring-list></app-recurring-list>
+    <app-recurring-list></app-recurring-list>
   </div>
+  <!-- Events for current day -->
   <div class="column">
     <app-event-list [datePicker]="selectedDate" [calendarPicker]="calendarNumber"></app-event-list>
   </div>
+
   <div class="column">
     <div align="center">
       <h2>Date Selector</h2>
@@ -28,6 +31,8 @@
         </mat-select>
       </mat-form-field>
     </div>
+
+    <!-- Analog Clock -->
     <div align="center">
       <app-analog-clock></app-analog-clock>
     </div>

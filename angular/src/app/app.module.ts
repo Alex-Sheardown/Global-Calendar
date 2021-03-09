@@ -2,10 +2,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from "@angular/forms";
+import { AppRoutingModule } from './app-routing.module';
 
 // Material Modules
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -37,7 +37,7 @@ import { AnalogClockComponent } from './analog-clock/analog-clock.component';
 import { LoginService } from './service/login.service'
 import { SigninComponent } from "./signin/signin.component";
 
-// Fullcalendar
+// Fullcalendar (fullcalendar.io)
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timeGrid';

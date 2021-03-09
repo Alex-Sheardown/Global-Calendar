@@ -8,6 +8,8 @@ import {Observable, of} from "rxjs";
 @Injectable()
 export class CalendarService {
 
+  public url: string = 'http://localhost:8080/app/calendar/';
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -18,10 +20,10 @@ export class CalendarService {
   ) { }
 
   getCalendars(): Observable<Calendar[]>{
-    return this.http.get<Calendar[]>('http://localhost:8080/app/calendar/');
+    return this.http.get<Calendar[]>(this.url);
   }
 
-  getCalendarById(index: number): Observable<Calendar> {
-    return this.http.get<Calendar>('http://localhost:8080/app/calendar/' + index + '');
+  getCalendarById(calendarId: number): Observable<Calendar> {
+    return this.http.get<Calendar>(this.url + calendarId + '');
   }
 }

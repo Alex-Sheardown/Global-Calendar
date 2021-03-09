@@ -8,8 +8,7 @@ import { FullCalendarComponent, CalendarOptions } from '@fullcalendar/angular';
 })
 export class YearViewComponent implements OnInit {
 
-  constructor(
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {}
 

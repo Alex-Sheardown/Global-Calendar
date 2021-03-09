@@ -26,21 +26,23 @@ describe('Test Event table Properties:', function () {
 				done();
 			});
     });
-    
 
+    // Checks array of events (more than 2)
     it('Should return an array object with more than 1 object', function (){
 		expect(response).to.have.status(200);
         //expect(response.body).to.be.an.object;
 		expect(response.body).to.have.length.above(2);
 		expect(response).to.have.headers;
     });
-    
+
+    // Checks for keys
 	it('The first entry in the array has known properties', function(){
 	    expect(requestResult[0]).to.include.keys('eventId');
 	    expect(requestResult[0]).to.have.property('eventId');
 		expect(response.body).to.not.be.a.string;
 	});
 
+	// Checking types for events in mongoose/mongo
 	it('The elements in the array have the expected properties', function(){
 		expect(response.body).to.satisfy(
 			function (body) {
@@ -79,7 +81,7 @@ describe('table contents:', function () {
                 });
         });
         
-    
+        // Expected results for one event
         it('Expected results for event id 1', function (){
             expect(requestResult["eventId"]).to.equal(1);
             expect(requestResult["title"]).to.equal("Rocket Science Zoom Meeting");

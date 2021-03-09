@@ -27,8 +27,6 @@ export class UserComponent implements OnInit {
   public v_endDate: string = '';
   public v_isActive: boolean | undefined;
 
-
-
   constructor(
     private userService: UserService,
     private logger: LogService

@@ -44,10 +44,12 @@ export class EventService {
     return this.http.get<Event>(this.url + '/' + eventId + '');
   }
 
+  // Merge redundancy
   getEventByIdObs(index: number): Observable<Event> {
     return this.http.get<Event>(this.url + '/' + index);
   }
 
+  // Convert date to ISO string for readability
   public static dateObjToString(date: Date): string {
     return date.toISOString();
   }
