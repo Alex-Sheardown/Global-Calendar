@@ -6,7 +6,7 @@ import {forkJoin, Observable} from "rxjs";
 import {Event} from "../interface/event";
 import {EventService} from "../service/event.service";
 import {LogService} from "../log.service";
-import { FullCalendarComponent, CalendarOptions } from '@fullcalendar/angular';
+import { CalendarOptions } from '@fullcalendar/angular';
 
 @Component({
   selector: 'app-week-view',
