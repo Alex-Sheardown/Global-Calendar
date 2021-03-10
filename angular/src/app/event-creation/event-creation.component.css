@@ -1,7 +1,7 @@
-/*@import '@angular/material/prebuilt-themes/deeppurple-amber.css';*/
+/*@import 'node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';*/
 .column {
   float: left;
-  width: 33.33%;
+  width: 50%;
 }
 
 /* Clear floats after the columns */

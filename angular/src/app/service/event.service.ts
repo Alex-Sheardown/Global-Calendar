@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Event} from "../interface/event";
-import {map} from "rxjs/operators";
-import {LogService} from "../log.service";
-import {Observable, of} from "rxjs";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Event } from "../interface/event";
+import { LogService } from "../log.service";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class EventService {
@@ -16,18 +15,17 @@ export class EventService {
 
   constructor(private http: HttpClient, private logger: LogService) { }
 
-  postEvent() {
+  postEvent(title: string, description: string, category: string, startDate: Date, endDate: Date, startTime: string, endTime: string) {
     return this.http.request('POST', this.url, {
-      // placeholder
       body: {
-        "eventId": 20,
-        "title": "Professor H GME Investment Zoom Meeting",
-        "category": "Classes",
-        "description": "To the moon!",
-        "startDate": "2021-02-13T00:00:00.000Z",
-        "endDate": "2021-02-13T00:00:00.000Z",
-        "startTime": "13:00",
-        "endTime": "14:30"
+        "eventId": 20, // placeholder
+        "title": title,
+        "category": category,
+        "description": description,
+        "startDate": this.convertDateObjToString(startDate),
+        "endDate": this.convertDateObjToString(endDate),
+        "startTime": startTime,
+        "endTime": endTime
       }
     }).subscribe();
   }

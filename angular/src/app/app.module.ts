@@ -26,6 +26,7 @@ import { UserComponent } from './user/user.component';
 import { UserService } from "./service/user.service";
 import { EventComponent } from './event/event.component';
 import { EventListComponent } from './event-list/event-list.component';
+import { EventCreationComponent } from './event-creation/event-creation.component';
 import { EventService } from "./service/event.service";
 import { DayViewComponent } from './day-view/day-view.component';
 import { WeekViewComponent } from './week-view/week-view.component';
@@ -63,7 +64,8 @@ FullCalendarModule.registerPlugins([
     UserComponent,
     RecurringListComponent,
     AnalogClockComponent,
-    SigninComponent
+    SigninComponent,
+    EventCreationComponent
   ],
   imports: [
     BrowserModule,

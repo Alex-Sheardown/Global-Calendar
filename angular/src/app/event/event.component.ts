@@ -36,9 +36,9 @@ export class EventComponent implements OnInit {
     })
   }
 
-  createEvent(): void {
+  /*createEvent(): void {
     this.eventService.postEvent();
-  }
+  }*/
 
   deleteEvent(eventId: number) {
     console.log(eventId);

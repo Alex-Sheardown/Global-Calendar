@@ -9,11 +9,13 @@ import { YearViewComponent } from "./year-view/year-view.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { UserComponent } from "./user/user.component";
 import { SigninComponent } from "./signin/signin.component";
+import {EventCreationComponent} from "./event-creation/event-creation.component";
 
 const routes: Routes = [
   //{ path: '', component: WelcomeComponent },
   { path: 'calendar', component: CalendarComponent},// temp
   { path: 'event', component: EventComponent }, // temp
+  { path: 'event/create', component: EventCreationComponent},
   { path: 'user', component: UserComponent }, // temp
   { path: 'day', component: DayViewComponent },
   { path: 'week', component: WeekViewComponent },
