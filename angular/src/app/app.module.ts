@@ -27,6 +27,9 @@ import { UserService } from "./service/user.service";
 import { EventComponent } from './event/event.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventCreationComponent } from './event-creation/event-creation.component';
+import { EventEditComponent } from './event-edit/event-edit.component';
+import { EventDeletionComponent } from './event-deletion/event-deletion.component';
+import { ManageEventsComponent } from './manage-events/manage-events.component';
 import { EventService } from "./service/event.service";
 import { DayViewComponent } from './day-view/day-view.component';
 import { WeekViewComponent } from './week-view/week-view.component';
@@ -37,6 +40,7 @@ import { RecurringListComponent } from './recurring-list/recurring-list.componen
 import { AnalogClockComponent } from './analog-clock/analog-clock.component';
 import { LoginService } from './service/login.service'
 import { SigninComponent } from "./signin/signin.component";
+import { ScheduleComponent } from './schedule/schedule.component';
 
 // Fullcalendar (fullcalendar.io)
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -65,7 +69,11 @@ FullCalendarModule.registerPlugins([
     RecurringListComponent,
     AnalogClockComponent,
     SigninComponent,
-    EventCreationComponent
+    EventCreationComponent,
+    ScheduleComponent,
+    ManageEventsComponent,
+    EventDeletionComponent,
+    EventEditComponent
   ],
   imports: [
     BrowserModule,

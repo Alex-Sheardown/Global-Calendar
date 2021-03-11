@@ -1,0 +1,17 @@
+.body-center {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+button {
+  width: 20%;
+  height: 20%;
+}
+
+th.mat-header-cell, td.mat-cell {
+  text-align: left !important;
+}

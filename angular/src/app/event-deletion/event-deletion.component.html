@@ -1,0 +1,16 @@
+<body>
+  <h1>Delete Existing Event</h1>
+  <form (ngSubmit)="deleteEvent()" #deleteForm="ngForm">
+    <div>
+      <mat-select placeholder="Select Event" [(ngModel)]="selectedEvent" name="event" required>
+        <mat-option *ngFor="let event of events" [value]="event">
+          {{event.title}} | {{event.startDate}}
+        </mat-option>
+      </mat-select>
+    </div>
+    <div class="row" align="center">
+      <button mat-button type="submit" [disabled]="!deleteForm.form.valid">Delete Event</button>
+    </div>
+  </form>
+</body>
+

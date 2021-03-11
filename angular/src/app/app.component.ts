@@ -25,7 +25,8 @@ export class AppComponent {
   goToDayView() {this.router.navigate(['day']);}
   goToWeekView() {this.router.navigate(['week']);}
   goToMonthView() {this.router.navigate(['month']);}
-  goToYearView() {this.router.navigate(['year']);}
+  //goToYearView() {this.router.navigate(['year']);}
+  goToSchedule() {this.router.navigate(['schedule']);}
   goToSettings() {this.router.navigate(['settings']);}
 
   // Temporary routes for testing

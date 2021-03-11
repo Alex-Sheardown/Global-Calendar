@@ -15,21 +15,16 @@ import{User} from '../interface/user';
 })
 export class SigninComponent implements OnInit {
 
-  
   public user$ : Observable<User> = new Observable<User>();
-  public user: User | undefined; 
+  public user: User | undefined;
   public userName: String = "";
 
-  
+
   constructor(private loginService: LoginService) { }
 
-    
-  //constructor() { }
+  ngOnInit(): void {  }
 
-  ngOnInit(): void {
-  }
-  
-  
+
   getUser(userId: number) {
     console.log(userId);
     this.user$ = this.loginService.getUser(userId);
@@ -38,5 +33,5 @@ export class SigninComponent implements OnInit {
       this.userName = result.name;
     })
   }
-  
+
 }
