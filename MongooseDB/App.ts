@@ -1,6 +1,8 @@
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
+import * as session from 'express-session';
+import * as cookieParser from 'cookie-parser';
 import * as cors from 'cors';
 
 import bcrypt from "bcryptjs";
@@ -9,6 +11,9 @@ import jwt from "jsonwebtoken";
 import {EventModel} from './model/EventModel';
 import {UserModel} from './model/UserModel';
 import {CalendarModel} from "./model/CalendarModel";
+
+import GooglePassportObj from "./GooglePassport";
+import * as passport from 'passport';
 
 const options: cors.CorsOptions = {
     origin: '*'
@@ -23,9 +28,11 @@ class App {
     public Users: UserModel;
     public Calendars: CalendarModel;
     public idGenerator: number;
+    public googlePassportObj: GooglePassportObj;
 
     //Run configuration methods on the Express instance.
     constructor() {
+        this.googlePassportObj = new GooglePassportObj();
         this.expressApp = express();
         this.middleware();
         this.routes();
@@ -40,12 +47,37 @@ class App {
         this.expressApp.use(logger('dev'));
         this.expressApp.use(bodyParser.json());
         this.expressApp.use(bodyParser.urlencoded({extended: false}));
+        this.expressApp.use(session({ secret: "temp"}));
+        this.expressApp.use(cookieParser());
+        this.expressApp.use(passport.initialize());
+        this.expressApp.use(passport.session());
+    }
+
+    private validateAuth(req, res, next):void {
+        if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
+        console.log("user is not authenticated");
+        res.redirect('/');
     }
 
     // Configure API endpoints.
     private routes(): void {
         let router = express.Router();
         router.use(cors(options));
+
+        router.get('/auth/google',
+            passport.authenticate('google', {scope: ['profile']}));
+
+
+        router.get('/auth/google/callback',
+            passport.authenticate('google',
+                { failureRedirect: '/' }
+            ),
+            (req, res) => {
+                console.log("successfully authenticated user and returned to callback page.");
+                console.log("redirecting to /#/day");
+                res.redirect('/#/day');
+            }
+        );
 
         // User APIs
         router.post('/app/user/', (req, res) => {

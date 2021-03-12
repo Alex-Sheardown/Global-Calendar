@@ -4,10 +4,14 @@ exports.App = void 0;
 var express = require("express");
 var logger = require("morgan");
 var bodyParser = require("body-parser");
+var session = require("express-session");
+var cookieParser = require("cookie-parser");
 var cors = require("cors");
 var EventModel_1 = require("./model/EventModel");
 var UserModel_1 = require("./model/UserModel");
 var CalendarModel_1 = require("./model/CalendarModel");
+var GooglePassport_1 = require("./GooglePassport");
+var passport = require("passport");
 var options = {
     origin: '*'
 };
@@ -15,6 +19,7 @@ var options = {
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
     function App() {
+        this.googlePassportObj = new GooglePassport_1["default"]();
         this.expressApp = express();
         this.middleware();
         this.routes();
@@ -28,12 +33,30 @@ var App = /** @class */ (function () {
         this.expressApp.use(logger('dev'));
         this.expressApp.use(bodyParser.json());
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+        this.expressApp.use(session({ secret: "temp" }));
+        this.expressApp.use(cookieParser());
+        this.expressApp.use(passport.initialize());
+        this.expressApp.use(passport.session());
+    };
+    App.prototype.validateAuth = function (req, res, next) {
+        if (req.isAuthenticated()) {
+            console.log("user is authenticated");
+            return next();
+        }
+        console.log("user is not authenticated");
+        res.redirect('/');
     };
     // Configure API endpoints.
     App.prototype.routes = function () {
         var _this = this;
         var router = express.Router();
         router.use(cors(options));
+        router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
+        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), function (req, res) {
+            console.log("successfully authenticated user and returned to callback page.");
+            console.log("redirecting to /#/day");
+            res.redirect('/#/day');
+        });
         // User APIs
         router.post('/app/user/', function (req, res) {
             console.log(req.body);

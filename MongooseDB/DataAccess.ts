@@ -4,8 +4,9 @@ import Mongoose = require("mongoose");
 class DataAccess {
     static mongooseInstance: any;
     static mongooseConnection: Mongoose.Connection;
-    static DB_CONNECTION_STRING:string = 'mongodb+srv://benyon:Seahawkssuck2021@calendardb.uhgwf.mongodb.net/globalCalendar?retryWrites=true&w=majority';
-    
+    //static DB_CONNECTION_STRING:string = 'mongodb+srv://benyon:Seahawkssuck2021@calendardb.uhgwf.mongodb.net/globalCalendar?retryWrites=true&w=majority';
+    static DB_CONNECTION_STRING:string = 'mongodb://dbAdmin:test@localhost:3000/globalCalendar?authSource=admin';
+
     constructor () {
         DataAccess.connect();
     }
