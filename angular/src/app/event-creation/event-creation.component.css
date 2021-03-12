@@ -1,4 +1,9 @@
 @import '~@angular/material/prebuilt-themes/purple-green.css';
+form {
+  background-color: rgba(0,0,0,0.2);
+  outline: 3px dashed black;
+}
+
 .column {
   float: left;
   width: 50%;

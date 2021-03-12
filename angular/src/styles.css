@@ -1,8 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/purple-green.css';
 html {
-  background-color: rgba(0,0,0,.8);
-  text-decoration-color: white;
+  background-color: rgba(0,0,0,0.7);
 }
 
 body { height: 100%; }
