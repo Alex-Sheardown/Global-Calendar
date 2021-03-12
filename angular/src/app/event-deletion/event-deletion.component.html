@@ -2,7 +2,8 @@
   <h1>Delete Existing Event</h1>
   <form (ngSubmit)="deleteEvent()" #deleteForm="ngForm">
     <div>
-      <mat-select placeholder="Select Event" [(ngModel)]="selectedEvent" name="event" required>
+      <mat-label>Select Event</mat-label>
+      <mat-select [(ngModel)]="selectedEvent" name="event" required>
         <mat-option *ngFor="let event of events" [value]="event">
           {{event.title}} | {{event.startDate}}
         </mat-option>

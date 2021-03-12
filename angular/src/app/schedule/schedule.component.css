@@ -16,3 +16,9 @@ button {
 th.mat-header-cell, td.mat-cell {
   text-align: left !important;
 }
+
+h1 {
+  color: white;
+  border-radius: 7px;
+  font-size: 300%
+}

@@ -1,1 +1,4 @@
 @import '~@angular/material/prebuilt-themes/purple-green.css';
+full-calendar {
+  color: white;
+}

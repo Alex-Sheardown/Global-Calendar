@@ -35,7 +35,7 @@ export class WeekViewComponent implements OnInit {
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
-    events: []
+    events: [],
   };
 
 

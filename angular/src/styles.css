@@ -1,9 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/purple-green.css';
 html {
+  background-image: url(app/images/global.jpg);
   background-color: rgba(0,0,0,0.7);
+  /*background-size: 200% 200%;*/
+  background-position-x: center;
+  background-attachment: fixed;
 }
 
-body { height: 100%; }
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/*h1 {
+  color: white;
+  text-shadow: 2px 2px black;
+}*/

@@ -3,3 +3,11 @@
   flex: 1 1 auto;
   text-align: center;
 }
+
+h1 {
+  color: white;
+}
+
+.mat-button{
+  color: white;
+}
