@@ -45,13 +45,13 @@ export class MonthViewComponent implements OnInit {
     ]*/
     eventColor: 'lime',
     eventTextColor: 'black',
-    eventClick: function(info) {
+    eventClick: function(eventClickInfo) {
       alert (
         "Event Details:" + '\n' +
         "------------------------" + '\n' +
-        info.event.title + '\n' +
-        info.event.start + '\n' +
-        info.event.end);
+        eventClickInfo.event.title + '\n' +
+        eventClickInfo.event.start + '\n' +
+        eventClickInfo.event.end);
     }
   }
 
