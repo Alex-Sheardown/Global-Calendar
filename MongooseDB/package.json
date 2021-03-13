@@ -28,7 +28,7 @@
     "typescript": "^2.9.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    
     "start": "node ./AppServer.js"
   },
   "noAnalyze": true,
