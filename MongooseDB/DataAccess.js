@@ -17,7 +17,8 @@ var DataAccess = /** @class */ (function () {
         this.mongooseInstance = Mongoose.connect(this.DB_CONNECTION_STRING);
         return this.mongooseInstance;
     };
-    DataAccess.DB_CONNECTION_STRING = 'mongodb+srv://benyon:Seahawkssuck2021@calendardb.uhgwf.mongodb.net/globalCalendar?retryWrites=true&w=majority';
+    //static DB_CONNECTION_STRING:string = 'mongodb+srv://benyon:Seahawkssuck2021@calendardb.uhgwf.mongodb.net/globalCalendar?retryWrites=true&w=majority';
+    DataAccess.DB_CONNECTION_STRING = 'mongodb+srv://Test:oMmwN3JVX15TN95b@cluster0.qtsjt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
     return DataAccess;
 }());
 exports.DataAccess = DataAccess;

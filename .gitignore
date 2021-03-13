@@ -6,3 +6,5 @@
 /angular/node_modules/
 /mocha_test/node_modules/
 /Mocha/node_modules/
+/MongooseDB/createDB/
+/angular/e2e/

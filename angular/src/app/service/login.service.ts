@@ -18,6 +18,8 @@ export class LoginService {
   
   constructor(private http: HttpClient) { }
 
+
+  
   getUser1(userId:number) : Observable<User> {
     return this.http.get<User>(this.url + "/" + userId + "");
   }
@@ -26,8 +28,8 @@ export class LoginService {
     console.log("getUser in loginService")
     return this.http.request<User>('get', this.url1 , {
       body:{
-        'userId' : userId,
-        'name' : name
+        'userId' : 1,
+        'name' : "Nick"
       }
     });
   }

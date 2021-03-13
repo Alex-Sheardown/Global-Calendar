@@ -37,9 +37,12 @@ class App {
 
     // Configure Express middleware.
     private middleware(): void {
+        
         this.expressApp.use(logger('dev'));
         this.expressApp.use(bodyParser.json());
         this.expressApp.use(bodyParser.urlencoded({extended: false}));
+        this.expressApp.use('/', express.static(__dirname+'/dist/todoApp'));
+        
     }
 
     // Configure API endpoints.

@@ -17,7 +17,9 @@ export class CalendarService {
     private logger: LogService
   ) { }
 
+  //not sure how to give this part relative path
   getCalendars(): Observable<Calendar[]>{
+    //return this.http.get<Calendar[]>('http://localhost:8080/app/calendar/');
     return this.http.get<Calendar[]>('http://localhost:8080/app/calendar/');
   }
 

@@ -2,7 +2,7 @@
   "name": "expressmongoserver",
   "version": "1.0.0",
   "description": "This directory contains two express servers: * AppServer.js - Combined Node/Express web server w/ Mongo Access * Server.js - Encapsulated Node/Express web server w/ Mongo Access",
-  "main": "Server.js",
+  "main": "./AppServer.js",
   "dependencies": {
     "@types/express": "^4.17.11",
     "@types/mongodb": "^3.0.15",
@@ -29,8 +29,12 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node AppServer.js"
   },
-  "author": "",
-  "license": "ISC"
+  "noAnalyze": true,
+  "author": "TheCoolGroup",
+  "license": "Apache",
+  "engines": {
+    "node": ">=9.6.6"
+  }
 }
