@@ -54,10 +54,10 @@ var App = /** @class */ (function () {
         //router.get('/auth/google',
         //passport.authenticate('google', {scope: ['profile']}));
         router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
-        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: 'https://globalcaal.azurewebsites.net/app/calendar' }), function (req, res) {
+        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: 'http://lvh.me/' }), function (req, res) {
             console.log("successfully authenticated user and returned to callback page.");
             console.log("redirecting");
-            res.redirect('https://globalcaal.azurewebsites.net/app/calendar');
+            res.redirect('http://lvh.me');
         });
         // User APIs
         router.post('/app/user/', function (req, res) {
