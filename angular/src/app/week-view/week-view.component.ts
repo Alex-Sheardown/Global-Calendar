@@ -36,8 +36,15 @@ export class WeekViewComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     events: [],
+    eventClick: function(info) {
+      alert (
+        "Event Details:" + '\n' +
+        "------------------------" + '\n' +
+        info.event.title + '\n' +
+        info.event.start + '\n' +
+        info.event.end);
+    }
   };
-
 
   getApplicableEvents(calendarId: number): void {
     this.calendar$ = this.calendarService.getCalendarById(calendarId);

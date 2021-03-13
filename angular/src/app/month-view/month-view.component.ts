@@ -44,7 +44,15 @@ export class MonthViewComponent implements OnInit {
       { title: "Group Project Meeting", start: '2021-03-09T14:00', end: "2021-03-09T17:00"},
     ]*/
     eventColor: 'lime',
-    eventTextColor: 'black'
+    eventTextColor: 'black',
+    eventClick: function(info) {
+      alert (
+        "Event Details:" + '\n' +
+        "------------------------" + '\n' +
+        info.event.title + '\n' +
+        info.event.start + '\n' +
+        info.event.end);
+    }
   }
 
   getApplicableEvents(calendarId: number): void {
