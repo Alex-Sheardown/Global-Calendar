@@ -15,7 +15,8 @@ export class EventService {
 
   constructor(private http: HttpClient, private logger: LogService) { }
 
-  postEvent(title: string, description: string, category: string, startDate: Date, endDate: Date, startTime: string, endTime: string) {
+  postEvent(title: string, description: string, category: string,
+            startDate: Date, endDate: Date, startTime: string, endTime: string) {
     return this.http.request('POST', this.url, {
       body: {
         "eventId": 20, // placeholder
@@ -26,6 +27,26 @@ export class EventService {
         "endDate": this.convertDateObjToString(endDate),
         "startTime": startTime,
         "endTime": endTime
+      }
+    }).subscribe();
+  }
+
+  updateEvent(eventId: number, title: string, description: string, category: string,
+              startDate: Date, endDate: Date, startTime: string, endTime: string) {
+    return this.http.request('PUT', this.url, {
+      body: {
+        "eventId":  {
+          "eventId": eventId
+        },
+        "document": {
+          "title": title,
+          "category": category,
+          "description": description,
+          "startDate": this.convertDateObjToString(startDate),
+          "endDate": this.convertDateObjToString(endDate),
+          "startTime": startTime,
+          "endTime": endTime
+        }
       }
     }).subscribe();
   }

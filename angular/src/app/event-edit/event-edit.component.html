@@ -1,6 +1,6 @@
 <body>
   <h1>Edit Existing Event</h1>
-  <form> <!--(ngSubmit)="editEvent()" #deleteForm="ngForm"-->
+  <form (ngSubmit)="editEvent(title.value, description.value, category.value)" #editForm="ngForm">
     <div class="row">
       <mat-label>Select Event</mat-label>
       <mat-select [(ngModel)]="selectedEvent" name="event" required>
@@ -9,10 +9,68 @@
         </mat-option>
       </mat-select>
     </div>
-    <!--<div class="row">
+    <div class="row">
       <div class="column">
-        {{selectedEvent.title}}
+        <div align="right">
+          <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput type="text" class="form-control" #title required>
+          </mat-form-field>
+        </div>
+        <div align="right">
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input matInput type="text" class="form-control" #description>
+          </mat-form-field>
+        </div>
+        <div align="right">
+          <mat-form-field>
+            <mat-label>Category</mat-label>
+            <input matInput type="text" class="form-control" #category>
+          </mat-form-field>
+        </div>
       </div>
-    </div>-->
+      <div class="column">
+        <div align="left">
+          <mat-form-field>
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="selectedStartDate" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div align="left">
+          <mat-form-field>
+            <mat-label>End Date</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="selectedEndDate" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div align="left">
+          <mat-form-field>
+            <mat-label>Start Time</mat-label>
+            <mat-select placeholder="ex: 13:00" [(ngModel)]="selectedStartTime" name="startTime" required>
+              <mat-option *ngFor="let time of validTimes" [value]="time">
+                {{time}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div align="left">
+          <mat-form-field>
+            <mat-label>End Time</mat-label>
+            <mat-select placeholder="ex: 13:00" [(ngModel)]="selectedEndTime" name="endTime" required>
+              <mat-option *ngFor="let time of validTimes" [value]="time">
+                {{time}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row" align="center">
+      <button mat-button type="submit" [disabled]="!editForm.form.valid">Edit Event</button>
+    </div>
   </form>
 </body>
