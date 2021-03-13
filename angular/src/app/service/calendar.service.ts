@@ -6,10 +6,10 @@ import {LogService} from "../log.service";
 import {Observable, of} from "rxjs";
 
 @Injectable()
-export class CalendarService {
+export class CalendarService { //TODO: EMMA
 
   //public url: string = 'http://localhost:8080/app/calendar/';
-  hostUrl: string =  '/';
+  hostURL: string =  '/';
   pathURL: string = 'app/calendar';
 
   httpOptions = {
@@ -22,18 +22,16 @@ export class CalendarService {
   ) { }
 
   getCalendars(): Observable<Calendar[]>{
-    return this.http.get<Calendar[]>(this.hostUrl + this.pathURL);
+    return this.http.get<Calendar[]>(this.hostURL + this.pathURL);
   }
 
   getCalendarById(calendarId: number): Observable<Calendar> {
-    return this.http.get<Calendar>(this.hostUrl + this.pathURL + calendarId + '');
+    return this.http.get<Calendar>(this.hostURL + this.pathURL + calendarId + '');
   }
 }
-// export class CalendarService {
+// export class CalendarService { //TODO: LOCALLY
 //
 //   public url: string = 'http://localhost:8080/app/calendar/';
-//   //hostUrl: string =  '/';
-//   //pathURL: string = 'app/calendar';
 //
 //   httpOptions = {
 //     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
