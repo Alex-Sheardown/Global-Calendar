@@ -62,20 +62,25 @@ class App {
     // Configure API endpoints.
     private routes(): void {
         let router = express.Router();
+        
         router.use(cors(options));
 
+        //router.get('/auth/google',
+            //passport.authenticate('google', {scope: ['profile']}));
+        
         router.get('/auth/google',
-            passport.authenticate('google', {scope: ['profile']}));
+            passport.authenticate('google', {scope: ['profile']})
+            );
 
 
         router.get('/auth/google/callback',
             passport.authenticate('google',
-                { failureRedirect: '/' }
+                { failureRedirect: 'https://globalcaal.azurewebsites.net/app/calendar' }
             ),
             (req, res) => {
                 console.log("successfully authenticated user and returned to callback page.");
-                console.log("redirecting to /#/day");
-                res.redirect('/#/day');
+                console.log("redirecting");
+                res.redirect('https://globalcaal.azurewebsites.net/app/calendar');
             }
         );
 
@@ -188,8 +193,9 @@ class App {
 
         // Static Routes
         this.expressApp.use('/', router);
+        this.expressApp.use('/', express.static(__dirname+'/angular'));
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
-        this.expressApp.use('/', express.static(__dirname + '/pages'));
+        //this.expressApp.use('/', express.static(__dirname + '/pages'));
         //this.expressApp.use('/Day', express.static(__dirname+'/pages/Calendar/Day.html'));
         this.expressApp.use('/Week', express.static(__dirname + '/pages/Calendar/Week.html'));
         this.expressApp.use('/Month', express.static(__dirname + '/pages/Calendar/Month.html'));

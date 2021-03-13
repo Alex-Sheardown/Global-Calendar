@@ -31,20 +31,20 @@ export class EventService {
   }
 
   deleteEvent(eventId: number) {
-    return this.http.request('DELETE', this.url, {body: {"eventId": eventId}}).subscribe();
+    return this.http.request('DELETE', '/app/event', {body: {"eventId": eventId}}).subscribe();
   }
 
   getEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(this.url);
+    return this.http.get<Event[]>('/app/event');
   }
 
   getEventById(eventId: number): Observable<Event> {
-    return this.http.get<Event>(this.url + '/' + eventId + '');
+    return this.http.get<Event>('/app/event' + '/' + eventId + '');
   }
 
   // Merge redundancy
   getEventByIdObs(index: number): Observable<Event> {
-    return this.http.get<Event>(this.url + '/' + index);
+    return this.http.get<Event>('/app/event' + '/' + index);
   }
 
   // Convert date to ISO string for readability
