@@ -1,1 +1,18 @@
-<p>event-edit works!</p>
+<body>
+  <h1>Edit Existing Event</h1>
+  <form> <!--(ngSubmit)="editEvent()" #deleteForm="ngForm"-->
+    <div class="row">
+      <mat-label>Select Event</mat-label>
+      <mat-select [(ngModel)]="selectedEvent" name="event" required>
+        <mat-option *ngFor="let event of events" [value]="event">
+          {{event.title}} | {{event.startDate}}
+        </mat-option>
+      </mat-select>
+    </div>
+    <!--<div class="row">
+      <div class="column">
+        {{selectedEvent.title}}
+      </div>
+    </div>-->
+  </form>
+</body>

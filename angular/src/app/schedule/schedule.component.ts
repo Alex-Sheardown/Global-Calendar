@@ -35,5 +35,4 @@ export class ScheduleComponent implements OnInit {
   }
 
   goToManageEvents() {this.router.navigate(['schedule/manage']);}
-
 }

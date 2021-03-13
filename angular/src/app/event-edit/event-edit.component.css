@@ -1,2 +1,31 @@
 @import '~@angular/material/prebuilt-themes/purple-green.css';
+form {
+  border-radius: 9pt;
+  background-color: rgba(0,0,0,0.2);
+  width: 90%;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+h1 {
+  color: white;
+}
+
+mat-label {
+  color: white;
+}
+
+.mat-button {
+  color: white;
+}
 
