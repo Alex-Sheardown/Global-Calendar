@@ -3,6 +3,10 @@ table{
   width: 100%;
 }
 
+th.mat-header-cell, td.mat-cell {
+  text-align: left !important;
+}
+
 .mat-header-cell{
   padding: 0px 0px 0px 20px;
 }

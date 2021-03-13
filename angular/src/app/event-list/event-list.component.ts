@@ -72,4 +72,7 @@ export class EventListComponent implements OnInit, OnChanges {
     })
   }
 
+  /*deleteEvent(eventId: number) {
+    this.eventService.deleteEvent(eventId)
+  }*/
 }

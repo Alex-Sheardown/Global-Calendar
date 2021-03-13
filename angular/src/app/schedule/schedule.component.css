@@ -13,9 +13,9 @@ button {
   height: 20%;
 }
 
-th.mat-header-cell, td.mat-cell {
+/*th.mat-header-cell, td.mat-cell {
   text-align: left !important;
-}
+}*/
 
 h1 {
   color: white;

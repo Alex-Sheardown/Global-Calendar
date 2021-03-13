@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import { EventService } from "../service/event.service";
 import { Observable } from "rxjs";
 import { LogService } from "../log.service";
@@ -13,25 +13,32 @@ import { MatPaginator } from "@angular/material/paginator";
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.css']
 })
-export class ScheduleComponent implements OnInit {
+export class ScheduleComponent implements OnInit, OnChanges{
 
   displayedColumns: string[] = [
     'eventId', 'title', 'category', 'description',
-    'startDate', 'endDate', 'startTime', 'endTime'
+    'startDate', 'startTime', 'endDate', 'endTime', 'action'
   ];
   dataSource = new MatTableDataSource<Event>();
-
-  /*@ViewChild(MatSort, {static: true}) sort: MatSort | any;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator | any;*/
 
   constructor(private eventService: EventService, private router: Router, private logger: LogService) { }
 
   ngOnInit(): void {
+    this.getEvents();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.getEvents();
+  }
+
+  getEvents() {
     this.eventService.getEvents().subscribe((result: Event[]) => {
       this.dataSource = new MatTableDataSource<Event>(result);
-      /*this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;*/
     })
+  }
+
+  deleteEvent(eventId: number) {
+    this.eventService.deleteEvent(eventId);
   }
 
   goToManageEvents() {this.router.navigate(['schedule/manage']);}
