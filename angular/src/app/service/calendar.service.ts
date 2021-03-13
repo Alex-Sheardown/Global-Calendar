@@ -20,10 +20,10 @@ export class CalendarService {
   ) { }
 
   getCalendars(): Observable<Calendar[]>{
-    return this.http.get<Calendar[]>(this.url);
+    return this.http.get<Calendar[]>('/app/calendar/');
   }
 
   getCalendarById(calendarId: number): Observable<Calendar> {
-    return this.http.get<Calendar>(this.url + calendarId + '');
+    return this.http.get<Calendar>('app/calendar/' + calendarId + '');
   }
 }
