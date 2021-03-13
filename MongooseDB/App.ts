@@ -75,12 +75,12 @@ class App {
 
         router.get('/auth/google/callback',
             passport.authenticate('google',
-                { failureRedirect: 'https://globalcaal.azurewebsites.net/app/calendar' }
+                { failureRedirect: 'http://lvh.me/' }
             ),
             (req, res) => {
                 console.log("successfully authenticated user and returned to callback page.");
                 console.log("redirecting");
-                res.redirect('https://globalcaal.azurewebsites.net/app/calendar');
+                res.redirect('http://lvh.me');
             }
         );
 
