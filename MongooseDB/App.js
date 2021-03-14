@@ -160,19 +160,6 @@ var App = /** @class */ (function () {
         //this.expressApp.use('/Schedule', express.static(__dirname+'/pages/Calendar/Schedules.html'));
         //this.expressApp.use('/Settings', express.static(__dirname+'/pages/Calendar/Settings.html'));
 
-        /*original static*/
-        /*
-        // Static Routes
-        this.expressApp.use('/', router);
-        this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
-        this.expressApp.use('/', express.static(__dirname + '/pages'));
-        //this.expressApp.use('/Day', express.static(__dirname+'/pages/Calendar/Day.html'));
-        this.expressApp.use('/Week', express.static(__dirname + '/pages/Calendar/Week.html'));
-        this.expressApp.use('/Month', express.static(__dirname + '/pages/Calendar/Month.html'));
-        this.expressApp.use('/Year', express.static(__dirname + '/pages/Calendar/Year.html'));
-        //this.expressApp.use('/Schedule', express.static(__dirname+'/pages/Calendar/Schedules.html'));
-        //this.expressApp.use('/Settings', express.static(__dirname+'/pages/Calendar/Settings.html'));
-         */
     };
     return App;
 }());
