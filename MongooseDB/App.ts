@@ -8,9 +8,9 @@ import * as cors from 'cors';
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-import {EventModel} from './model/EventModel';
-import {UserModel} from './model/UserModel';
-import {CalendarModel} from "./model/CalendarModel";
+import { EventModel } from './model/EventModel';
+import { UserModel } from './model/UserModel';
+import { CalendarModel } from "./model/CalendarModel";
 
 import GooglePassportObj from "./GooglePassport";
 import * as passport from 'passport';
@@ -46,14 +46,14 @@ class App {
     private middleware(): void {
         this.expressApp.use(logger('dev'));
         this.expressApp.use(bodyParser.json());
-        this.expressApp.use(bodyParser.urlencoded({extended: false}));
-        this.expressApp.use(session({ secret: "temp"}));
+        this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+        this.expressApp.use(session({ secret: "temp" }));
         this.expressApp.use(cookieParser());
         this.expressApp.use(passport.initialize());
         this.expressApp.use(passport.session());
     }
 
-    private validateAuth(req, res, next):void {
+    private validateAuth(req, res, next): void {
         if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
         console.log("user is not authenticated");
         res.redirect('/');
@@ -62,27 +62,80 @@ class App {
     // Configure API endpoints.
     private routes(): void {
         let router = express.Router();
-        
+
         router.use(cors(options));
 
         //router.get('/auth/google',
-            //passport.authenticate('google', {scope: ['profile']}));
-        
-        router.get('/auth/google',
-            passport.authenticate('google', {scope: ['profile']})
-            );
+        //passport.authenticate('google', {scope: ['profile']}));
+
+        router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }), (req, res) => {
+            console.log("authenticate is being.");
+
+        });
+
+        let temp1: string = ""
+        let temp2: string = ""
 
 
         router.get('/auth/google/callback',
+
             passport.authenticate('google',
-                { failureRedirect: 'https://globalcaal.azurewebsites.net/app/calendar' }
+                { failureRedirect: 'http://lvh.me:8080' }, console.log("/auth/google/callback is being run.")
             ),
             (req, res) => {
                 console.log("successfully authenticated user and returned to callback page.");
                 console.log("redirecting");
-                res.redirect('https://globalcaal.azurewebsites.net/app/calendar');
+                console.log(res);
+                let result = res.json();
+                let userid = console.log(result['req']['user']['id']);
+                let accessToken = console.log(result['req']['ac']);
+                temp1 = result['req']['user']['id']; 
+                temp2 = result['req']['ac']; 
+
+                res.redirect('http://lvh.me:8080/signin?token=');
             }
         );
+
+        router.get('/CallOne', function (req, res) : string{
+            console.log("cool cod one got called This code got called");
+            let hold = temp1
+            temp1 = ""
+            return hold
+
+        });
+
+        router.get('/CallTwo', function (req, res) : string{
+            console.log("cool This code got called");
+            let hold = temp2
+            temp2 = ""
+            return hold
+        });
+
+
+        router.get('/auth/google/callback',
+            passport.authenticate('google',
+                { failureRedirect: '/' }
+            ),
+            (req, res) => {
+                console.log("successfully authenticated user and returned to callback page.");
+                console.log("redirecting to /#/list");
+                res.redirect('/#/list');
+            }
+        );
+
+        //Find user
+        router.get('/app/user/name/:name', passport.authenticate('google',
+            { failureRedirect: '/' }
+        ), (req, res) => {
+            try {
+                let name = req.params.name;
+                console.log('Query user collection for the following name: ' + name);
+                this.Users.retrieveUserByName(res, { $and: [{ name: { $eq: name } }, { isActive: true }] })
+            } catch {
+                res.status(404)
+                res.send({ error: "This Name doesn't exist!" })
+            }
+        });
 
         // User APIs
         router.post('/app/user/', (req, res) => {
@@ -100,7 +153,7 @@ class App {
         router.delete('/app/user', (req, res) => {
             console.log(req.body)
             let userId = req.body.userId;
-            this.Users.deleteUser(res, {userId: {$eq: userId}})
+            this.Users.deleteUser(res, { userId: { $eq: userId } })
         });
 
         router.put('/app/user', (req, res) => {
@@ -117,7 +170,7 @@ class App {
         router.get('/app/user/:userId', (req, res) => {
             let userId = req.params.userId;
             console.log('Query user collection for the following id: ' + userId);
-            this.Users.retrieveUserById(res, {$and: [{userId: {$eq: userId}}, {isActive: true}]})
+            this.Users.retrieveUserById(res, { $and: [{ userId: { $eq: userId } }, { isActive: true }] })
         });
 
         // Event APIs
@@ -136,7 +189,7 @@ class App {
         router.delete('/app/event', (req, res) => {
             console.log(req.body)
             let eventId = req.body.eventId;
-            this.Events.deleteEvent(res, {eventId: {$eq: eventId}})
+            this.Events.deleteEvent(res, { eventId: { $eq: eventId } })
         });
 
         router.put('/app/event', (req, res) => {
@@ -152,7 +205,7 @@ class App {
         router.get('/app/event/:eventId', (req, res) => {
             let eventId = req.params.eventId;
             console.log('Query user collection for the following id: ' + eventId);
-            this.Events.retrieveEventById(res, {eventId: eventId})
+            this.Events.retrieveEventById(res, { eventId: eventId })
         });
 
         // Calendar APIs
@@ -171,7 +224,7 @@ class App {
         router.delete('/app/calendar', (req, res) => {
             console.log(req.body)
             let calendarId = req.body.calendarId;
-            this.Calendars.deleteCalendar(res, {calendarId: {$eq: calendarId}})
+            this.Calendars.deleteCalendar(res, { calendarId: { $eq: calendarId } })
         });
 
         router.put('/app/calendar', (req, res) => {
@@ -187,13 +240,13 @@ class App {
         router.get('/app/calendar/:calendarId', (req, res) => {
             let calendarId = req.params.calendarId;
             console.log('Query user collection for the following id: ' + calendarId);
-            this.Calendars.retrieveCalendarById(res, {calendarId: calendarId})
+            this.Calendars.retrieveCalendarById(res, { calendarId: calendarId })
         });
 
 
         // Static Routes
         this.expressApp.use('/', router);
-        this.expressApp.use('/', express.static(__dirname+'/angular'));
+        this.expressApp.use('/', express.static(__dirname + '/angular'));
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
         //this.expressApp.use('/', express.static(__dirname + '/pages'));
         //this.expressApp.use('/Day', express.static(__dirname+'/pages/Calendar/Day.html'));
@@ -207,4 +260,4 @@ class App {
 
 }
 
-export {App};
+export { App };

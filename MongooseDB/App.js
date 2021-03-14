@@ -53,11 +53,50 @@ var App = /** @class */ (function () {
         router.use(cors(options));
         //router.get('/auth/google',
         //passport.authenticate('google', {scope: ['profile']}));
-        router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
-        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: 'https://globalcaal.azurewebsites.net/app/calendar' }), function (req, res) {
+        router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }), function (req, res) {
+            console.log("authenticate is being.");
+        });
+        var temp1 = "";
+        var temp2 = "";
+        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: 'http://lvh.me:8080' }, console.log("/auth/google/callback is being run.")), function (req, res) {
             console.log("successfully authenticated user and returned to callback page.");
             console.log("redirecting");
-            res.redirect('https://globalcaal.azurewebsites.net/app/calendar');
+            console.log(res);
+            var result = res.json();
+            var userid = console.log(result['req']['user']['id']);
+            var accessToken = console.log(result['req']['ac']);
+            temp1 = result['req']['user']['id'];
+            temp2 = result['req']['ac'];
+            res.redirect('http://lvh.me:8080/signin?token=');
+        });
+        router.get('/CallOne', function (req, res) {
+            console.log("cool cod one got called This code got called");
+            var hold = temp1;
+            temp1 = "";
+            return hold;
+        });
+        router.get('/CallTwo', function (req, res) {
+            console.log("cool This code got called");
+            var hold = temp2;
+            temp2 = "";
+            return hold;
+        });
+        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), function (req, res) {
+            console.log("successfully authenticated user and returned to callback page.");
+            console.log("redirecting to /#/list");
+            res.redirect('/#/list');
+        });
+        //Find user
+        router.get('/app/user/name/:name', passport.authenticate('google', { failureRedirect: '/' }), function (req, res) {
+            try {
+                var name_1 = req.params.name;
+                console.log('Query user collection for the following name: ' + name_1);
+                _this.Users.retrieveUserByName(res, { $and: [{ name: { $eq: name_1 } }, { isActive: true }] });
+            }
+            catch (_a) {
+                res.status(404);
+                res.send({ error: "This Name doesn't exist!" });
+            }
         });
         // User APIs
         router.post('/app/user/', function (req, res) {
