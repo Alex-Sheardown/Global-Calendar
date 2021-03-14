@@ -189,7 +189,7 @@ class App {
         // Static Routes
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
-        this.expressApp.use('/', express.static(__dirname+'/angularDist')); //TODO: EMMA
+        this.expressApp.use('/', express.static(__dirname+'/angularDist')); // EMMA
         //this.expressApp.use('/', express.static(__dirname + '/pages'));
         //this.expressApp.use('/Day', express.static(__dirname+'/pages/Calendar/Day.html'));
         this.expressApp.use('/Week', express.static(__dirname + '/pages/Calendar/Week.html'));
