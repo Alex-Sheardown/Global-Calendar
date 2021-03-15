@@ -8,6 +8,7 @@ import * as moment from 'moment-timezone';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  userid = null;
   title = 'Global Calendar';
   homeTimezone = moment.tz.guess()
   homeDateAndTime = moment().format('LLL Z');
@@ -25,7 +26,6 @@ export class AppComponent {
   goToDayView() {this.router.navigate(['day']);}
   goToWeekView() {this.router.navigate(['week']);}
   goToMonthView() {this.router.navigate(['month']);}
-  //goToYearView() {this.router.navigate(['year']);}
   goToSchedule() {this.router.navigate(['schedule']);}
   goToSettings() {this.router.navigate(['settings']);}
 

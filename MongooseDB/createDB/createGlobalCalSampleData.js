@@ -65,6 +65,19 @@ usersCollection.insert(
     }
 )
 
+usersCollection.insert(
+    {
+        userId: 108011549399120388578,
+        name: "Nick Benyo",
+        email: "nicholasbenyo@gmail.com",
+        password: "MyTest",
+        timeZone: "USA/Los_Angeles",
+        startDate: "2020-01-01",
+        endDate: "2021-01-31",
+        isActive: false
+    }
+)
+
 db.createCollection('calendars')
 calendarsCollection = db.getCollection("calendars")
 calendarsCollection.remove({})

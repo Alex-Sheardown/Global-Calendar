@@ -64,28 +64,26 @@ class App {
         let router = express.Router();
         
         router.use(cors(options));
-
-        //router.get('/auth/google',
-            //passport.authenticate('google', {scope: ['profile']}));
         
-        router.get('/auth/google',
-            passport.authenticate('google', {scope: ['profile']})
-            );
-
+        router.get('/auth/google', passport.authenticate('google', {scope: ['profile']}));
 
         router.get('/auth/google/callback',
-            passport.authenticate('google',
-                { failureRedirect: 'http://lvh.me/' }
+            passport.authenticate(
+                'google',
+                { failureRedirect: 'http://lvh.me:8080' }
             ),
             (req, res) => {
                 console.log("successfully authenticated user and returned to callback page.");
                 console.log("redirecting");
-                res.redirect('http://lvh.me');
+                let result = res.json();
+                let userid = result['req']['user']['id'];
+                console.log('http://lvh.me:8080/app/user/' + userid)
+                res.redirect('http://lvh.me:8080/app/user/' + userid);
             }
         );
 
         // User APIs
-        router.post('/app/user/', (req, res) => {
+        router.post('/app/user/', this.validateAuth, (req, res) => {
             console.log(req.body);
             let jsonObj = req.body;
             this.Users.model.create([jsonObj], (err) => {
@@ -97,19 +95,20 @@ class App {
             this.idGenerator++;
         });
 
-        router.delete('/app/user', (req, res) => {
+        router.delete('/app/user', this.validateAuth, (req, res) => {
             console.log(req.body)
             let userId = req.body.userId;
             this.Users.deleteUser(res, {userId: {$eq: userId}})
         });
 
-        router.put('/app/user', (req, res) => {
+        router.put('/app/user', this.validateAuth,  (req, res) => {
             console.log('Updating user according to following request: ' + req.body)
             console.log(req.body)
             this.Users.updateUser(res, req.body.userId, req.body.document)
         });
 
-        router.get('/app/user/', (req, res) => {
+        router.get('/app/user/', this.validateAuth, (req, res) => {
+            console.log(req);
             console.log('Query all users');
             this.Users.retrieveAllUsers(res);
         });
@@ -121,7 +120,7 @@ class App {
         });
 
         // Event APIs
-        router.post('/app/event/', (req, res) => {
+        router.post('/app/event/', this.validateAuth, (req, res) => {
             console.log(req.body);
             let jsonObj = req.body;
             this.Events.model.create([jsonObj], (err) => {
@@ -133,30 +132,30 @@ class App {
             this.idGenerator++;
         });
 
-        router.delete('/app/event', (req, res) => {
+        router.delete('/app/event', this.validateAuth, (req, res) => {
             console.log(req.body)
             let eventId = req.body.eventId;
             this.Events.deleteEvent(res, {eventId: {$eq: eventId}})
         });
 
-        router.put('/app/event', (req, res) => {
+        router.put('/app/event', this.validateAuth, (req, res) => {
             console.log('Updating event according to following request: ' + req.body)
             this.Events.updateEvent(res, req.body.eventId, req.body.document)
         });
 
-        router.get('/app/event/', (req, res) => {
+        router.get('/app/event/', this.validateAuth, (req, res) => {
             console.log('Query all events');
             this.Events.retrieveAllEvents(res);
         });
 
-        router.get('/app/event/:eventId', (req, res) => {
+        router.get('/app/event/:eventId', this.validateAuth, (req, res) => {
             let eventId = req.params.eventId;
             console.log('Query user collection for the following id: ' + eventId);
             this.Events.retrieveEventById(res, {eventId: eventId})
         });
 
         // Calendar APIs
-        router.post('/app/calendar/', (req, res) => {
+        router.post('/app/calendar/', this.validateAuth, (req, res) => {
             console.log(req.body);
             let jsonObj = req.body;
             this.Calendars.model.create([jsonObj], (err) => {
@@ -168,23 +167,23 @@ class App {
             this.idGenerator++;
         });
 
-        router.delete('/app/calendar', (req, res) => {
+        router.delete('/app/calendar',this.validateAuth,  (req, res) => {
             console.log(req.body)
             let calendarId = req.body.calendarId;
             this.Calendars.deleteCalendar(res, {calendarId: {$eq: calendarId}})
         });
 
-        router.put('/app/calendar', (req, res) => {
+        router.put('/app/calendar', this.validateAuth, (req, res) => {
             console.log('Updating calendar according to following request: ' + req.body)
             this.Calendars.updateCalendar(res, req.body.calendarId, req.body.document)
         });
 
-        router.get('/app/calendar/', (req, res) => {
+        router.get('/app/calendar/', this.validateAuth, (req, res) => {
             console.log('Query all calendars');
             this.Calendars.retrieveAllCalendars(res);
         });
 
-        router.get('/app/calendar/:calendarId', (req, res) => {
+        router.get('/app/calendar/:calendarId', this.validateAuth, (req, res) => {
             let calendarId = req.params.calendarId;
             console.log('Query user collection for the following id: ' + calendarId);
             this.Calendars.retrieveCalendarById(res, {calendarId: calendarId})
@@ -195,13 +194,9 @@ class App {
         this.expressApp.use('/', router);
         this.expressApp.use('/', express.static(__dirname+'/angular'));
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
-        //this.expressApp.use('/', express.static(__dirname + '/pages'));
-        //this.expressApp.use('/Day', express.static(__dirname+'/pages/Calendar/Day.html'));
         this.expressApp.use('/Week', express.static(__dirname + '/pages/Calendar/Week.html'));
         this.expressApp.use('/Month', express.static(__dirname + '/pages/Calendar/Month.html'));
         this.expressApp.use('/Year', express.static(__dirname + '/pages/Calendar/Year.html'));
-        //this.expressApp.use('/Schedule', express.static(__dirname+'/pages/Calendar/Schedules.html'));
-        //this.expressApp.use('/Settings', express.static(__dirname+'/pages/Calendar/Settings.html'));
 
     }
 

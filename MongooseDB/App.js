@@ -51,13 +51,14 @@ var App = /** @class */ (function () {
         var _this = this;
         var router = express.Router();
         router.use(cors(options));
-        //router.get('/auth/google',
-        //passport.authenticate('google', {scope: ['profile']}));
         router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
-        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: 'http://lvh.me/' }), function (req, res) {
+        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: 'http://lvh.me:8080' }), function (req, res) {
             console.log("successfully authenticated user and returned to callback page.");
             console.log("redirecting");
-            res.redirect('http://lvh.me');
+            var result = res.json();
+            var userid = result['req']['user']['id'];
+            console.log('http://lvh.me:8080/app/user/' + userid);
+            res.redirect('http://lvh.me:8080/app/user/' + userid);
         });
         // User APIs
         router.post('/app/user/', function (req, res) {
@@ -81,7 +82,8 @@ var App = /** @class */ (function () {
             console.log(req.body);
             _this.Users.updateUser(res, req.body.userId, req.body.document);
         });
-        router.get('/app/user/', function (req, res) {
+        router.get('/app/user/', this.validateAuth, function (req, res) {
+            console.log(req);
             console.log('Query all users');
             _this.Users.retrieveAllUsers(res);
         });
