@@ -7,6 +7,7 @@ import {forkJoin, Observable} from "rxjs";
 import {Event} from "../interface/event";
 import {EventService} from "../service/event.service";
 import {LogService} from "../log.service";
+import {LoginService} from "../service/login.service";
 
 @Component({
   selector: 'app-month-view',
@@ -23,12 +24,13 @@ export class MonthViewComponent implements OnInit {
   constructor(
     private calendarService: CalendarService,
     private eventService: EventService,
-    private logger: LogService
+    private logger: LogService,
+    private loginService: LoginService
   ) {
   }
 
   ngOnInit(): void {
-    this.getApplicableEvents(1)
+    this.getApplicableEvents(this.loginService.getCID())
     this.loadCalendar()
   }
 
@@ -36,13 +38,6 @@ export class MonthViewComponent implements OnInit {
     initialView: 'dayGridMonth',
     droppable: true,
     events: [],
-    /*events: [
-      { title: "Hank's Vet Appointment", start: '2021-03-09T12:00', end: "2021-03-09T12:00"},
-      { title: "Presentation Preparation", start: '2021-03-09T16:00', end: "2021-03-09T18:00"},
-      { title: "Capstone Zoom Meeting", start: '2021-03-09T11:00', end: "2021-03-09T13:00"},
-      { title: "SaaS Zoom Meeting", start: '2021-03-09T18:00', end: "2021-03-09T20:00"},
-      { title: "Group Project Meeting", start: '2021-03-09T14:00', end: "2021-03-09T17:00"},
-    ]*/
     eventColor: 'lime',
     eventTextColor: 'black'
   }

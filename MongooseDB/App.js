@@ -61,8 +61,8 @@ var App = /** @class */ (function () {
             ),
             (req, res) => {
                 console.log("successfully authenticated user and returned to callback page.");
-                console.log("redirecting to /#/day");
-                res.redirect('/#/day');
+                console.log("redirecting to /#/list");
+                res.redirect('/#/list');
             }
         );
 */
@@ -159,7 +159,7 @@ var App = /** @class */ (function () {
         });
         router.get('/app/user/calendar/:calendarId', function (req, res) {
             var uId = req.params.calendarId;
-            console.log('Query user collection for the following id: ' + uId);
+            console.log('Query user collection for the following id with User ID: ' + uId);
             _this.Calendars.retrieveCalendarByUserID(res, { userId: uId });
         });
         // Static Routes
