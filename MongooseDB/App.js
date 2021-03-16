@@ -44,7 +44,7 @@ var App = /** @class */ (function () {
             return next();
         }
         console.log("user is not authenticated");
-        res.redirect('/');
+        res.redirect('/'); // Route to failed redirect
     };
     // Configure API endpoints.
     App.prototype.routes = function () {
@@ -61,7 +61,7 @@ var App = /** @class */ (function () {
             res.redirect('http://lvh.me:8080/app/user/' + userid);
         });
         // User APIs
-        router.post('/app/user/', function (req, res) {
+        router.post('/app/user/', this.validateAuth, function (req, res) {
             console.log(req.body);
             var jsonObj = req.body;
             _this.Users.model.create([jsonObj], function (err) {
@@ -72,12 +72,12 @@ var App = /** @class */ (function () {
             res.send(_this.idGenerator.toString());
             _this.idGenerator++;
         });
-        router["delete"]('/app/user', function (req, res) {
+        router["delete"]('/app/user', this.validateAuth, function (req, res) {
             console.log(req.body);
             var userId = req.body.userId;
             _this.Users.deleteUser(res, { userId: { $eq: userId } });
         });
-        router.put('/app/user', function (req, res) {
+        router.put('/app/user', this.validateAuth, function (req, res) {
             console.log('Updating user according to following request: ' + req.body);
             console.log(req.body);
             _this.Users.updateUser(res, req.body.userId, req.body.document);
@@ -87,13 +87,13 @@ var App = /** @class */ (function () {
             console.log('Query all users');
             _this.Users.retrieveAllUsers(res);
         });
-        router.get('/app/user/:userId', function (req, res) {
+        router.get('/app/user/:userId', this.validateAuth, function (req, res) {
             var userId = req.params.userId;
             console.log('Query user collection for the following id: ' + userId);
             _this.Users.retrieveUserById(res, { $and: [{ userId: { $eq: userId } }, { isActive: true }] });
         });
         // Event APIs
-        router.post('/app/event/', function (req, res) {
+        router.post('/app/event/', this.validateAuth, function (req, res) {
             console.log(req.body);
             var jsonObj = req.body;
             _this.Events.model.create([jsonObj], function (err) {
@@ -104,26 +104,26 @@ var App = /** @class */ (function () {
             res.send(_this.idGenerator.toString());
             _this.idGenerator++;
         });
-        router["delete"]('/app/event', function (req, res) {
+        router["delete"]('/app/event', this.validateAuth, function (req, res) {
             console.log(req.body);
             var eventId = req.body.eventId;
             _this.Events.deleteEvent(res, { eventId: { $eq: eventId } });
         });
-        router.put('/app/event', function (req, res) {
+        router.put('/app/event', this.validateAuth, function (req, res) {
             console.log('Updating event according to following request: ' + req.body);
             _this.Events.updateEvent(res, req.body.eventId, req.body.document);
         });
-        router.get('/app/event/', function (req, res) {
+        router.get('/app/event/', this.validateAuth, function (req, res) {
             console.log('Query all events');
             _this.Events.retrieveAllEvents(res);
         });
-        router.get('/app/event/:eventId', function (req, res) {
+        router.get('/app/event/:eventId', this.validateAuth, function (req, res) {
             var eventId = req.params.eventId;
             console.log('Query user collection for the following id: ' + eventId);
             _this.Events.retrieveEventById(res, { eventId: eventId });
         });
         // Calendar APIs
-        router.post('/app/calendar/', function (req, res) {
+        router.post('/app/calendar/', this.validateAuth, function (req, res) {
             console.log(req.body);
             var jsonObj = req.body;
             _this.Calendars.model.create([jsonObj], function (err) {
@@ -134,20 +134,20 @@ var App = /** @class */ (function () {
             res.send(_this.idGenerator.toString());
             _this.idGenerator++;
         });
-        router["delete"]('/app/calendar', function (req, res) {
+        router["delete"]('/app/calendar', this.validateAuth, function (req, res) {
             console.log(req.body);
             var calendarId = req.body.calendarId;
             _this.Calendars.deleteCalendar(res, { calendarId: { $eq: calendarId } });
         });
-        router.put('/app/calendar', function (req, res) {
+        router.put('/app/calendar', this.validateAuth, function (req, res) {
             console.log('Updating calendar according to following request: ' + req.body);
             _this.Calendars.updateCalendar(res, req.body.calendarId, req.body.document);
         });
-        router.get('/app/calendar/', function (req, res) {
+        router.get('/app/calendar/', this.validateAuth, function (req, res) {
             console.log('Query all calendars');
             _this.Calendars.retrieveAllCalendars(res);
         });
-        router.get('/app/calendar/:calendarId', function (req, res) {
+        router.get('/app/calendar/:calendarId', this.validateAuth, function (req, res) {
             var calendarId = req.params.calendarId;
             console.log('Query user collection for the following id: ' + calendarId);
             _this.Calendars.retrieveCalendarById(res, { calendarId: calendarId });
@@ -156,13 +156,9 @@ var App = /** @class */ (function () {
         this.expressApp.use('/', router);
         this.expressApp.use('/', express.static(__dirname + '/angular'));
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
-        //this.expressApp.use('/', express.static(__dirname + '/pages'));
-        //this.expressApp.use('/Day', express.static(__dirname+'/pages/Calendar/Day.html'));
         this.expressApp.use('/Week', express.static(__dirname + '/pages/Calendar/Week.html'));
         this.expressApp.use('/Month', express.static(__dirname + '/pages/Calendar/Month.html'));
         this.expressApp.use('/Year', express.static(__dirname + '/pages/Calendar/Year.html'));
-        //this.expressApp.use('/Schedule', express.static(__dirname+'/pages/Calendar/Schedules.html'));
-        //this.expressApp.use('/Settings', express.static(__dirname+'/pages/Calendar/Settings.html'));
     };
     return App;
 }());
