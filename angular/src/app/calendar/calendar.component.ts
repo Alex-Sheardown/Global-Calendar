@@ -19,6 +19,7 @@ export class CalendarComponent implements OnInit {
     private calService: CalendarService,
     private logger: LogService
   ) {
+    //change to friends calendars later
     calService.getCalendars().subscribe((response: Calendar[])=> {
       this.dataSource = new MatTableDataSource<Calendar>(response);
     })

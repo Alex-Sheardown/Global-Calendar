@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 @Injectable()
 export class EventService {
 
-  url: string = 'http://localhost:8080/app/event'
+  url: string = 'http://localhost:8080'
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -56,16 +56,16 @@ export class EventService {
   }
 
   getEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>('/app/event');
+    return this.http.get<Event[]>(this.url + '/app/event');
   }
 
   getEventById(eventId: number): Observable<Event> {
-    return this.http.get<Event>('/app/event' + '/' + eventId + '');
+    return this.http.get<Event>(this.url + '/app/event' + '/' + eventId + '');
   }
 
   // Merge redundancy
   getEventByIdObs(index: number): Observable<Event> {
-    return this.http.get<Event>('/app/event' + '/' + index);
+    return this.http.get<Event>(this.url + '/app/event' + '/' + index);
   }
 
   // Convert date to ISO string for readability

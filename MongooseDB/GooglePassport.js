@@ -20,7 +20,9 @@ var GooglePassport = /** @class */ (function () {
                 //console.log('validating google profile:' + JSON.stringify(profile));
                 console.log("userId:" + profile.id);
                 console.log("displayName: " + profile.displayName);
-                // console.log("retrieve all of the profile info needed");
+                console.log("retrieve all of the profile info needed");
+                profile.ac = accessToken;
+                profile.re = refreshToken;
                 // this.email = profile.emails[0].value;
                 return done(null, profile);
             });

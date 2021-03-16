@@ -8,9 +8,9 @@ import * as cors from 'cors';
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-import {EventModel} from './model/EventModel';
-import {UserModel} from './model/UserModel';
-import {CalendarModel} from "./model/CalendarModel";
+import { EventModel } from './model/EventModel';
+import { UserModel } from './model/UserModel';
+import { CalendarModel } from "./model/CalendarModel";
 
 import GooglePassportObj from "./GooglePassport";
 import * as passport from 'passport';
@@ -46,14 +46,14 @@ class App {
     private middleware(): void {
         this.expressApp.use(logger('dev'));
         this.expressApp.use(bodyParser.json());
-        this.expressApp.use(bodyParser.urlencoded({extended: false}));
-        this.expressApp.use(session({ secret: "temp"}));
+        this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+        this.expressApp.use(session({ secret: "temp" }));
         this.expressApp.use(cookieParser());
-        this.expressApp.use(passport.initialize());
-        this.expressApp.use(passport.session());
+        //this.expressApp.use(passport.initialize());
+        //this.expressApp.use(passport.session());
     }
 
-    private validateAuth(req, res, next):void {
+    private validateAuth(req, res, next): void {
         if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
         console.log("user is not authenticated");
         res.redirect('/'); // Route to failed redirect
@@ -62,9 +62,9 @@ class App {
     // Configure API endpoints.
     private routes(): void {
         let router = express.Router();
-        
+
         router.use(cors(options));
-        
+
         router.get('/auth/google', passport.authenticate('google', {scope: ['profile']}));
 
         router.get('/auth/google/callback',
@@ -81,7 +81,7 @@ class App {
                 res.redirect('http://lvh.me:8080/app/user/' + userid);
             }
         );
-
+*/
         // User APIs
         router.post('/app/user/', this.validateAuth, (req, res) => {
             console.log(req.body);
@@ -98,7 +98,7 @@ class App {
         router.delete('/app/user', this.validateAuth, (req, res) => {
             console.log(req.body)
             let userId = req.body.userId;
-            this.Users.deleteUser(res, {userId: {$eq: userId}})
+            this.Users.deleteUser(res, { userId: { $eq: userId } })
         });
 
         router.put('/app/user', this.validateAuth,  (req, res) => {
@@ -116,7 +116,7 @@ class App {
         router.get('/app/user/:userId', this.validateAuth, (req, res) => {
             let userId = req.params.userId;
             console.log('Query user collection for the following id: ' + userId);
-            this.Users.retrieveUserById(res, {$and: [{userId: {$eq: userId}}, {isActive: true}]})
+            this.Users.retrieveUserById(res, { $and: [{ userId: { $eq: userId } }, { isActive: true }] })
         });
 
         // Event APIs
@@ -135,7 +135,7 @@ class App {
         router.delete('/app/event', this.validateAuth, (req, res) => {
             console.log(req.body)
             let eventId = req.body.eventId;
-            this.Events.deleteEvent(res, {eventId: {$eq: eventId}})
+            this.Events.deleteEvent(res, { eventId: { $eq: eventId } })
         });
 
         router.put('/app/event', this.validateAuth, (req, res) => {
@@ -151,7 +151,7 @@ class App {
         router.get('/app/event/:eventId', this.validateAuth, (req, res) => {
             let eventId = req.params.eventId;
             console.log('Query user collection for the following id: ' + eventId);
-            this.Events.retrieveEventById(res, {eventId: eventId})
+            this.Events.retrieveEventById(res, { eventId: eventId })
         });
 
         // Calendar APIs
@@ -170,7 +170,7 @@ class App {
         router.delete('/app/calendar',this.validateAuth,  (req, res) => {
             console.log(req.body)
             let calendarId = req.body.calendarId;
-            this.Calendars.deleteCalendar(res, {calendarId: {$eq: calendarId}})
+            this.Calendars.deleteCalendar(res, { calendarId: { $eq: calendarId } })
         });
 
         router.put('/app/calendar', this.validateAuth, (req, res) => {
@@ -186,14 +186,22 @@ class App {
         router.get('/app/calendar/:calendarId', this.validateAuth, (req, res) => {
             let calendarId = req.params.calendarId;
             console.log('Query user collection for the following id: ' + calendarId);
-            this.Calendars.retrieveCalendarById(res, {calendarId: calendarId})
+            this.Calendars.retrieveCalendarById(res, { calendarId: calendarId })
+        });
+
+        router.get('/app/user/calendar/:calendarId', (req, res) => {
+            let uId = req.params.calendarId;
+            console.log('Query user collection for the following id with User ID: ' + uId);
+            this.Calendars.retrieveCalendarByUserID(res, {userId: uId})
         });
 
 
         // Static Routes
         this.expressApp.use('/', router);
-        this.expressApp.use('/', express.static(__dirname+'/angular'));
+        this.expressApp.use('/', express.static(__dirname + '/angular'));
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
+        //this.expressApp.use('/', express.static(__dirname + '/pages'));
+        //this.expressApp.use('/Day', express.static(__dirname+'/pages/Calendar/Day.html'));
         this.expressApp.use('/Week', express.static(__dirname + '/pages/Calendar/Week.html'));
         this.expressApp.use('/Month', express.static(__dirname + '/pages/Calendar/Month.html'));
         this.expressApp.use('/Year', express.static(__dirname + '/pages/Calendar/Year.html'));
@@ -202,4 +210,4 @@ class App {
 
 }
 
-export {App};
+export { App };

@@ -9,8 +9,8 @@ class GooglePassport {
 
     clientId: string;
     secretId: string;
-     
-    constructor() { 
+
+    constructor() {
         this.clientId = googleAppAuth.id;
         this.secretId = googleAppAuth.secret;
 
@@ -23,13 +23,16 @@ class GooglePassport {
             (accessToken, refreshToken, profile, done) => {
                 console.log("inside new password google strategy");
                 process.nextTick( () => {
-                    //console.log('validating google profile:' + JSON.stringify(profile));
+                    console.log('validating google profile:' + JSON.stringify(profile));
+
                     console.log("userId:" + profile.id);
                     console.log("displayName: " + profile.displayName);
-                    // console.log("retrieve all of the profile info needed");
+                    console.log("retrieve all of the profile info needed");
+                    profile.ac = accessToken;
+                    profile.re = refreshToken;
                     // this.email = profile.emails[0].value;
                     return done(null, profile);
-                }); 
+                });
             }
         ));
 

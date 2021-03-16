@@ -52,6 +52,14 @@ var CalendarModel = /** @class */ (function () {
             response.json(userResult);
         });
     };
+    CalendarModel.prototype.retrieveCalendarByUserID = function (response, filter) {
+        console.log('Filter passed through is:');
+        console.log(filter);
+        var query = this.model.findOne(filter);
+        query.exec(function (err, userResult) {
+            response.json(userResult);
+        });
+    };
     return CalendarModel;
 }());
 exports.CalendarModel = CalendarModel;

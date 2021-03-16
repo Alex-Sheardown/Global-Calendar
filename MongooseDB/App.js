@@ -11,7 +11,6 @@ var EventModel_1 = require("./model/EventModel");
 var UserModel_1 = require("./model/UserModel");
 var CalendarModel_1 = require("./model/CalendarModel");
 var GooglePassport_1 = require("./GooglePassport");
-var passport = require("passport");
 var options = {
     origin: '*'
 };
@@ -35,8 +34,8 @@ var App = /** @class */ (function () {
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
         this.expressApp.use(session({ secret: "temp" }));
         this.expressApp.use(cookieParser());
-        this.expressApp.use(passport.initialize());
-        this.expressApp.use(passport.session());
+        //this.expressApp.use(passport.initialize());
+        //this.expressApp.use(passport.session());
     };
     App.prototype.validateAuth = function (req, res, next) {
         if (req.isAuthenticated()) {
@@ -152,10 +151,17 @@ var App = /** @class */ (function () {
             console.log('Query user collection for the following id: ' + calendarId);
             _this.Calendars.retrieveCalendarById(res, { calendarId: calendarId });
         });
+        router.get('/app/user/calendar/:calendarId', function (req, res) {
+            var uId = req.params.calendarId;
+            console.log('Query user collection for the following id with User ID: ' + uId);
+            _this.Calendars.retrieveCalendarByUserID(res, { userId: uId });
+        });
         // Static Routes
         this.expressApp.use('/', router);
         this.expressApp.use('/', express.static(__dirname + '/angular'));
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
+        //this.expressApp.use('/', express.static(__dirname + '/pages'));
+        //this.expressApp.use('/Day', express.static(__dirname+'/pages/Calendar/Day.html'));
         this.expressApp.use('/Week', express.static(__dirname + '/pages/Calendar/Week.html'));
         this.expressApp.use('/Month', express.static(__dirname + '/pages/Calendar/Month.html'));
         this.expressApp.use('/Year', express.static(__dirname + '/pages/Calendar/Year.html'));
