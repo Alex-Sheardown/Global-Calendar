@@ -56,7 +56,7 @@ class App {
     private validateAuth(req, res, next):void {
         if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
         console.log("user is not authenticated");
-        res.redirect('/');
+        res.redirect('/'); // Route to failed redirect
     }
 
     // Configure API endpoints.
@@ -109,7 +109,7 @@ class App {
             this.Users.retrieveAllUsers(res);
         });
 
-        router.get('/app/user/:userId', (req, res) => {
+        router.get('/app/user/:userId', this.validateAuth, (req, res) => {
             let userId = req.params.userId;
             console.log('Query user collection for the following id: ' + userId);
             this.Users.retrieveUserById(res, {$and: [{userId: {$eq: userId}}, {isActive: true}]})
