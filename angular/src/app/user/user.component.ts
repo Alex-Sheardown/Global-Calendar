@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {UserService} from '../service/user.service'
-import {LogService} from "../log.service";
-import {User} from "../interface/user";
-import {Observable} from "rxjs";
-import {MatTableDataSource} from "@angular/material/table";
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../service/user.service'
+import { LogService } from "../log.service";
+import { User } from "../interface/user";
+import { Observable } from "rxjs";
+import { MatTableDataSource } from "@angular/material/table";
+import { LoginService } from '../service/login.service';
 
 @Component({
   selector: 'app-user',
@@ -26,43 +27,70 @@ export class UserComponent implements OnInit {
   public v_startDate: string = '';
   public v_endDate: string = '';
   public v_isActive: boolean | undefined;
+  public v_email: string = '';
 
-  constructor(
-    private userService: UserService,
-    private logger: LogService
-  ) {
-    this.users$ = this.userService.getUsers()
-    this.users$.subscribe(x => {
+  userID;
+
+    constructor(
+      private userService: UserService,
+      private logger: LogService,
+      private loginService: LoginService) {
+
+      this.userID = loginService.getID()
+      this.users$ = this.userService.getUsers()
+      this.users$.subscribe(x => {
       this.userList = x
-    })
-  };
 
-  ngOnInit() { }
+      this.getUserById()
+  })
+};
 
-  createUser(): void {
-    this.userService.postUser();
-  }
+ngOnInit() { }
 
-  deleteUser(userId: number){
-    console.log(userId)
-    this.userService.deleteUser(userId)
-  }
+createUser(): void {
+  this.userService.postUser();
+}
 
-  getUserById(userId: number): void {
-    console.log(userId)
+deleteUser(userId: number){
+  console.log(userId)
+  this.userService.deleteUser(userId)
+}
+
+getUserById(): void {
+  console.log(this.userID)
+    this.user$ = this.userService.getUserById(this.userID); //this calls from service, and service calls from backend.
+    this.user$.subscribe((result: User) => {
+    this.editUser = result;
+    //create variables:
+    this.v_name = result.name;
+    this.v_userId = result.userId;
+    this.v_timeZone = result.timeZone;
+    this.v_startDate = result.startDate;
+    this.v_endDate = result.endDate;
+    this.v_isActive = result.isActive;
+    this.v_email = result.email;
+    this.loginService.setName(this.v_name);
+  })
+}
+
+/*
+getUserById(userId: number): void {
+  console.log(userId)
     this.user$ = this.userService.getUserById(userId); //this calls from service, and service calls from backend.
     this.user$.subscribe((result: User) => {
-      this.editUser = result;
-      //create variables:
-      this.v_name = result.name;
-      this.v_userId = result.userId;
-      this.v_timeZone = result.timeZone;
-      this.v_startDate = result.startDate;
-      this.v_endDate = result.endDate;
-      this.v_isActive = result.isActive;
+    this.editUser = result;
+    //create variables:
+    this.v_name = result.name;
+    this.v_userId = result.userId;
+    this.v_timeZone = result.timeZone;
+    this.v_startDate = result.startDate;
+    this.v_endDate = result.endDate;
+    this.v_isActive = result.isActive;
 
-    })
-  }
+  })
+}
+*/
+
 }
 
 // this.events$.subscribe((result: Event[]) => {

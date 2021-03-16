@@ -4,5 +4,6 @@ export interface User {
   timeZone: string,
   startDate: any,
   endDate: any,
-  isActive: boolean
+  isActive: boolean,
+  email: string
 }

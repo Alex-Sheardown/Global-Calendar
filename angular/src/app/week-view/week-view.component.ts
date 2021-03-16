@@ -7,6 +7,7 @@ import {Event} from "../interface/event";
 import {EventService} from "../service/event.service";
 import {LogService} from "../log.service";
 import { CalendarOptions } from '@fullcalendar/angular';
+import { LoginService } from '../service/login.service';
 
 @Component({
   selector: 'app-week-view',
@@ -23,12 +24,13 @@ export class WeekViewComponent implements OnInit {
   constructor(
     private calendarService: CalendarService,
     private eventService: EventService,
-    private logger: LogService
+    private logger: LogService,
+    private loginService: LoginService
   ) {
   }
 
   ngOnInit(): void {
-    this.getApplicableEvents(1)
+    this.getApplicableEvents(this.loginService.getCID())
     this.loadCalendar()
     this.toggleSwitch()
   }

@@ -3,11 +3,12 @@
 
 <!--<li *ngFor="let user of userList">-->
 <!--  {{user.name}} : {{user.timeZone}} : {{user.userId}} : {{user.startDate}} : {{user.endDate}} : {{user.isActive}}-->
-<!--</li>-->
+<!--</li>
 <button (click)="createUser()">Post User</button>
 <button (click)="deleteUser(6)">Delete User</button>
-<label> <input type = "number" min = "1" #UserID> </label> <!-- #UserID <- variable to get input-->
-<button (click)="getUserById(UserID.valueAsNumber)"> getUserById</button>
+<label> <input type = "number" min = "1" #UserID> </label> <!-- #UserID <- variable to get input
+<button (click)="getUserById()"> getUserById</button>
+-->
 
 <!--Version 1 Good Shows All User-->
 <!--<div class="page-content page-container" id="page-content" *ngFor = "let x of userList">-->
@@ -73,16 +74,24 @@
                     <h6 class="text-muted f-w-400">{{v_timeZone}}</h6>
                   </div>
                 </div>
-                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Account</h6>
+                <!--Add Email-->
+                <p class="m-b-10 f-w-600">Account</p>
+                <h6 class="text-muted f-w-400">{{v_userId}} : {{v_name}}</h6>
                 <div class="row">
                   <div class="col-sm-6">
                     <p class="m-b-10 f-w-600">User ID</p>
-                    <h6 class="text-muted f-w-400">{{v_userId}} : {{v_name}}</h6>
+                    <h6 class="text-muted f-w-400">{{v_email}}</h6>
                   </div>
                   <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">Start Date & EndDate</p>
-                    <h6 class="text-muted f-w-400">{{v_startDate}} : {{v_endDate}}</h6>
+                    <p class="m-b-10 f-w-600">Start Date</p>
+                    <h6 class="text-muted f-w-400">{{v_startDate}}</h6>
                   </div>
+                  <!--
+                  <div class="col-sm-6">
+                    <p class="m-b-10 f-w-600">EndDate</p>
+                    <h6 class="text-muted f-w-400">{{v_endDate}}</h6>
+                  </div>
+                  -->
                 </div>
               </div>
             </div>

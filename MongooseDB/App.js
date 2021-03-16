@@ -11,7 +11,6 @@ var EventModel_1 = require("./model/EventModel");
 var UserModel_1 = require("./model/UserModel");
 var CalendarModel_1 = require("./model/CalendarModel");
 var GooglePassport_1 = require("./GooglePassport");
-var passport = require("passport");
 var options = {
     origin: '*'
 };
@@ -35,8 +34,8 @@ var App = /** @class */ (function () {
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
         this.expressApp.use(session({ secret: "temp" }));
         this.expressApp.use(cookieParser());
-        this.expressApp.use(passport.initialize());
-        this.expressApp.use(passport.session());
+        //this.expressApp.use(passport.initialize());
+        //this.expressApp.use(passport.session());
     };
     App.prototype.validateAuth = function (req, res, next) {
         if (req.isAuthenticated()) {
@@ -51,53 +50,22 @@ var App = /** @class */ (function () {
         var _this = this;
         var router = express.Router();
         router.use(cors(options));
-        //router.get('/auth/google',
-        //passport.authenticate('google', {scope: ['profile']}));
-        router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }), function (req, res) {
-            console.log("authenticate is being.");
-        });
-        var temp1 = "";
-        var temp2 = "";
-        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: 'http://lvh.me:8080' }, console.log("/auth/google/callback is being run.")), function (req, res) {
-            console.log("successfully authenticated user and returned to callback page.");
-            console.log("redirecting");
-            console.log(res);
-            var result = res.json();
-            var userid = console.log(result['req']['user']['id']);
-            var accessToken = console.log(result['req']['ac']);
-            temp1 = result['req']['user']['id'];
-            temp2 = result['req']['ac'];
-            res.redirect('http://lvh.me:8080/signin?token=');
-        });
-        router.get('/CallOne', function (req, res) {
-            console.log("cool cod one got called This code got called");
-            var hold = temp1;
-            temp1 = "";
-            return hold;
-        });
-        router.get('/CallTwo', function (req, res) {
-            console.log("cool This code got called");
-            var hold = temp2;
-            temp2 = "";
-            return hold;
-        });
-        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), function (req, res) {
-            console.log("successfully authenticated user and returned to callback page.");
-            console.log("redirecting to /#/list");
-            res.redirect('/#/list');
-        });
-        //Find user
-        router.get('/app/user/name/:name', passport.authenticate('google', { failureRedirect: '/' }), function (req, res) {
-            try {
-                var name_1 = req.params.name;
-                console.log('Query user collection for the following name: ' + name_1);
-                _this.Users.retrieveUserByName(res, { $and: [{ name: { $eq: name_1 } }, { isActive: true }] });
+        /*
+        router.get('/auth/google',
+            passport.authenticate('google', {scope: ['profile']}));
+
+
+        router.get('/auth/google/callback',
+            passport.authenticate('google',
+                { failureRedirect: '/' }
+            ),
+            (req, res) => {
+                console.log("successfully authenticated user and returned to callback page.");
+                console.log("redirecting to /#/day");
+                res.redirect('/#/day');
             }
-            catch (_a) {
-                res.status(404);
-                res.send({ error: "This Name doesn't exist!" });
-            }
-        });
+        );
+*/
         // User APIs
         router.post('/app/user/', function (req, res) {
             console.log(req.body);
@@ -188,6 +156,11 @@ var App = /** @class */ (function () {
             var calendarId = req.params.calendarId;
             console.log('Query user collection for the following id: ' + calendarId);
             _this.Calendars.retrieveCalendarById(res, { calendarId: calendarId });
+        });
+        router.get('/app/user/calendar/:calendarId', function (req, res) {
+            var uId = req.params.calendarId;
+            console.log('Query user collection for the following id: ' + uId);
+            _this.Calendars.retrieveCalendarByUserID(res, { userId: uId });
         });
         // Static Routes
         this.expressApp.use('/', router);

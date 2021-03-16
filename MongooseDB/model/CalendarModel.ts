@@ -64,6 +64,15 @@ class CalendarModel {
             response.json(userResult);
         });
     }
+
+    public retrieveCalendarByUserID(response: any, filter: Object) {
+        console.log('Filter passed through is:')
+        console.log(filter)
+        let query = this.model.findOne(filter);
+        query.exec((err, userResult) => {
+            response.json(userResult);
+        });
+    }
 }
 
 export {CalendarModel};

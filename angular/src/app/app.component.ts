@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
 import * as moment from 'moment-timezone';
+import { User } from './interface/user';
 
 //test
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -12,30 +13,47 @@ import { Observable } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'Global Calendar';
-  homeTimezone = moment.tz.guess()
+  //should be more dynamic
+  homeTimezone = this.loginService.getTZ();
   homeDateAndTime = moment().format('LLL Z');
-  desiredTimezone = 'Asia/Tokyo'; //placeholder
+  desiredTimezone = this.loginService.getDTZ(); //placeholder
   convertedDateAndTime = moment.tz(this.desiredTimezone).format('LLL Z');
-  tempID
+  userID;
+  user$: any;
 
-  //constructor(private router: Router,) { }
-  constructor(private router: Router, private http:HttpClient, private loginService: LoginService) { 
+  constructor(private router: Router, private loginService: LoginService) {
+    //This UserID needs to be udated
+    this.userID = loginService.getID();
+    console.log("hello")
+    this.getUserById();
+  }
 
-    let hold = ""
-    this.loginService.getTemp1().subscribe(value => hold)
-    //this.saveInLocal('AC', hold);
-    this.loginService.getTemp2().subscribe(value => hold)
-    //this.saveInLocal('ID', hold);
-    this.tempID = hold
-
+  getUserById(): void {
+    console.log(this.userID)
+      this.user$ = this.loginService.getUser(this.userID); //this calls from service, and service calls from backend.
+      this.user$.subscribe((result: User) => {
+      //create variables:
+      this.loginService.setName(result.name);
+      console.log("I exist");
+      this.loginService.setTZ(result.timeZone);
+      this.homeTimezone = this.loginService.getTZ()
+    })
   }
 
   changeDesiredTimezone(timezone: string) {
     this.desiredTimezone = timezone;
     this.convertedDateAndTime = moment.tz(this.desiredTimezone).format('LLL Z');
   }
+
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
+}
 
   // Views
   goToDayView() {this.router.navigate(['day']);}
