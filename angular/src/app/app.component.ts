@@ -64,9 +64,9 @@ export class AppComponent {
   goToSettings() {this.router.navigate(['settings']);}
 
   // Temporary routes for testing
-  /*clickGetCalendars() {this.router.navigate(['calendar']);}
+  clickGetCalendars() {this.router.navigate(['calendar']);}
   clickGetEvents() {this.router.navigate(['event']);}
   clickGetUsers() {this.router.navigate(['user']);}
-  clickGoToSignIn() {this.router.navigate(['signin']);}*/
+  clickGoToSignIn() {this.router.navigate(['signin']);}
 
 }

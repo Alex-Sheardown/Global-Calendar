@@ -17,7 +17,7 @@ var GooglePassport = /** @class */ (function () {
         }, function (accessToken, refreshToken, profile, done) {
             console.log("inside new password google strategy");
             process.nextTick(function () {
-                //console.log('validating google profile:' + JSON.stringify(profile));
+                console.log('validating google profile:' + JSON.stringify(profile));
                 console.log("userId:" + profile.id);
                 console.log("displayName: " + profile.displayName);
                 console.log("retrieve all of the profile info needed");

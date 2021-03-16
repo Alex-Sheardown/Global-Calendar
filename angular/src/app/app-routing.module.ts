@@ -15,10 +15,10 @@ import {ManageEventsComponent} from "./manage-events/manage-events.component";
 
 const routes: Routes = [
   //{ path: '', component: WelcomeComponent },
-  // { path: 'signin', component: SigninComponent }, // temp
-  // { path: 'calendar', component: CalendarComponent},// temp
-  // { path: 'event', component: EventComponent }, // temp
-  // { path: 'user', component: UserComponent }, // temp
+  { path: 'signin', component: SigninComponent }, // temp
+  { path: 'calendar', component: CalendarComponent},// temp
+  { path: 'event', component: EventComponent }, // temp
+  { path: 'user', component: UserComponent }, // temp
   { path: 'day', component: DayViewComponent },
   { path: 'week', component: WeekViewComponent },
   { path: 'month', component: MonthViewComponent },

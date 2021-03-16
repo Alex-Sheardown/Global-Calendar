@@ -12,11 +12,11 @@ export class LoginService {
 
   url: string = "http://localhost:8080/app/user"
   url2: string = "http://localhost:8080/"
-  
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  
+
 
   public v_name: string = '';
   public v_userId: number ;
@@ -29,9 +29,8 @@ export class LoginService {
   public v_calendarId: number = 0
   public v_calendarIdName: string = '';
 
-  constructor(private http: HttpClient) { 
-    this.v_userId =2
-
+  constructor(private http: HttpClient) {
+    this.v_userId = 2
   }
 
   getID():number{
