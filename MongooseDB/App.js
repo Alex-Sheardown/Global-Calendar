@@ -39,10 +39,13 @@ var App = /** @class */ (function () {
         this.expressApp.use(passport.session());
     };
     App.prototype.validateAuth = function (req, res, next) {
-        //if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
-        //console.log("user is not authenticated");
-        //res.redirect('/'); // Route to failed redirect
-        return next();
+        if (req.isAuthenticated()) {
+            console.log("user is authenticated");
+            return next();
+        }
+        console.log("user is not authenticated");
+        res.redirect('/'); // Route to failed redirect
+        /*return next();*/
     };
     // Configure API endpoints.
     App.prototype.routes = function () {
@@ -84,7 +87,7 @@ var App = /** @class */ (function () {
         });
         router.get('/app/user/current', this.validateAuth, function (req, res) {
             console.log('Get current user');
-            res.json({ userId: _this.googlePassportObj.userId });
+            res.json({ userId: req['user']['id'] });
         });
         router.get('/app/user/:userId', this.validateAuth, function (req, res) {
             var userId = req.params.userId;

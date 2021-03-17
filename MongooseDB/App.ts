@@ -54,10 +54,10 @@ class App {
     }
 
     private validateAuth(req, res, next): void {
-        //if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
-        //console.log("user is not authenticated");
-        //res.redirect('/'); // Route to failed redirect
-        return next();
+        if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
+        console.log("user is not authenticated");
+        res.redirect('/'); // Route to failed redirect
+        /*return next();*/
     }
 
     // Configure API endpoints.
@@ -113,7 +113,7 @@ class App {
 
         router.get('/app/user/current', this.validateAuth, (req, res) => {
             console.log('Get current user');
-            res.json({userId: this.googlePassportObj.userId})
+            res.json({userId: req['user']['id']})
         });
 
         router.get('/app/user/:userId', this.validateAuth, (req, res) => {
