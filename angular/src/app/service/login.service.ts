@@ -17,10 +17,10 @@ export class LoginService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-
   public v_name: string = '';
-  public v_userId: number ;
+  public v_userId: number;
   public v_timeZone: string = '';
+  public v_dTimeZone: string = '';
   public v_startDate: string = '';
   public v_endDate: string = '';
   public v_isActive: boolean | undefined;
@@ -54,7 +54,11 @@ export class LoginService {
   }
 
   getDTZ(){
-    return "NewYork"
+    return this.v_dTimeZone;
+  }
+
+  setDTZ(dTZ: string){
+    this.v_dTimeZone = dTZ;
   }
 
   getCID():number{
@@ -72,7 +76,6 @@ export class LoginService {
   setCN(name : string){
     this.v_calendarIdName = name
   }
-
 
   getUser(userId:number) : Observable<User> {
     return this.http.get<User>(this.url + "/" + userId + "");

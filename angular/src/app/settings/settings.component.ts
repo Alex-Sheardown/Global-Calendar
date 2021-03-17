@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from "../app.component";
+import {UserService} from "../service/user.service";
+import {LoginService} from "../service/login.service";
 
 @Component({
   selector: 'app-settings',
@@ -606,13 +608,13 @@ export class SettingsComponent implements OnInit {
     'Zulu',
   ];
 
-  constructor(private appComponent: AppComponent) { }
+  constructor(private loginService: LoginService, private userService: UserService) { }
 
   ngOnInit(): void { }
 
   changeDesiredTimezone() {
     if (this.selectedTimezone != undefined)
-      this.appComponent.changeDesiredTimezone(this.selectedTimezone);
+      this.userService.updateDesiredTimeZone(this.loginService.getID(), this.selectedTimezone);
   }
 
 }

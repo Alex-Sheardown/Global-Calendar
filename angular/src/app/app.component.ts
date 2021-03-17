@@ -2,10 +2,8 @@ import { Component, OnChanges, SimpleChanges} from '@angular/core';
 import { Router } from "@angular/router";
 import * as moment from 'moment-timezone';
 import { User } from './interface/user';
-
-//test
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import {LoginService} from './service/login.service';
+import { LoginService } from './service/login.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -20,8 +18,8 @@ export class AppComponent {
   //should be more dynamic
   homeTimezone = this.loginService.getTZ();
   homeDateAndTime = moment().format('LLL Z');
-  desiredTimezone = this.loginService.getDTZ(); //placeholder
-  convertedDateAndTime = moment.tz(this.desiredTimezone).format('LLL Z');
+  desiredTimeZone = this.loginService.getDTZ(); //placeholder
+  convertedDateAndTime = moment.tz(this.desiredTimeZone).format('LLL Z');
   userID;
   user$: any;
 
@@ -34,20 +32,23 @@ export class AppComponent {
 
   getUserById(): void {
     console.log(this.userID)
-      this.user$ = this.loginService.getUser(this.userID); //this calls from service, and service calls from backend.
-      this.user$.subscribe((result: User) => {
+    this.user$ = this.loginService.getUser(this.userID); //this calls from service, and service calls from backend.
+    this.user$.subscribe((result: User) => {
       //create variables:
       this.loginService.setName(result.name);
       console.log("I exist");
       this.loginService.setTZ(result.timeZone);
-      this.homeTimezone = this.loginService.getTZ()
+      this.loginService.setDTZ(result.desiredTimeZone);
+      this.homeTimezone = this.loginService.getTZ();
+      this.desiredTimeZone = this.loginService.getDTZ();
+      this.convertedDateAndTime = moment.tz(this.desiredTimeZone).format('LLL Z');
     })
   }
 
-  changeDesiredTimezone(timezone: string) {
-    this.desiredTimezone = timezone;
-    this.convertedDateAndTime = moment.tz(this.desiredTimezone).format('LLL Z');
-  }
+  /*changeDesiredTimezone(timezone: string) {
+    this.desiredTimeZone = timezone;
+    this.convertedDateAndTime = moment.tz(this.desiredTimeZone).format('LLL Z');
+  }*/
 
   reloadCurrentRoute() {
     let currentUrl = this.router.url;

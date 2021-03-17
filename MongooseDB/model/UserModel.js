@@ -17,6 +17,7 @@ var UserModel = /** @class */ (function () {
             email: String,
             password: String,
             timeZone: String,
+            desiredTimeZone: String,
             startDate: Date,
             endDate: Date,
             isActive: Boolean

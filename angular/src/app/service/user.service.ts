@@ -23,6 +23,7 @@ export class UserService {
         "name": "Mr.Bob",
         "userId": 6,
         "timeZone":"USA/Los_Angeles" ,
+        "desiredTimeZone":"USA/New_York" ,
         "startDate": "2020-01-01",
         "endDate": "2021-12-31",
         "isActive": "true"
@@ -38,9 +39,21 @@ export class UserService {
     return this.http.get<User[]>(this.url);
   }
 
-  /**GET: get a user by ID**/
   getUserById(userId: number) : Observable<User> {
     return this.http.get<User>(this.url + userId + ''); //user observable. passing the observable.
+  }
+
+  updateDesiredTimeZone(userId: number, dTZ: string) {
+    return this.http.request('PUT', this.url, {
+      body: {
+        "userId":  {
+          "userId": userId
+        },
+        "document": {
+          "desiredTimeZone": dTZ
+        }
+      }
+    }).subscribe();
   }
 
 }

@@ -24,6 +24,7 @@ export class UserComponent implements OnInit {
   public v_name: string = '';
   public v_userId: number | undefined;
   public v_timeZone: string = '';
+  public v_dTimeZone: string = '';
   public v_startDate: string = '';
   public v_endDate: string = '';
   public v_isActive: boolean | undefined;
@@ -65,6 +66,7 @@ getUserById(): void {
     this.v_name = result.name;
     this.v_userId = result.userId;
     this.v_timeZone = result.timeZone;
+    this.v_dTimeZone = result.desiredTimeZone;
     this.v_startDate = result.startDate;
     this.v_endDate = result.endDate;
     this.v_isActive = result.isActive;

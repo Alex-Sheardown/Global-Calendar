@@ -9,6 +9,7 @@ usersCollection.insert(
         email: "Nick@gmail.com",
         password: "Nick!",
         timeZone: "USA/Chicago",
+        desiredTimeZone: "USA/New_York",
         startDate: "2021-02-01",
         endDate: null,
         isActive: true
@@ -22,6 +23,7 @@ usersCollection.insert(
         email: "Emma@gmail.com",
         password: "Emma!",
         timeZone: "Asia/Tokyo",
+        desiredTimeZone: "USA/Los_Angeles",
         startDate: "2020-01-01",
         endDate: null,
         isActive: true
@@ -34,6 +36,7 @@ usersCollection.insert(
         email: "Alex@gmail.com",
         password: "Alex!",
         timeZone: "USA/New_York",
+        desiredTimeZone: "USA/Los_Angeles",
         startDate: "2020-01-04",
         endDate: null,
         isActive: true
@@ -47,6 +50,7 @@ usersCollection.insert(
         email: "Justin@gmail.com",
         password: "Justin!",
         timeZone: "USA/Los_Angeles",
+        desiredTimeZone: "Asia/Tokyo",
         startDate: "2021-02-11",
         endDate: null,
         isActive: true
@@ -59,6 +63,7 @@ usersCollection.insert(
         email: "Dr. H@gmail.com",
         password: "Dr. H!",
         timeZone: "USA/Los_Angeles",
+        desiredTimeZone: "Asia/Tokyo",
         startDate: "2020-01-01",
         endDate: "2021-01-31",
         isActive: false
@@ -72,6 +77,7 @@ usersCollection.insert(
         email: "nicholasbenyo@gmail.com",
         password: "MyTest",
         timeZone: "USA/Los_Angeles",
+        desiredTimeZone: "USA/New_York",
         startDate: "2020-01-01",
         endDate: "2021-01-31",
         isActive: false
