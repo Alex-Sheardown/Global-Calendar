@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -6,6 +6,7 @@ import {LoginService} from '../service/login.service';
 import { Observable } from 'rxjs';
 import{User} from '../interface/user';
 //import {LogService} from "../log.service";
+import { DOCUMENT } from '@angular/common';
 
 
 @Component({
@@ -20,9 +21,13 @@ export class SigninComponent implements OnInit {
   public userName: String = "";
 
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {  }
+
+  goToUrl(): void {
+    this.document.location.href = 'http://localhost:8080/auth/google';
+}
 
   getUser(userId: number) {
     console.log(userId);
