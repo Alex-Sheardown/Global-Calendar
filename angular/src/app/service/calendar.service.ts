@@ -8,8 +8,12 @@ import {Observable, of} from "rxjs";
 @Injectable()
 export class CalendarService {
 
-  public url: string = 'https://globalcal5.azurewebsites.net/';
-  public url2: string = 'https://globalcal5.azurewebsites.net/app/user/calendar/';
+  // public url: string = 'https://globalcal5.azurewebsites.net/';
+  // public url2: string = 'https://globalcal5.azurewebsites.net/app/user/calendar/';
+
+  hostURL:string = '/'
+  pathURL:string = 'app/calendar/'
+  path2URL:string = 'app/user/calendar/'
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,15 +26,15 @@ export class CalendarService {
   ) { }
 
   getCalendars(): Observable<Calendar[]>{
-    return this.http.get<Calendar[]>(this.url + '/app/calendar/');
+    return this.http.get<Calendar[]>(this.hostURL+ this.pathURL);
   }
 
   getCalendarById(calendarId: number): Observable<Calendar> {
-    return this.http.get<Calendar>(this.url + '/app/calendar/' + calendarId + '');
+    return this.http.get<Calendar>(this.hostURL+this.pathURL + calendarId + '');
   }
 
   getCalendarByUserId(userId: number): Observable<Calendar> {
-    return this.http.get<Calendar>(this.url2 + userId + '');
+    return this.http.get<Calendar>(this.hostURL+this.path2URL + userId + '');
   }
 
 }

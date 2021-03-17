@@ -14,8 +14,11 @@ export interface userId {
 
 export class LoginService {
 
-  url: string = "https://globalcal5.azurewebsites.net/app/user"
-  url2: string = "https://globalcal5.azurewebsites.net"
+  // url: string = "https://globalcal5.azurewebsites.net/app/user/"
+  // url2: string = "https://globalcal5.azurewebsites.net/"
+
+  hostURL:string = '/'
+  pathURL:string = 'app/user/'
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -38,7 +41,7 @@ export class LoginService {
   }
 
   getID():number{
-    this.http.get<User>(this.url + '/current').subscribe((user: userId) => {
+    this.http.get<User>(this.hostURL + this.pathURL + 'current').subscribe((user: userId) => {
       this.v_userId = user.userId;
     })
     return this.v_userId
@@ -85,15 +88,15 @@ export class LoginService {
   }
 
   getUser(userId:number) : Observable<User> {
-    return this.http.get<User>(this.url + "/" + userId + "");
+    return this.http.get<User>(this.hostURL + this.pathURL + userId + "");
   }
 
   getTemp1(): Observable<string>{
-    return this.http.get<string>(this.url2 + "/CallOne");
+    return this.http.get<string>(this.hostURL + "CallOne");
   }
 
   getTemp2(): Observable<string>{
-    return this.http.get<string>(this.url2 + "/CallTwo");
+    return this.http.get<string>(this.hostURL + "CallTwo");
   }
 
   /*

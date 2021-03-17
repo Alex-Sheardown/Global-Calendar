@@ -7,7 +7,10 @@ import { Observable } from "rxjs";
 @Injectable()
 export class EventService {
 
-  url: string = 'https://globalcal5.azurewebsites.net'
+  // url: string = 'https://globalcal5.azurewebsites.net'
+
+  hostURL:string = '/'
+  pathURL:string = 'app/event/'
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,7 +20,7 @@ export class EventService {
 
   postEvent(title: string, description: string, category: string,
             startDate: Date, endDate: Date, startTime: string, endTime: string) {
-    return this.http.request('POST', this.url, {
+    return this.http.request('POST', this.hostURL+this.pathURL, {
       body: {
         "eventId": 20, // placeholder
         "title": title,
@@ -33,7 +36,7 @@ export class EventService {
 
   updateEvent(eventId: number, title: string, description: string, category: string,
               startDate: Date, endDate: Date, startTime: string, endTime: string) {
-    return this.http.request('PUT', this.url, {
+    return this.http.request('PUT', this.hostURL+this.pathURL, {
       body: {
         "eventId":  {
           "eventId": eventId
@@ -52,20 +55,20 @@ export class EventService {
   }
 
   deleteEvent(eventId: number) {
-    return this.http.request('DELETE', '/app/event', {body: {"eventId": eventId}}).subscribe();
+    return this.http.request('DELETE', this.hostURL + this.pathURL, {body: {"eventId": eventId}}).subscribe();
   }
 
   getEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(this.url + '/app/event');
+    return this.http.get<Event[]>(this.hostURL + this.pathURL);
   }
 
   getEventById(eventId: number): Observable<Event> {
-    return this.http.get<Event>(this.url + '/app/event' + '/' + eventId + '');
+    return this.http.get<Event>(this.hostURL + this.pathURL + eventId + '');
   }
 
   // Merge redundancy
   getEventByIdObs(index: number): Observable<Event> {
-    return this.http.get<Event>(this.url + '/app/event' + '/' + index);
+    return this.http.get<Event>(this.hostURL + this.pathURL  + index);
   }
 
   // Convert date to ISO string for readability
