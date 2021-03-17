@@ -49,8 +49,8 @@ class App {
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
         this.expressApp.use(session({ secret: "temp" }));
         this.expressApp.use(cookieParser());
-        //this.expressApp.use(passport.initialize());
-        //this.expressApp.use(passport.session());
+        this.expressApp.use(passport.initialize());
+        this.expressApp.use(passport.session());
     }
 
     private validateAuth(req, res, next): void {
@@ -78,7 +78,7 @@ class App {
                 let result = res.json();
                 let userid = result['req']['user']['id'];
                 console.log('http://lvh.me:8080/app/user/' + userid)
-                res.redirect('http://lvh.me:8080/app/user/' + userid);
+                res.redirect('/');
             }
         );
 
@@ -111,6 +111,12 @@ class App {
             console.log(req);
             console.log('Query all users');
             this.Users.retrieveAllUsers(res);
+        });
+
+        router.get('/app/user/current', this.validateAuth, (req, res) => {
+            console.log(req);
+            console.log('Query all users');
+            res.json({userId: this.googlePassportObj.userId})
         });
 
         router.get('/app/user/:userId', this.validateAuth, (req, res) => {
