@@ -16,7 +16,8 @@ body {
   -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
   box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
   border: none;
-  margin-bottom: 30px
+  margin-bottom: 30px;
+  background-color: white;
 }
 
 .m-r-0 {
@@ -28,7 +29,7 @@ body {
 }
 
 .user-card-full .user-profile {
-  border-radius: 5px 0 0 5px
+  /*border-radius: 5px 0 0 5px*/
 }
 
 .bg-c-lite-green { /*top user header color background*/
@@ -137,4 +138,9 @@ h6 {
   margin: 0 10px 0 0;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out
+}
+
+.resize{
+  width:50px;
+  height:50px;
 }

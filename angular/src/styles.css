@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/purple-green.css';
+/*@import '~@angular/material/prebuilt-themes/purple-green.css';*/
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 html {
   background-image: url(app/images/global.jpg);
-  background-color: rgba(0,0,0,0.7);
+  /*background-color: rgba(0,0,0,0.7);*/
+  background-color: #e8eaf6;
   /*background-size: 200% 200%;*/
   background-position-x: center;
   background-attachment: fixed;

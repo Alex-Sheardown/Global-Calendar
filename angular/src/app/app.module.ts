@@ -16,7 +16,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule} from "@angular/material/select";
 import { MatNativeDateModule, MatOptionModule } from "@angular/material/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
-
+import { MatCardModule } from '@angular/material/card';
 //Components and Services
 import { AppComponent } from './app.component';
 import { LogService } from "./log.service";
@@ -91,7 +91,8 @@ FullCalendarModule.registerPlugins([
     MatNativeDateModule,
     MatInputModule,
     MatFormFieldModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    MatCardModule
   ],
   providers: [CalendarService, LogService, EventService, UserService, LoginService],
   bootstrap: [AppComponent]
