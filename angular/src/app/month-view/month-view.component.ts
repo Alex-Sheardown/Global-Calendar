@@ -26,8 +26,7 @@ export class MonthViewComponent implements OnInit {
     private eventService: EventService,
     private logger: LogService,
     private loginService: LoginService
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
     this.getApplicableEvents(this.loginService.getCID())

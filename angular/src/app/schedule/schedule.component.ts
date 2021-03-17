@@ -23,7 +23,6 @@ export class ScheduleComponent implements OnInit, OnChanges{
   private calendar$: Observable<Calendar> = new Observable<Calendar>();
   private event$: Observable<Event> = new Observable<Event>();
   private events$: Observable<Event[]> = new Observable<Event[]>();
-  public calendarName: string = '';
 
   displayedColumns: string[] = [
     'eventId', 'title', 'category', 'description',
@@ -36,7 +35,8 @@ export class ScheduleComponent implements OnInit, OnChanges{
     private router: Router,
     private logger: LogService,
     private calendarService: CalendarService,
-    private loginService: LoginService) { }
+    private loginService: LoginService
+  ) { }
 
   ngOnInit(): void {
     this.getCalendarEvents();
@@ -46,17 +46,10 @@ export class ScheduleComponent implements OnInit, OnChanges{
     this.getCalendarEvents();
   }
 
-  /*getEvents() {
-    this.eventService.getEvents().subscribe((result: Event[]) => {
-      this.dataSource = new MatTableDataSource<Event>(result);
-    })
-  }*/
-
   getCalendarEvents(): void {
     this.calendar$ = this.calendarService.getCalendarByUserId(this.loginService.getID())
     this.events$ = this.calendar$.pipe(
       switchMap((calendar: Calendar) => {
-        this.calendarName = calendar.name;
         const eventArray$: Observable<Event>[] = [];
         calendar.events.forEach(event=>{
           this.event$ = this.eventService.getEventByIdObs(event.eventId);

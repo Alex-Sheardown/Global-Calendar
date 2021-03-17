@@ -67,7 +67,7 @@ export class AppComponent {
   // Temporary routes for testing
   clickGetCalendars() {this.router.navigate(['calendar']);}
   clickGetEvents() {this.router.navigate(['event']);}
-  clickGetUsers() {this.router.navigate(['user']);}
+  clickGetUserInfo() {this.router.navigate(['user']);}
   clickGoToSignIn() {this.router.navigate(['signin']);}
 
 }

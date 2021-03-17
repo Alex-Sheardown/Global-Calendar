@@ -38,7 +38,6 @@ export class EventListComponent implements OnInit, OnChanges {
   ) {
     }
 
-
   ngOnInit(): void {
     this.getApplicableEvents(this.calendarPicker);
   }
@@ -71,8 +70,4 @@ export class EventListComponent implements OnInit, OnChanges {
       this.dataSource = new MatTableDataSource(unpacked);
     })
   }
-
-  /*deleteEvent(eventId: number) {
-    this.eventService.deleteEvent(eventId)
-  }*/
 }

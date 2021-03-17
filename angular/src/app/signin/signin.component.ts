@@ -24,9 +24,6 @@ export class SigninComponent implements OnInit {
 
   ngOnInit(): void {  }
 
-  
-
-
   getUser(userId: number) {
     console.log(userId);
     this.user$ = this.loginService.getUser(userId);
