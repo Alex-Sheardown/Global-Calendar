@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 @Injectable()
 export class EventService {
 
-  url: string = 'http://localhost:8080'
+  url: string = 'https://globalcaal.azurewebsites.net'
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

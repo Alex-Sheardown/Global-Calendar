@@ -54,9 +54,10 @@ class App {
     }
 
     private validateAuth(req, res, next): void {
-        if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
-        console.log("user is not authenticated");
-        res.redirect('/'); // Route to failed redirect
+        //if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
+        //console.log("user is not authenticated");
+        //res.redirect('/'); // Route to failed redirect
+        return next();
     }
 
     // Configure API endpoints.
@@ -70,14 +71,12 @@ class App {
         router.get('/auth/google/callback',
             passport.authenticate(
                 'google',
-                { failureRedirect: 'http://lvh.me:8080' }
+                { failureRedirect: 'https://globalcaal.azurewebsites.net/' }
             ),
             (req, res) => {
                 console.log("successfully authenticated user and returned to callback page.");
                 console.log("redirecting");
-                let result = res.json();
-                let userid = result['req']['user']['id'];
-                console.log('http://lvh.me:8080/app/user/' + userid)
+                console.log('https://globalcaal.azurewebsites.net/app/user/')
                 res.redirect('/');
             }
         );
@@ -108,14 +107,12 @@ class App {
         });
 
         router.get('/app/user/', this.validateAuth, (req, res) => {
-            console.log(req);
             console.log('Query all users');
             this.Users.retrieveAllUsers(res);
         });
 
         router.get('/app/user/current', this.validateAuth, (req, res) => {
-            console.log(req);
-            console.log('Query all users');
+            console.log('Get current user');
             res.json({userId: this.googlePassportObj.userId})
         });
 
@@ -206,8 +203,6 @@ class App {
         this.expressApp.use('/', router);
         this.expressApp.use('/', express.static(__dirname + '/angular'));
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
-        //this.expressApp.use('/', express.static(__dirname + '/pages'));
-        //this.expressApp.use('/Day', express.static(__dirname+'/pages/Calendar/Day.html'));
         this.expressApp.use('/Week', express.static(__dirname + '/pages/Calendar/Week.html'));
         this.expressApp.use('/Month', express.static(__dirname + '/pages/Calendar/Month.html'));
         this.expressApp.use('/Year', express.static(__dirname + '/pages/Calendar/Year.html'));

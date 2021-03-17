@@ -8,8 +8,8 @@ import {Observable, of} from "rxjs";
 @Injectable()
 export class CalendarService {
 
-  public url: string = 'http://localhost:8080';
-  public url2: string = 'http://localhost:8080/app/user/calendar/';
+  public url: string = 'https://globalcaal.azurewebsites.net/';
+  public url2: string = 'https://globalcaal.azurewebsites.net/app/user/calendar/';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

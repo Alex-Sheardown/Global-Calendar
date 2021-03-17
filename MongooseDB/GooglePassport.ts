@@ -18,20 +18,18 @@ class GooglePassport {
         passport.use(new GoogleStrategy({
                 clientID: this.clientId,
                 clientSecret: this.secretId,
-                callbackURL: "http://lvh.me:8080/auth/google/callback"
+                callbackURL: "https://globalcaal.azurewebsites.net/auth/google/callback"
 //                profileFields: ['id', 'displayName', 'emails']
             },
             (accessToken, refreshToken, profile, done) => {
                 console.log("inside new password google strategy");
                 process.nextTick( () => {
-                    console.log('validating google profile:' + JSON.stringify(profile))
+                    console.log('validating google profile:' + JSON.stringify(profile));
                     console.log("userId:" + profile.id);
                     console.log("displayName: " + profile.displayName);
                     console.log("retrieve all of the profile info needed");
-                    profile.ac = accessToken;
-                    profile.re = refreshToken;
-                    this.userId = profile.id;
                     // this.email = profile.emails[0].value;
+                    this.userId = profile.id
                     return done(null, profile);
                 });
             }

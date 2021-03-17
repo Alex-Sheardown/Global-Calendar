@@ -61,6 +61,7 @@ class EventModel {
         console.log(filter)
         let query = this.model.findOne(filter);
         query.exec((err, eventResult) => {
+            console.log(eventResult);
             response.json(eventResult);
         });
     }

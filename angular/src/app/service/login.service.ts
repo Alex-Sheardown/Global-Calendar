@@ -4,14 +4,18 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import{User} from '../interface/user'
 
+export interface userId {
+  userId: number
+}
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class LoginService {
 
-  url: string = "http://localhost:8080/app/user"
-  url2: string = "http://localhost:8080/"
+  url: string = "https://globalcaal.azurewebsites.net/app/user"
+  url2: string = "https://globalcaal.azurewebsites.net"
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -30,11 +34,14 @@ export class LoginService {
   public v_calendarIdName: string = '';
 
   constructor(private http: HttpClient) {
-    this.v_userId = 1
+    this.v_userId = 0;
   }
 
   getID():number{
-    return this.v_userId;
+    this.http.get<User>(this.url + '/current').subscribe((user: userId) => {
+      this.v_userId = user.userId;
+    })
+    return this.v_userId
   }
 
   getName(){

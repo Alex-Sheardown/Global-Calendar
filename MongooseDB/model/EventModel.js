@@ -50,6 +50,7 @@ var EventModel = /** @class */ (function () {
         console.log(filter);
         var query = this.model.findOne(filter);
         query.exec(function (err, eventResult) {
+            console.log(eventResult);
             response.json(eventResult);
         });
     };

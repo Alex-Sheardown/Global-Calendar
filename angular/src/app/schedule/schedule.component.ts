@@ -26,7 +26,7 @@ export class ScheduleComponent implements OnInit, OnChanges{
 
   displayedColumns: string[] = [
     'eventId', 'title', 'category', 'description',
-    'startDate', 'startTime', 'endDate', 'endTime', 'action'
+    'startDate', 'startTime', 'endDate', 'endTime'
   ];
   dataSource = new MatTableDataSource<Event>();
 

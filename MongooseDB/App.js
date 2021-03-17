@@ -35,16 +35,14 @@ var App = /** @class */ (function () {
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
         this.expressApp.use(session({ secret: "temp" }));
         this.expressApp.use(cookieParser());
-        //this.expressApp.use(passport.initialize());
-        //this.expressApp.use(passport.session());
+        this.expressApp.use(passport.initialize());
+        this.expressApp.use(passport.session());
     };
     App.prototype.validateAuth = function (req, res, next) {
-        if (req.isAuthenticated()) {
-            console.log("user is authenticated");
-            return next();
-        }
-        console.log("user is not authenticated");
-        res.redirect('/'); // Route to failed redirect
+        //if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
+        //console.log("user is not authenticated");
+        //res.redirect('/'); // Route to failed redirect
+        return next();
     };
     // Configure API endpoints.
     App.prototype.routes = function () {
@@ -52,13 +50,11 @@ var App = /** @class */ (function () {
         var router = express.Router();
         router.use(cors(options));
         router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
-        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: 'http://lvh.me:8080' }), function (req, res) {
+        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: 'https://globalcaal.azurewebsites.net/' }), function (req, res) {
             console.log("successfully authenticated user and returned to callback page.");
             console.log("redirecting");
-            var result = res.json();
-            var userid = result['req']['user']['id'];
-            console.log('http://lvh.me:8080/app/user/' + userid);
-            res.redirect('http://lvh.me:8080/app/user/' + userid);
+            console.log('https://globalcaal.azurewebsites.net/app/user/');
+            res.redirect('/');
         });
         // User APIs
         router.post('/app/user/', this.validateAuth, function (req, res) {
@@ -83,9 +79,12 @@ var App = /** @class */ (function () {
             _this.Users.updateUser(res, req.body.userId, req.body.document);
         });
         router.get('/app/user/', this.validateAuth, function (req, res) {
-            console.log(req);
             console.log('Query all users');
             _this.Users.retrieveAllUsers(res);
+        });
+        router.get('/app/user/current', this.validateAuth, function (req, res) {
+            console.log('Get current user');
+            res.json({ userId: _this.googlePassportObj.userId });
         });
         router.get('/app/user/:userId', this.validateAuth, function (req, res) {
             var userId = req.params.userId;
@@ -161,8 +160,6 @@ var App = /** @class */ (function () {
         this.expressApp.use('/', router);
         this.expressApp.use('/', express.static(__dirname + '/angular'));
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
-        //this.expressApp.use('/', express.static(__dirname + '/pages'));
-        //this.expressApp.use('/Day', express.static(__dirname+'/pages/Calendar/Day.html'));
         this.expressApp.use('/Week', express.static(__dirname + '/pages/Calendar/Week.html'));
         this.expressApp.use('/Month', express.static(__dirname + '/pages/Calendar/Month.html'));
         this.expressApp.use('/Year', express.static(__dirname + '/pages/Calendar/Year.html'));
