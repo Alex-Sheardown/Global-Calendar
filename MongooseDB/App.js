@@ -11,6 +11,7 @@ var EventModel_1 = require("./model/EventModel");
 var UserModel_1 = require("./model/UserModel");
 var CalendarModel_1 = require("./model/CalendarModel");
 var GooglePassport_1 = require("./GooglePassport");
+var passport = require("passport");
 var options = {
     origin: '*'
 };

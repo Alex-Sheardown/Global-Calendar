@@ -81,7 +81,7 @@ class App {
                 res.redirect('http://lvh.me:8080/app/user/' + userid);
             }
         );
-*/
+
         // User APIs
         router.post('/app/user/', this.validateAuth, (req, res) => {
             console.log(req.body);

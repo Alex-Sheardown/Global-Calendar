@@ -17,7 +17,8 @@ body {
   box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
   border: none;
   margin-bottom: 30px;
-  background-color: white;
+  /*background-color: white;*/
+  background-color: papayawhip;
 }
 
 .m-r-0 {
@@ -34,9 +35,12 @@ body {
 
 .bg-c-lite-green { /*top user header color background*/
   /*background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));*/
-  background: -webkit-gradient(linear, left top, right top, from(#7863f2), to(#d363f2));
   /*background: linear-gradient(to right, #ee5a6f, #f29263)*/
-  background: linear-gradient(to right, #7863f2, #d363f2)
+  /*background: -webkit-gradient(linear, left top, right top, from(#7863f2), to(#d363f2));*/
+  /*background: linear-gradient(to right, #7863f2, #d363f2);*/
+  background: -webkit-gradient(linear, left top, right top, from(#26a69a), to(#b2dfdb));
+  background: linear-gradient(to right, #26a69a, #b2dfdb)
+
 }
 
 .user-profile {
