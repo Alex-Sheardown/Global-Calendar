@@ -30,7 +30,7 @@ export class LoginService {
   public v_calendarIdName: string = '';
 
   constructor(private http: HttpClient) {
-    this.v_userId = 2
+    this.v_userId = 1
   }
 
   getID():number{

@@ -29,7 +29,7 @@ export class CalendarService {
     return this.http.get<Calendar>(this.url + '/app/calendar/' + calendarId + '');
   }
 
-  getCalendauserIdrByUserId(userId: number): Observable<Calendar> {
+  getCalendarByUserId(userId: number): Observable<Calendar> {
     return this.http.get<Calendar>(this.url2 + userId + '');
   }
 
