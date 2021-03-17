@@ -8,7 +8,7 @@ import {Observable, of} from "rxjs";
 @Injectable()
 export class UserService {
 
-  url:string = 'https://globalcaal.azurewebsites.net/app/user/'
+  url:string = 'https://globalcal5.azurewebsites.net/app/user/'
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

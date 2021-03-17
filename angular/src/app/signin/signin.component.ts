@@ -26,7 +26,7 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {  }
 
   goToUrl(): void {
-    this.document.location.href = 'https://globalcaal.azurewebsites.net/auth/google';
+    this.document.location.href = 'https://globalcal5.azurewebsites.net/auth/google';
 }
 
   getUser(userId: number) {

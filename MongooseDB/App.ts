@@ -71,12 +71,12 @@ class App {
         router.get('/auth/google/callback',
             passport.authenticate(
                 'google',
-                { failureRedirect: 'https://globalcaal.azurewebsites.net/' }
+                { failureRedirect: 'https://globalcal5.azurewebsites.net/' }
             ),
             (req, res) => {
                 console.log("successfully authenticated user and returned to callback page.");
                 console.log("redirecting");
-                console.log('https://globalcaal.azurewebsites.net/app/user/')
+                console.log('https://globalcal5.azurewebsites.net/app/user/')
                 res.redirect('/');
             }
         );
@@ -201,7 +201,7 @@ class App {
 
         // Static Routes
         this.expressApp.use('/', router);
-        this.expressApp.use('/', express.static(__dirname + '/angular'));
+        this.expressApp.use('/', express.static(__dirname + '/angularDist'));
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
         this.expressApp.use('/Week', express.static(__dirname + '/pages/Calendar/Week.html'));
         this.expressApp.use('/Month', express.static(__dirname + '/pages/Calendar/Month.html'));

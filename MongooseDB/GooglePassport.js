@@ -13,7 +13,7 @@ var GooglePassport = /** @class */ (function () {
         passport.use(new GoogleStrategy({
             clientID: this.clientId,
             clientSecret: this.secretId,
-            callbackURL: "https://globalcaal.azurewebsites.net/auth/google/callback"
+            callbackURL: "https://globalcal5.azurewebsites.net/auth/google/callback"
             //                profileFields: ['id', 'displayName', 'emails']
         }, function (accessToken, refreshToken, profile, done) {
             console.log("inside new password google strategy");

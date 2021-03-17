@@ -14,8 +14,8 @@ export interface userId {
 
 export class LoginService {
 
-  url: string = "https://globalcaal.azurewebsites.net/app/user"
-  url2: string = "https://globalcaal.azurewebsites.net"
+  url: string = "https://globalcal5.azurewebsites.net/app/user"
+  url2: string = "https://globalcal5.azurewebsites.net"
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
