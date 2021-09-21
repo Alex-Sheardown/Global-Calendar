@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 
 import {EventModel} from './model/EventModel';
 import {UserModel} from './model/UserModel';
-import {CalendarModel} from "./model/CalendarModel";
+import {AddressModel} from "./model/AddressModel";
 
 const options: cors.CorsOptions = {
     origin: '*'
@@ -21,7 +21,7 @@ class App {
     public expressApp: express.Application;
     public Events: EventModel;
     public Users: UserModel;
-    public Calendars: CalendarModel;
+    public Addresss: AddressModel;
     public idGenerator: number;
 
     //Run configuration methods on the Express instance.
@@ -32,7 +32,7 @@ class App {
         this.idGenerator = 102;
         this.Events = new EventModel();
         this.Users = new UserModel();
-        this.Calendars = new CalendarModel();
+        this.Addresss = new AddressModel();
     }
 
     // Configure Express middleware.
@@ -134,39 +134,39 @@ class App {
             this.Events.retrieveEventById(res, {eventId: eventId})
         });
 
-        // Calendar APIs
-        router.post('/app/calendar/', (req, res) => {
+        // Address APIs
+        router.post('/app/Address/', (req, res) => {
             console.log(req.body);
             let jsonObj = req.body;
-            this.Calendars.model.create([jsonObj], (err) => {
+            this.Addresss.model.create([jsonObj], (err) => {
                 if (err) {
-                    console.log('Calendar object creation failed');
+                    console.log('Address object creation failed');
                 }
             });
             res.send(this.idGenerator.toString());
             this.idGenerator++;
         });
 
-        router.delete('/app/calendar', (req, res) => {
+        router.delete('/app/Address', (req, res) => {
             console.log(req.body)
-            let calendarId = req.body.calendarId;
-            this.Calendars.deleteCalendar(res, {calendarId: {$eq: calendarId}})
+            let AddressId = req.body.AddressId;
+            this.Addresss.deleteAddress(res, {AddressId: {$eq: AddressId}})
         });
 
-        router.put('/app/calendar', (req, res) => {
-            console.log('Updating calendar according to following request: ' + req.body)
-            this.Calendars.updateCalendar(res, req.body.calendarId, req.body.document)
+        router.put('/app/Address', (req, res) => {
+            console.log('Updating Address according to following request: ' + req.body)
+            this.Addresss.updateAddress(res, req.body.AddressId, req.body.document)
         });
 
-        router.get('/app/calendar/', (req, res) => {
-            console.log('Query all calendars');
-            this.Calendars.retrieveAllCalendars(res);
+        router.get('/app/Address/', (req, res) => {
+            console.log('Query all Addresss');
+            this.Addresss.retrieveAllAddresss(res);
         });
 
-        router.get('/app/calendar/:calendarId', (req, res) => {
-            let calendarId = req.params.calendarId;
-            console.log('Query user collection for the following id: ' + calendarId);
-            this.Calendars.retrieveCalendarById(res, {calendarId: calendarId})
+        router.get('/app/Address/:AddressId', (req, res) => {
+            let AddressId = req.params.AddressId;
+            console.log('Query user collection for the following id: ' + AddressId);
+            this.Addresss.retrieveAddressById(res, {AddressId: AddressId})
         });
 
 
@@ -174,12 +174,12 @@ class App {
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
         this.expressApp.use('/', express.static(__dirname + '/pages'));
-        //this.expressApp.use('/Day', express.static(__dirname+'/pages/Calendar/Day.html'));
-        this.expressApp.use('/Week', express.static(__dirname + '/pages/Calendar/Week.html'));
-        this.expressApp.use('/Month', express.static(__dirname + '/pages/Calendar/Month.html'));
-        this.expressApp.use('/Year', express.static(__dirname + '/pages/Calendar/Year.html'));
-        //this.expressApp.use('/Schedule', express.static(__dirname+'/pages/Calendar/Schedules.html'));
-        //this.expressApp.use('/Settings', express.static(__dirname+'/pages/Calendar/Settings.html'));
+        //this.expressApp.use('/Day', express.static(__dirname+'/pages/Address/Day.html'));
+        this.expressApp.use('/Week', express.static(__dirname + '/pages/Address/Week.html'));
+        this.expressApp.use('/Month', express.static(__dirname + '/pages/Address/Month.html'));
+        this.expressApp.use('/Year', express.static(__dirname + '/pages/Address/Year.html'));
+        //this.expressApp.use('/Schedule', express.static(__dirname+'/pages/Address/Schedules.html'));
+        //this.expressApp.use('/Settings', express.static(__dirname+'/pages/Address/Settings.html'));
 
     }
 

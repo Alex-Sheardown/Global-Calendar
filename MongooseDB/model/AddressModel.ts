@@ -1,12 +1,12 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from '../DataAccess';
-import {ICalendarModel} from '../interfaces/ICalendarModel';
+import {IAddressModel} from '../interfaces/IAddressModel';
 import {STATUS_CODES} from "http";
 
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
 
-class CalendarModel {
+class AddressModel {
     public schema: any;
     public model: any;
 
@@ -120,36 +120,36 @@ class CalendarModel {
                 */
                 
 
-            }, {collection: 'calendars'}
+            }, {collection: 'Addresss'}
         );
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<ICalendarModel>("Calendar", this.schema);
+        this.model = mongooseConnection.model<IAddressModel>("Address", this.schema);
     }
 
-    public updateCalendar(response: any, filter: Object, document: Object): any {
+    public updateAddress(response: any, filter: Object, document: Object): any {
         let query = this.model.updateOne(filter, document)
-        query.exec((err, calendarResult) => {
-            response.json(calendarResult)
+        query.exec((err, AddressResult) => {
+            response.json(AddressResult)
         })
     }
 
-    public deleteCalendar(response: any, filter: Object): any {
+    public deleteAddress(response: any, filter: Object): any {
         let query = this.model.deleteOne(filter)
-        query.exec((err, calendarResult) => {
-            response.json(calendarResult)
+        query.exec((err, AddressResult) => {
+            response.json(AddressResult)
         });
     }
 
-    public retrieveAllCalendars(response: any): any {
+    public retrieveAllAddresss(response: any): any {
         let query = this.model.find({});
         query.exec((err, itemArray) => {
             response.json(itemArray);
         });
     }
 
-    public retrieveCalendarById(response: any, filter: Object) {
+    public retrieveAddressById(response: any, filter: Object) {
         console.log('Filter passed through is:')
         console.log(filter)
         let query = this.model.findOne(filter);
@@ -159,4 +159,4 @@ class CalendarModel {
     }
 }
 
-export {CalendarModel};
+export {AddressModel};
